@@ -40,7 +40,8 @@
     <div class="wrapper">
       <nav>
         <ul></ul>
-        <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url | absolute_url }}">{{ node.title }}</a>
+        <br>
+        <a href="{{ node.url | absolute_url }}">{{ node.title }}</a>
       </nav>
       <section>
         {{ content }}
