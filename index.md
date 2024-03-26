@@ -2,6 +2,15 @@
 layout: default
 ---
 
+# Links to the lab pages
+
+[Link to Lab 1](./lab1.html) \\
+[Link to Lab 2](./lab2.html) \\
+[Link to Lab 3](./lab3.html) \\
+
+
+# Markdown tutorial stuff below here
+
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
 [Link to another page](./another-page.html).
