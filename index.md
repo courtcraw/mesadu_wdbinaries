@@ -1,6 +1,9 @@
 ---
 layout: default
+title: MESA WD Binaries Labs
+description: site to host the MESA Down Under 2024 Labs
 ---
+
 
 # Links to the lab pages
 
