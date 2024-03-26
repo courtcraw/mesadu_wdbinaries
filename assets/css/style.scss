@@ -14,3 +14,17 @@
     position:relative;
 }
 
+section {
+    width: unset;
+    margin-top: 75px;
+}      
+
+nav {
+    top: 75px;
+    /* top: 170px; */
+    text-align: left;
+    margin-left: 0px;
+    position: fixed;
+    left: 0;
+}
+
