@@ -9,7 +9,8 @@ description: site to host the MESA Down Under 2024 Labs
 
 [Link to Lab 1](./lab1.html) \\
 [Link to Lab 2](./lab2.html) \\
-[Link to Lab 3](./lab3.html) \\
+[Link to Lab 3](./lab3.html) 
+
 
 
 # Markdown tutorial stuff below here
