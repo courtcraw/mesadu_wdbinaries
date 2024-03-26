@@ -15,7 +15,7 @@ description: site to host the MESA Down Under 2024 Labs
 
 In the following `MESA` lab exercises, you will see different text boxes and colours appearing at different times. <br>
 
-Text boxes with black background will provide either some terminal commands or terminal output from your `MESA` and `GYRE` runs.
+Text boxes with black background will provide either some terminal commands or terminal output from your `MESA` and `GYRE` runs. (Courtney note this DOES NOT WORK in our github pages theme!!)
 
 <div class="terminal-title"> Terminal commands or output </div> 
 <div class="terminal"><p>
