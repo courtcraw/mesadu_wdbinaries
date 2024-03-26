@@ -11,6 +11,40 @@ description: site to host the MESA Down Under 2024 Labs
 [Link to Lab 2](./lab2.html) \\
 [Link to Lab 3](./lab3.html) 
 
+# Markdown and HTML stuff stolen from May
+
+In the following `MESA` lab exercises, you will see different text boxes and colours appearing at different times. <br>
+
+Text boxes with black background will provide either some terminal commands or terminal output from your `MESA` and `GYRE` runs.
+
+<div class="terminal-title"> Terminal commands or output </div> 
+<div class="terminal"><p>
+A terminal command or output will appear here
+</p></div>
+
+
+The second type of text box has a white background, and lists example contents of different files that you need to use/modify or `fortran` coding examples.
+
+<div class="filetext-title"> File name or type of fortran commands </div> 
+<div class="filetext"><p>
+Text inside file or example fortran coding snippets go here.
+</p></div>
+
+
+Aside from the two types of text boxes, there are three different types of coloured text that you will need to pay attention to. <a href="https://docs.mesastar.org/en/release-r23.05.1/" target="_blank"> Text of this colour can be clicked</a> and will either take you to a website or give you downloadable content that you need for the exercise, including solutions to Minilab 1, Minilab 2, and the Maxilab. The remaining two types of text colours correspond to specific tasks that you have to complete and some useful hints along the way, click on them to expand the task or hint.
+
+<task><details>
+<summary>Task 0</summary><p>
+This is an example of how a specific task will show up in the following <code>MESA</code> labs.
+</p></details></task>
+
+
+<hint><details>
+<summary> Hint </summary><p>
+This is an example of how hints to different tasks will show up in the text.
+</p></details></hint>
+
+
 
 
 # Markdown tutorial stuff below here
