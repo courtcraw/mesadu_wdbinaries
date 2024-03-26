@@ -17,6 +17,7 @@
   </head>
   <body>
 
+    {% style for the tasks and hints functions %}
     <style>
       details > summary {font-weight: bold;}
       details > p {
@@ -31,8 +32,42 @@
       }      
       hint {color: rgb(225, 135, 0)}
       task {color: rgb(0, 150, 0)}
-      sup {vertical-align:super;}
-      sub {vertical-align:sub;}
+      sup {font-size:larger; vertical-align:super;}
+      sub {font-size:larger; vertical-align:sub;}
+      </style>
+
+
+      {% style for the terminal output from Matthias %}
+      <style>    
+        .terminal-title{
+          background-color:#000;
+          padding:10px;
+          color:#fff;
+          font-weight:600;}
+        .terminal{
+          background-color: #404040;
+          padding: 1em 2em;
+          color: #ffffff;
+          font-size: 16px;
+          font-family: monospace;}
+        .pre-terminal {
+          background-color: #404040;
+          color: #ffffff;}
+
+        .filetext-title{
+          background-color:#a9a9a9;
+          padding:10px;
+          color:#000;
+          font-weight:600;}      
+        .filetext{
+          background-color: rgb(230, 230, 230);
+          padding: 1em 2em;
+          color: #000;
+          font-size: 16px;
+          font-family: monospace;}
+        .pre-filetext {
+          background-color: rgb(230, 230, 230);
+          color: #000;}
       </style>
 
       <header>
