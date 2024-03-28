@@ -142,6 +142,8 @@ end
 ### Small image
 
 ![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
+![alt_text](./img/file_path.png)
+
 
 ### Large image
 

@@ -19,20 +19,15 @@ Here is the text for lab 3
 * the default one is called star_Mdot - can simply call that
 
 
+## Mdot over time accretion from part 1 of lab onto donor
+* Given a WD model, and then they’ll write (or maybe we’ll give) extras_start_step for mass accretion - probably give interpolation code in fortran to read the history file
+* Tryston task: write interpolation code
+* Evolve to helium flash - maybe (if possible)
+* Goal is to record the total helium mass at helium flash as a function of Mdot (crowdsourced) - see Evan Bauer paper
+* More realistic look at what stars actually do before helium flash
 
 
 
-
-
-
-## RCB - WD merger
-* ?? entropy injection - Courtney task: does this work? Does it take too long? Can we speed it up?
-* Give them an entropy injection routine - could maybe write a functional form if it’s not too complicated
-* Evolve a normal star first - could be given to speed up, but it really doesn’t take long
-* Give them abundances - unless change M and q??
-* Evolve to RCB phase ? could take forever - lower some resolutions - could turn off reactions???? - super adiabatic reduction new thing in MESA for slowdown
-* Needs work - could be abandoned
-* Could this be also accretion - a lot of work on us but would be cool!
 
 
 
