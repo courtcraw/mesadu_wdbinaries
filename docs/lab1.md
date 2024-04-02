@@ -4,10 +4,43 @@ title: Lab 1
 description: This is for Lab 1
 ---
 
+# Solving for Mass Transfer in a DWD binary system
 
-# This is the markdown file for Lab 1
+This can serve as a bit of an introduction to what the lab is about
 
-Here is the text for lab 1
+# Lab Instructions
+
+For this lab we will be running a generic binary system with one of the stars as a point mass (which one? elaborate here). Begin by downloading the Lab 1 working directory from the github repo (place link here or replace the button on the actual webpage).
+
+
+* Courtney formatting note: I kind of prefer to only have the hints in the hidden boxes personally, so that students could see their tasks at a glance if they wish. I'll leave this task one here as an example for now.
+<task><details>
+<summary>Task 1</summary><p>
+Choose a separation and set of component masses from the google spreadsheet (place link here). Implement these into your inlist, and make sure that you call the correct donor star from the list of options.
+</p></details></task>
+* he-wd masses 0.1-0.2 ish solar masses
+* co-wd base model is 1 Msol, 0.8 - 1 solar mass generally (for those that are interesting)
+
+Task 2: ensure that Mdot is included in your <code>history_columns.list</code> output (do we include any other things in the output here?)
+
+Task 3: create a pgstar output that will plot the Mdot as a function of time for visualization purposes (any other pgstar output we'd like them to include?)
+
+Task 4: add in the stopping condition (what is our stopping condition?)
+
+Task 5: any other inlist adjustments? (change history file name ?)
+
+Run the model. 
+
+Do they need to put any values into a google spreadsheet for this one or is that only going to come up in lab 3?
+
+Now for some interpretation, what type of donors give different values of Mdot? (are we kind of exploring stability here?)
+
+Bonus tasks?
+
+
+* * *
+
+# TA notes
 
 ## Run binary as point mass - goal is to get Mdot as a function of time
 * Start from an inlist that we give them for a generic binary, then changing the parameters: component masses and separation
@@ -24,8 +57,6 @@ Here is the text for lab 1
 * google collab with scripts on it to plot history files on the fly
 * vary the separation and mass ratios and the total mass - Sunny will generate donor models for this
 * there will be roughly 13 groups, 39 attendees
-
-
 
 
 * he-wd masses 0.1-0.2 ish solar masses

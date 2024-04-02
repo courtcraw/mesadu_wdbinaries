@@ -5,10 +5,34 @@ description: This is for Lab 2
 ---
 
 
-# This is the markdown file for Lab 2
+# Lab Instructions
 
-Here is the text for lab 2 - this lab takes place just before lunch
+For this lab we will be running constant mass accretion onto the accretor in single star MESA. Our goal is to get to the He flash in these kinds of systems.
 
+Task 0: download the WD initial model (what mass?) from the github repo.
+
+Task 1: add in a constant mass accretion to the inlist (chosen from the spreadsheet of options)
+
+Task 2: add stopping condition (ignition is L_nuc > 10^4-3 Lsol or when convection in the he burning shell)
+
+Task 3: Run to the helium flash and record the he thickness and time of detonation
+
+Task 4: adjust the reaction network to add in the NCO reactions
+
+Task 5: Run the same model with the new reaction network and record he thickness and time of detonation
+
+Interpretation: how did the reaction change those two things?
+
+Bonus task: run through helium flash over lunch time if you wish.
+
+
+
+
+
+
+* * *
+
+# TA notes
 
 ## Potentially, run a constant mass accretion onto the accretor in single star
 * Fairly easy task 
