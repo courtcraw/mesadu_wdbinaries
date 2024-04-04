@@ -40,6 +40,11 @@ nav {
     bottom: 115px;
 }
 
+nav ul{min-height:200px;
+    height:200px; 
+    max-height:auto;}
+nav ul{overflow:hidden; overflow-y:scroll;}
+
 footer {
     /* text-align: left; */
     margin-left: 25px;
