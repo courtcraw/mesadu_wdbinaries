@@ -40,9 +40,9 @@ nav {
     bottom: 115px;
 }
 
-nav ul{min-height:200px;
-    height:200px; 
-    max-height:auto;}
+nav ul{max-height:75%; 
+    min-height:300px;
+    height:300px}
 nav ul{overflow:hidden; overflow-y:scroll;}
 
 footer {
