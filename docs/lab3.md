@@ -10,72 +10,80 @@ This is the background info about cool stars and why and physics and stuff...
 
 # Objectives
 
-For this lab, we will use run_star_extras to interpolate the Mdot from Lab 1 and ultimately measure a more-realistic thickness of the Helium shell (as compared to our values from Minilab 2)
+For this lab, we will use run_star_extras to interpolate the Mdot from Lab 1 and ultimately measure a more-realistic thickness of the Helium shell (as compared to our values from Minilab 2)<br>
 
 * Tryston Note: These tasks can be consolidated/broken up. This is mostly a first pass
-## 0: Mission Prep
+# 0: Mission Prep
 <task><details><summary> 0.0. Copy over scratch file (baseline for lab)</summary></details></task>
 <task><details><summary> 0.1. Copy over history file from Lab 1</summary></details></task>
 
+<br> 
+
 * Tryston Note: Present these as mostly a "if you want to try this you can, here's a hint, otherwise copy from hidden box below"
-## 1. Writing the interpolation Code
+# 1. Writing the interpolation Code
 <task><details><summary> 1.1. Open run_star_extras</summary></details></task>
-    * Insert text here leading them to where the interpolation script go
+Insert text here leading them to where the interpolation script go
 <task><details><summary> 1.2. Add Variables</summary></details></task>
-    * Remember the format for variables (((is this covered in a prior day??)))
+Remember the format for variables (((is this covered in a prior day??)))
 <task><details><summary> 1.3. Open file</summary></details></task>
-    * give the general fortran code for opening file
+give the general fortran code for opening file
 <task><details><summary> 1.4. Skip through header</summary></details></task>
-    * Ask how many rows they should skip
-	* BONUS: Set format for file contents 
+Ask how many rows they should skip
+BONUS: Set format for file contents 
 <task><details><summary> 1.5. Fill out "DO" loop</summary></details></task>
-    * Note: "DONT FORGET TO CLOSE THE FILE"
-    * Give them the limit_dt in the file already
+Note: "DONT FORGET TO CLOSE THE FILE"
+Give them the limit_dt in the file already
 <task><details><summary> 1.6. Check history rows have been read (give them the if)</summary></details></task>
-    * Brief talk on why and the NaN comparison in Fortran
+Brief talk on why and the NaN comparison in Fortran
 <task><details><summary> 1.7. Write interpolation</summary></details></task>
-    * Give them general equation, they find variables
+Give them general equation, they find variables
 <task><details><summary> 1.8. Set m_dot </summary></details></task>
-	* They find variable name
-	* Note: "exp10 the interpolation result"
+They find variable name
+Note: "exp10 the interpolation result"
 <task><details><summary> 1.9. Have them write out m_dot in the terminal? (maybe not, could be a check?)</summary></details></task>
 <task><details><summary> 1.10. MAKE/RUN/STOP</summary></details></task>
-    * does stuff look right?
+does stuff look right?
+
+<br>
 
 * Tryston Note: Parts 2 and 3 below can be combined into a bigger section, I wasn't sure if we planned on just running once and manipulating everything after, since the runs are ~7 mins. 
 * Tryston Note2: Not sure what units/steps we are asking from them for the rotation rate
-## 2. Measuring Rotation of the accretor at --point?-- (not sure if this should also be helium flash, would depend on time)
+# 2. Measuring Rotation of the accretor at --point?-- (not sure if this should also be helium flash, would depend on time)
 <task><details><summary> 2.1. Add in stopping condition at --point?-- </summary></details></task>
-    * Insert text here leading them to where the stopping condiiton goes
+Insert text here leading them to where the stopping condiiton goes
 <task><details><summary> 2.2. Add history column for star mass_change (mass added at any time step)</summary></details></task>
-    * Insert text here leading them to go
-    * Insert hint here for variable name
+Insert text here leading them to go
+Insert hint here for variable name
 <task><details><summary> 2.3. MAKE/RUN</summary></details></task>
-    * does stuff look right?
+does stuff look right?
 <task><details><summary> 2.4. Get last star mass_change</summary></details></task>
 <task><details><summary> 2.5. find Jdot</summary></details></task>
 <task><details><summary> 2.6. Assume solid body, find $$\omega$$ in rad/s</summary></details></task>
 <task><details><summary> 2.7. Convert to Hz? (maybe not)</summary></details></task>
 <task><details><summary> 2.8. Add to Crowdsource doc</summary></details></task>
 
+<br>
 
-## Part 3. Measuring Helium shell thickness at Helium Flash
+# Part 3. Measuring Helium shell thickness at Helium Flash
 <task><details><summary> 3.1. Replace stopping condition with Helium flash</summary></details></task>
-    * Insert text here leading them to where the stopping condiiton goes
+Insert text here leading them to where the stopping condiiton goes
 <task><details><summary> 3.2. Add history column for star_Mdot (total mass added during run)</summary></details></task>
 <task><details><summary> 3.3. MAKE/RUN</summary></details></task>
-    * does stuff look right?
+does stuff look right?
 <task><details><summary> 3.4. Get last star mass_change</summary></details></task>
 <task><details><summary> 3.5. Get last star_Mdot (total mass)</summary></details></task>
 <task><details><summary> 3.6. How long did it take to reach Helium flash?</summary></details></task>
-    * Update Crowdsource document
+Update Crowdsource document
 
+<br>
 
-## BONUS. Include NCO reaction network and repeat
+# BONUS. Include NCO reaction network and repeat
 <task><details><summary>Add in NCO and... repeat</summary></details></task>
 * Expand out
 
-## BONUS. Evolutionary Timescale
+<br>
+
+# BONUS. Evolutionary Timescale
 <task><details><summary>Plot the density vs temperature of the constant case</summary></details></task>
 <task><details><summary>Plot the density vs temperature of the varying case</summary></details></task>
 <task><details><summary>Compare to Bauer Fig 8</summary></details></task>
