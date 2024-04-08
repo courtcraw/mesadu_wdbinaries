@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Lab 2
-description: This is for Lab 2
+description: Constant Mass Accretion
 ---
 
 

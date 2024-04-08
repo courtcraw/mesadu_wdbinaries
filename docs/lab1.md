@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Lab 1
-description: This is for Lab 1
+description: Using the Binary Module 
 ---
 
 # Solving for Mass Transfer in a DWD binary system
