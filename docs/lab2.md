@@ -9,11 +9,11 @@ description: Constant Mass Accretion
 
 For this lab we will be running constant mass accretion onto the accretor in single star MESA. Our goal is to get to the He flash in these kinds of systems.
 
-Task 0: download the WD initial model (what mass?) from the github repo.
+Task 0: download the WD initial model (what mass?) from the github repo. (Do we download an inlist? It's fairly minimal)
 
 Task 1: add in a constant mass accretion to the inlist (chosen from the spreadsheet of options)
 
-Task 2: add stopping condition (ignition is L_nuc > 10^4-3 Lsol or when convection in the he burning shell)
+Task 2: Add in the stopping condition. We want to stop at the start of helium ignition. This happens when L_nuc > 10^3 L_sol. Head to <a href="https://docs.mesastar.org/en/latest/reference/star_job.html#when-to-stop">the docs</a> to find a suitable option for your inlist.
 
 Task 3: Run to the helium shell ignition and record the he shell thickness and time of detonation
 
