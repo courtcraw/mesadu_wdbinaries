@@ -38,6 +38,8 @@ Now for some interpretation, what type of donors give different values of Mdot? 
 Bonus tasks?
 
 
+* being taken over by Tryston
+
 * * *
 
 # TA notes
