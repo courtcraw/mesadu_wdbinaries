@@ -94,6 +94,12 @@ Update Crowdsource document
 
 # TA notes
 
+## april 16, 2024
+* Jdot = sqrt(G*M*R) * Mdot
+* Delta_J = Jdot * s% dt
+* rotation rate = delta_J/moment of inertia
+
+
 ## this will actually be the varying Mdot procedure
 * measure the rotation rate of the accretor, assuming it rotates as a solid body, angular momentum goes as GMR then measure Jdot (rate of ang mom increase), then assuming a solid body, estimate the rotation rate (it should spin up with mass accretion, this is also true in the constant case)
 * give them the interpolation script most likely? - could ask them to put it in - might have them write certain parts and then give them other parts
