@@ -18,8 +18,7 @@ Task 1: Generate your inlist
 * <code>star_job</code>: We will need to set the code to load in the accretor model that you just downloaded. We will set the network to <code>co_burn.net</code> for this first part. Set the initial timestep to zero (or 1d-1). Turn on pgstar output
 * <code>controls</code>: turn off the initial mass and initial z that come with the default <code>work</code> directory. Change the stopping condition to be when L_He > 10^4 Lsol. Turn on the Ledoux criterion. Add in your constant mass accretion from the spreadsheet.
 * Edit the mesh, tell the code what to accrete, and update the solver:
-<div class="filetext-title"> inlist_project </div> 
-<div class="filetext"><p>
+```
 ! mesh
      mesh_delta_coeff = 1.2d0
 ! accretion
@@ -31,7 +30,7 @@ Task 1: Generate your inlist
      max_resid_jump_limit = 1d20 !1d6
      make_gradr_sticky_in_solver_iters = .true.
      report_solver_progress = .true.
-</p></div>
+```
 
 Task 1: add in your constant mass accretion rate from the spreadsheet to the inlist
 
