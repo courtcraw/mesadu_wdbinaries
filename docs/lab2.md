@@ -15,7 +15,7 @@ For this lab we will be running constant mass accretion onto the accretor in sin
 Choose your mass and accretion rate from the [google spreadsheet of options](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869), then download correct the WD initial model from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries). (test some of the different masses)
 
 ### Task 1: Generate your inlist
-Start by copying the <code>$MESA_DIR/star/work</code> directory \\ 
+Start by copying the <code>$MESA_DIR/star/work</code> directory. Make the following edits to your inlist
 
 <code>star_job</code>:
 
@@ -23,6 +23,35 @@ Start by copying the <code>$MESA_DIR/star/work</code> directory \\
 * We will set the network to <code>co_burn.net</code> for this first part. 
 * Set the initial timestep to zero (or 1d-1). 
 * Turn on pgstar output
+
+<hint><details>
+<summary> Hint (click here) </summary><p>
+Search for the following in the MESA Documentation: <code>load_saved_model</code>, <code>change_initial_net</code>, <code>set_initial_dt</code>, and <code>pgstar_flag</code>
+</p></details></hint>
+
+<task><details>
+<summary>Solution (click here)</summary><p>
+
+```
+! load 
+    create_pre_main_sequence_model = .false.
+    load_saved_model = .true.
+    load_model_filename = 'cowd_1.000M_Tc2e7.mod' ! edit with your filename
+
+  ! new net
+    change_initial_net = .true.
+    new_net_name = 'co_burn.net'
+
+  ! initial time step
+    set_initial_dt = .true.
+    years_for_initial_dt = 1d-1
+
+  ! display on-screen plots
+    pgstar_flag = .true.
+```
+
+</p></details></task>
+
 
 <code>controls</code>: 
 
