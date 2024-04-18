@@ -28,7 +28,6 @@ Start by copying the <code>$MESA_DIR/star/work</code> directory. Make the follow
 <summary> Hint (click here) </summary><p>
 Search for the following in the MESA Documentation: <code>load_saved_model</code>, <code>change_initial_net</code>, <code>set_initial_dt</code>, and <code>pgstar_flag</code>
 </p></details></hint>
-
 <br>
 
 <code>controls</code>: 
@@ -58,17 +57,16 @@ Search for the following in the MESA Documentation: <code>load_saved_model</code
 <summary> Hint (click here) </summary><p>
 Search for the following in the MESA Documentation: <code>power_he_burn_upper_limit</code>, <code>use_ledoux_criterion</code>, and <code>mass_change</code>
 </p></details></hint>
-
 <br>
 
 If you need a solution: you can find it [here](./lab2_solns.md)
 
 ### Task 2: make/clean/run
-Upon completion, record your helium shell thickness and the time of helium ignition to the spreadsheet
+Upon completion, record your helium shell thickness and the time of helium ignition to [the google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869).
 
 
 ### Task 3: Create a new reaction network
-adjust the reaction network to add in the NCO reactions $$^{14}N(e^-,\nu)^{14}C(\alpha,\gamma)^{18}O$$ is the NCO chain
+adjust the reaction network to add in the reaction chain $$^{14}N(e^-,\nu)^{14}C(\alpha,\gamma)^{18}O$$ which we will call the NCO reaction.
 * [link to the networks docs](https://docs.mesastar.org/en/latest/net/nets.html)
 
 * Courtney note: okay I've been playing with this and I think all we need is to add c14 and o18 to the list of isos, and then I assume the reaction will automatically be added. Evan Bauer's paper has a more complicated patch, but I would assume that got fixed after the version update (they used r8118 lol)
@@ -83,7 +81,7 @@ o18)</code>
 * at 10^-8 rates you should check to see the NCO is actually working by looking for o18 in the star abundance profile
 
 ### Task 4: make/clean/run
-Upon completion, record your helium shell thickness and the time of helium ignition to the spreadsheet
+Upon completion, record your helium shell thickness and the time of helium ignition to [the google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869).
 
 Interpretation: how did the reaction change those two things?
 
