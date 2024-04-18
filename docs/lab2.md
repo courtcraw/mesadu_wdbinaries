@@ -11,9 +11,29 @@ For this lab we will be running constant mass accretion onto the accretor in sin
 
 [link to the google spreadsheet of options](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869)
 
-Task 0: download the WD initial model from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries). (test some of the different masses)
+Task 0: Choose your mass and accretion rate from the [google spreadsheet of options](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869), then download correct the WD initial model from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries). (test some of the different masses)
 
-Task 1: add in a constant mass accretion to the inlist (chosen from the spreadsheet of options)
+Task 1: Generate your inlist
+* Start by copying the <code>$MESA_DIR/star/work</code> directory
+* <code>star_job</code>: We will need to set the code to load in the accretor model that you just downloaded. We will set the network to <code>co_burn.net</code> for this first part. Set the initial timestep to zero (or 1d-1). Turn on pgstar output
+* <code>controls</code>: turn off the initial mass and initial z that come with the default <code>work</code> directory. Change the stopping condition to be when L_He > 10^4 Lsol. Turn on the Ledoux criterion. Add in your constant mass accretion from the spreadsheet.
+* Edit the mesh, tell the code what to accrete, and update the solver:
+<div class="filetext-title"> inlist_project </div> 
+<div class="filetext"><p>
+! mesh
+     mesh_delta_coeff = 1.2d0
+! accretion
+     xa_function_species(1) = 'he4'
+     xa_function_weight(1) = 0 !30
+     xa_function_param(1) = 1d-2
+! solver
+     energy_eqn_option = 'eps_grav'
+     max_resid_jump_limit = 1d20 !1d6
+     make_gradr_sticky_in_solver_iters = .true.
+     report_solver_progress = .true.
+</p></div>
+
+Task 1: add in your constant mass accretion rate from the spreadsheet to the inlist
 
 Task 2: add stopping condition (ignition is L_nuc > 10^4-3 Lsol or when convection in the he burning shell)
 
