@@ -9,7 +9,9 @@ description: Constant Mass Accretion
 
 For this lab we will be running constant mass accretion onto the accretor in single star MESA. Our goal is to get to the He flash in these kinds of systems.
 
-Task 0: download the WD initial model (what mass?) from the github repo. (test some of the different masses)
+[link to the google spreadsheet of options](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869)
+
+Task 0: download the WD initial model from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries). (test some of the different masses)
 
 Task 1: add in a constant mass accretion to the inlist (chosen from the spreadsheet of options)
 
