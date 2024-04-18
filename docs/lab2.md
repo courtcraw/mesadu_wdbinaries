@@ -29,27 +29,7 @@ Start by copying the <code>$MESA_DIR/star/work</code> directory. Make the follow
 Search for the following in the MESA Documentation: <code>load_saved_model</code>, <code>change_initial_net</code>, <code>set_initial_dt</code>, and <code>pgstar_flag</code>
 </p></details></hint>
 
-<task><details>
-<summary>Solution (click here)</summary><p>
-
-> ! load 
->    create_pre_main_sequence_model = .false.
->    load_saved_model = .true.
->   load_model_filename = 'cowd_1.000M_Tc2e7.mod' ! edit with your filename
->
-> ! new net
->    change_initial_net = .true.
->    new_net_name = 'co_burn.net'
->
->  ! initial time step
->    set_initial_dt = .true.
->    years_for_initial_dt = 1d-1
->
->  ! display on-screen plots
->    pgstar_flag = .true.
-
-</p></details></task>
-
+<br>
 
 <code>controls</code>: 
 
@@ -57,10 +37,12 @@ Search for the following in the MESA Documentation: <code>load_saved_model</code
 * Change the stopping condition to be when L_He > 10^4 Lsol. 
 * Turn on the Ledoux criterion. 
 * Add in your constant mass accretion from the spreadsheet.
-* Edit the mesh, tell the code what to accrete, and update the solver:
+* Edit the mesh, adjust the timestep limit, tell the code what to accrete, and update the solver:
 ```
 ! mesh
      mesh_delta_coeff = 1.2d0
+! timesteps
+     delta_lgL_He_limit = 0.02d0 !0.025d0
 ! accretion
      xa_function_species(1) = 'he4'
      xa_function_weight(1) = 0 !30
@@ -72,13 +54,21 @@ Search for the following in the MESA Documentation: <code>load_saved_model</code
      report_solver_progress = .true.
 ```
 
+<hint><details>
+<summary> Hint (click here) </summary><p>
+Search for the following in the MESA Documentation: <code>power_he_burn_upper_limit</code>, <code>use_ledoux_criterion</code>, and <code>mass_change</code>
+</p></details></hint>
+
+<br>
+
+If you need a solution: you can find it [here](./lab2_solns.md)
+
 ### Task 2: make/clean/run
 Upon completion, record your helium shell thickness and the time of helium ignition to the spreadsheet
 
 
 ### Task 3: Create a new reaction network
-adjust the reaction network to add in the NCO reactions
-$$^{14}N(e^-,\nu)^{14}C(\alpha,\gamma)^{18}O$$ is the NCO chain
+adjust the reaction network to add in the NCO reactions $$^{14}N(e^-,\nu)^{14}C(\alpha,\gamma)^{18}O$$ is the NCO chain
 * [link to the networks docs](https://docs.mesastar.org/en/latest/net/nets.html)
 
 * Courtney note: okay I've been playing with this and I think all we need is to add c14 and o18 to the list of isos, and then I assume the reaction will automatically be added. Evan Bauer's paper has a more complicated patch, but I would assume that got fixed after the version update (they used r8118 lol)
