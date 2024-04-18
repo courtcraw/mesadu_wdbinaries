@@ -32,23 +32,21 @@ Search for the following in the MESA Documentation: <code>load_saved_model</code
 <task><details>
 <summary>Solution (click here)</summary><p>
 
-```
-! load 
-    create_pre_main_sequence_model = .false.
-    load_saved_model = .true.
-    load_model_filename = 'cowd_1.000M_Tc2e7.mod' ! edit with your filename
-
-  ! new net
-    change_initial_net = .true.
-    new_net_name = 'co_burn.net'
-
-  ! initial time step
-    set_initial_dt = .true.
-    years_for_initial_dt = 1d-1
-
-  ! display on-screen plots
-    pgstar_flag = .true.
-```
+> ! load 
+>    create_pre_main_sequence_model = .false.
+>    load_saved_model = .true.
+>   load_model_filename = 'cowd_1.000M_Tc2e7.mod' ! edit with your filename
+>
+> ! new net
+>    change_initial_net = .true.
+>    new_net_name = 'co_burn.net'
+>
+>  ! initial time step
+>    set_initial_dt = .true.
+>    years_for_initial_dt = 1d-1
+>
+>  ! display on-screen plots
+>    pgstar_flag = .true.
 
 </p></details></task>
 
