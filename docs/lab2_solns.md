@@ -61,5 +61,15 @@ in <code>controls</code>:
 
 ### Task 3: Create a new reaction network
 
+<code>nco.net</code>:
 
+```
+         include 'basic.net'
+         include 'add_co_burn'
+
+      add_isos_and_reactions(
+        c14
+        o18
+        )
+```
 

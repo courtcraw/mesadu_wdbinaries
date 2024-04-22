@@ -66,6 +66,23 @@ Upon completion, record your helium shell thickness and the time of helium ignit
 
 
 ### Task 3: Create a new reaction network
+For this portion, we will create our own reaction network that includes the "NCO" reaction chain ($$^{14}N(e^-,\nu)^{14}C(\alpha,\gamma)^{18}O$$) and adjust the reaction rate for $$^{14}C(\alpha,\gamma)^{18}O$$. 
+
+[There is detailed network documentation on the MESA Docs](https://docs.mesastar.org/en/latest/net/nets.html)
+
+Up until now we have been using the reaction network called <code>co_burn.net</code>. Navigate to <code>$MESA_DIR/data/net_data/nets</code> to view the source files for all of the available reaction networks. Start by opening <code>co_burn.net</code> and viewing its contents. You'll see that it contains very little information, and instead points to two other files. Open and examine those other files. You'll see that these other two files have much more information in them. Refer to the docs to see how the functions <code>add_isos()</code> and <code>add_reactions()</code> work.
+
+If you'd like for your MESA run to print out its net information at start, you can add the following to the <code>star_job</code> section of your inlist:
+```
+show_net_species_info = .true. ! to list all of the isotopes in the net
+show_net_reactions_info = .true. ! to output information on all net reactions
+list_net_reactions = .true. ! to output a simple list of all the reactions in your net
+```
+
+Now lets generate our own reaction network. Begin by copying <code>co_burn.net</code> to your lab 2 working directory and giving it a new name, something like <code>nco.net</code>. Decide which isotopes you'll need to add in for the NCO reaction, either by examining <code>co_burn.net</code> and its constituent files or by outputting the net data to the terminal. Add those isotopes to the reaction network using <code>add_isos_and_reactions()</code>. This will automatically add all reactions associated with those isotopes as well. 
+
+* Court note: not done yet but closer than before.
+
 adjust the reaction network to add in the reaction chain $$^{14}N(e^-,\nu)^{14}C(\alpha,\gamma)^{18}O$$ which we will call the NCO reaction.
 * [link to the networks docs](https://docs.mesastar.org/en/latest/net/nets.html)
 
