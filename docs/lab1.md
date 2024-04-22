@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Lab 1
-description: This is for Lab 1
+description: Using the Binary Module 
 ---
 
 # Solving for Mass Transfer in a DWD binary system
@@ -37,6 +37,8 @@ Now for some interpretation, what type of donors give different values of Mdot? 
 
 Bonus tasks?
 
+
+* being taken over by Tryston
 
 * * *
 

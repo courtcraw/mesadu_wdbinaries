@@ -4,6 +4,8 @@ title: Minilab 3
 description: Varying the Accretion Rate
 ---
 
+[link to the google spreadsheet for lab 3](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=2060915946)
+
 # (More) Realistic(ish) Mass Transfer onto a WD accretor
 
 This is the background info about cool stars and why and physics and stuff... 
@@ -93,6 +95,12 @@ Update Crowdsource document
 * * *
 
 # TA notes
+
+## april 16, 2024
+* Jdot = sqrt(G*M*R) * Mdot
+* Delta_J = Jdot * s% dt
+* rotation rate = delta_J/moment of inertia
+
 
 ## this will actually be the varying Mdot procedure
 * measure the rotation rate of the accretor, assuming it rotates as a solid body, angular momentum goes as GMR then measure Jdot (rate of ang mom increase), then assuming a solid body, estimate the rotation rate (it should spin up with mass accretion, this is also true in the constant case)
