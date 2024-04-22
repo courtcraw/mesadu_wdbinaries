@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Lab 1
-description: Using the Binary Module 
+description: Using the Binary Module - Evolving a donor star
 ---
 
 # Solving for Mass Transfer in a DWD binary system
@@ -10,7 +10,253 @@ This can serve as a bit of an introduction to what the lab is about
 
 # Lab Instructions
 
-For this lab we will be running a generic binary system with one of the stars as a point mass (which one? elaborate here). Begin by downloading the Lab 1 working directory from the github repo (place link here or replace the button on the actual webpage).
+For this lab we will be running a generic binary system with one of the stars as a point mass (which one? elaborate here). Each task will have a solution given [here](./lab1_solns.md). Feel free to visit the solutions as needed, but we encourage you to work through with the hints first. 
+
+
+### Task 0. Download Files
+First, download the Lab 1 working directory from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries). Then, claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). Finally, download the relevant donor model (HeStar or HeWD) for your binary from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and save it in your Lab 1 working directory. 
+
+* Note: donor model files are formatted as '< type >_< mass >M[ * ]< entropy >.mod'
+
+
+### Task 1. Project Setup
+The inlists in a binary directory are organized by number (1 and 2). For the purposes of this lab, 1 will refer to the donor star, while 2 will refer to the accretor. 
+
+To begin, open <code>inlist_project</code>. Set the binary masses and period to the values chosen in Task 0 using <code>m1</code> <code>m2</code> and <code>initial_period_in_days</code>. 
+<hint><details>
+<summary> Hint (click here) </summary><p>
+m1 is the donor mass in Msun and m2 is the accretor mass in Msun
+</p></details></hint>
+
+Next, turn in jdot, set the following jdot flags:
+```
+do_jdot_gr = .true.
+do_jdot_ml = .true.
+do_jdot_mb = .false
+```
+
+Finally, change the timestep values in the run. Set fj in accordance with the number of threads you are currently using. If you aren't sure what that value is run <code>echo $OMP_NUM_THREADS</code>. 
+```
+fm = 0.01d0
+fm_hard = -1d0
+fa = 0.01d0
+fa_hard = 0.02d0
+fr = 0.01d0
+fr_hard = -1d0
+fj = ! Enter your number of threads here !
+fj_hard = 0.01d0
+```
+
+Don't forget to save the inlist!
+
+### Task 2. Setting up the donor
+Open the donor inlist
+<hint><details>
+<summary> Hint (click here) </summary><p>
+The donor inlist is inlist1
+</p></details></hint>
+
+In 'load', make the following changes to load from the saved model file. Remember to add in the local path to your donor model:
+```
+load_saved_model = .true.
+load_model_filename = ! copy filepath to donor model here
+```
+
+We will be using a new reaction network called 'co_burn'. To do this, set <code>change_initial_net</code> to True and new_net_name to 'co_burn.net'
+<hint><details>
+<summary> Hint (click here) </summary><p>
+This can be placed between the !!!! under "! change net". Also, remember to use .true. !
+</p></details></hint>
+
+Now, we can set the initial model number and age for the run by adding:
+```
+set_initial_model_number = .true.
+initial_model_number = 0
+set_initial_age = .true.
+initial_age = 0
+```
+
+Next, turn on the pgstar flag to display the on-screen plots.
+<hint><details>
+<summary> Hint (click here) </summary><p>
+pgstar_flag = .true.
+</p></details></hint>
+
+Now, we want to stop the model once the donor loses a given mass. Using the information in the Google sheet, find the target final mass of the donor model. 
+<hint><details>
+<summary> Hint (click here) </summary><p>
+(mass of donor - max loss)
+</p></details></hint>
+
+Set the stop flag for the model to this target final mass:
+```
+star_min_limit = ! target minimum mass
+```
+
+Next, we need to change some solver settings to speed things up. First, Set eps_mdot_leak_frac_factor and eps_mdot_factor to 0d0. Then, set the maximum jump limit, max_resid_jump_limit, to 1d20.
+<hint><details>
+<summary> Hint (click here) </summary><p>
+<code>
+eps_mdot_leak_frac_factor = 0d0
+eps_mdot_factor = 0d0
+max_resid_jump_limit = 1d20
+</code>
+</p></details></hint>
+
+Next, we need something interesting to look at during our runs (we turned on that pgstar flag for a reason!). Our first plot is a temperature/density profile. Turn the TRho profile on and set the min/max values of the window.
+<hint><details>
+<summary> Hint (click here) </summary><p>
+Set TRho_profile_win_flag = .true.
+</p></details></hint>
+
+<hint><details>
+<summary> Hint (click here) </summary><p>
+<code>
+TRho_Profile_xmin = -8.1
+TRho_Profile_xmax = 7.2
+TRho_Profile_ymin = 2.6
+TRho_Profile_ymax = 8.5
+</code>
+You can choose your own values as well. Experiment!
+</p></details></hint>
+
+We can make this first plot a little more informative by showing the Equation of State regions. Set show_TRho_Profile_eos_regions to True. 
+
+The second plot will show us the period of the first star (our lovely donor). Start by adding another panel to the pgstar plot:
+```
+History_Panels1_win_flag = .true.
+History_Panels1_num_panels = 2
+```
+
+Plot the binary period on the x-axis and the m_dot on the y-axis by setting 
+```
+History_Panels1_xaxis_name = 'period_minutes'
+History_Panels1_yaxis_name(1) = 'lg_mstar_dot_1'
+```
+
+Now, let's add some formatting values to make this useful:
+```
+History_Panels1_yaxis_reversed(1) = .false.
+History_Panels1_ymin(1) = -13d0
+History_Panels1_ymax(1) = -6d0
+History_Panels1_dymin(1) = -1
+History_Panels1_other_yaxis_name(1) = ''
+```
+
+Don't forget to save the inlist!
+
+
+### Task 3 - Setting up the Accretor
+Open the accretor inlist. As in Task 2, we want to load in an initial saved model, except the accretors will use the CoWD< >.mod files. In "load", turn on load_saved_model and set load_model_filename to your CoWD model file. 
+<hint><details>
+<summary> Hint (click here) </summary><p>
+The accretor inlist is inlist2
+</p></details></hint>
+<hint><details>
+<summary> Hint (click here) </summary><p>
+```
+load_saved_model = .true.
+load_model_filename = ! copy filepath to accretor model here
+```
+</p></details></hint>
+
+Unlike the donor, we unfortunately don't actually care about what this stand-in accretor looks like at the end (we will evolve that later), so set save_model_when_terminate to False. 
+<hint><details>
+<summary> Hint (click here) </summary><p>
+<code>save_model_when_terminate = .false.</code> under "! DO NOT save a model at the end of the run"
+</p></details></hint>
+
+Just as with the donor, we will be using a new reaction network, so repeat the steps from Task 2 here (using co_burn.net).
+<hint><details>
+<summary> Hint (click here) </summary><p>
+<code>
+change_initial_net = .true.
+new_net_name = 'co_burn.net'
+</code>
+</p></details></hint>
+
+Next, Turn on the pgstar flag and plot the temperature/density profile. 
+<hint><details>
+<summary> Hint (click here) </summary><p>
+<code> pgstar_flag = .true. </code> under "! display on-screen plots"
+<code> TRho_profile_win_flag = .true. </code>
+</p></details></hint>
+
+Turn on the flags to show the TRho Profile legend and the numerical info about the star. 
+<hint><details>
+<summary> Hint (click here) </summary><p>
+<code> show_TRho_Profile_legend = .true. </code> 
+<code> Show_TRho_Profile_text_info = .true. </code>
+</p></details></hint>
+
+Now, let's set the window size using the aspect ratio (height/width):
+```
+TRho_Profile_win_width = 8
+TRho_Profile_win_aspect_ratio = 0.75
+```
+
+Finally, turn on the show abundances flag:
+```
+Abundance_win_flag = .true.
+Abundance_xmin = 0.99d0
+```
+
+Don't forget to save your inlist!
+
+
+### Task 4 - Adding history columns
+In order for this exercise to be a useful shortcut, we need to save out additional data in our history columns for later use. To do this, add the following values to your history columns:
+```
+period_minutes
+binary_separation
+star_1_mass
+star_2_mass
+lg_mstar_dot_1
+lg_mstar_dot_2
+J_orb
+Jdot
+donor_index
+```
+<hint><details>
+<summary> Hint (click here) </summary><p>
+Uncomment the variables in binary_history_columns
+</p></details></hint>
+
+<hint><details>
+<summary> Hint (click here) </summary><p>
+Each of them is marked by a '!!!!!'
+</p></details></hint>
+
+<hint><details>
+<summary> Hint (click here) </summary><p>
+Delete the '!' infront of the variables
+</p></details></hint>
+
+Double check that each of the above values is uncommented! (And don't forget to save)
+
+
+### Task 5 - Run the model
+It is finally time! Run the model and watch the magic of computers! The runs should take approximately 8 minutes. If the run appears desparately stuck, let us know. Keep in mind that run time will be dependent on which donor model is being used and how many threads are available.
+<hint><details>
+<summary> Hint (click here) </summary><p>
+./rn
+</p></details></hint>
+
+<hint><details>
+<summary> Hint (click here) </summary><p>
+Don't forget to ./mk
+</p></details></hint>
+
+
+### Task 5 - Investigate
+Once the model has completed look at the plots. INSERT DISCUSSION OF WHAT IS SEEN HERE. 
+
+
+Feel free to repeat with another donor, are there any differences?
+
+
+* * *
+
 
 
 * Courtney formatting note: I kind of prefer to only have the hints in the hidden boxes personally, so that students could see their tasks at a glance if they wish. I'll leave this task one here as an example for now.
