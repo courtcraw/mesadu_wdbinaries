@@ -50,7 +50,6 @@ in <code>controls</code>:
      energy_eqn_option = 'eps_grav'
      max_resid_jump_limit = 1d20 !1d6
      make_gradr_sticky_in_solver_iters = .true.
-     report_solver_progress = .true.
 
   ! mdot
      mass_change = 3d-8 ! replace with your accretion rate
