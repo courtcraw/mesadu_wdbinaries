@@ -11,7 +11,7 @@ For this lab we will be running constant mass accretion onto the accretor in sin
 
 [link to the google spreadsheet of options](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869)
 
-### Task 0: Download files
+## Task 0: Download files
 Choose your mass and accretion rate from the [google spreadsheet of options](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869), then download correct the WD initial model from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries). (test some of the different masses)
 
 ### Task 1: Generate your inlist
@@ -63,6 +63,11 @@ If you need a solution: you can find it [here](./lab2_solns.md)
 ### Task 2: make/clean/run
 Upon completion, record your helium shell thickness and the time of helium ignition to [the google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869).
 
+<hint><details>
+<summary> Hint (click here) </summary><p>
+The helium shell thickness is <code>star_mass - co_core_mass</code>
+</p></details></hint>
+<br>
 
 ### Task 3: Create a new reaction network
 For this portion, we will create our own reaction network that includes the "NCO" reaction chain ($$^{14}N(e^-,\nu)^{14}C(\alpha,\gamma)^{18}O$$) and adjust the reaction rate for $$^{14}C(\alpha,\gamma)^{18}O$$. 
