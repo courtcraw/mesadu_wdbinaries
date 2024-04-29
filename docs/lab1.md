@@ -14,47 +14,38 @@ For this lab we will be running a generic binary system with one of the stars as
 
 
 ### Task 0. Download Files
-First, download the Lab 1 working directory from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries). Then, claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). Finally, download the relevant donor model (HeStar or HeWD) for your binary from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and save it in your Lab 1 working directory. 
+Download the Lab 1 working directory from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). Then, download the relevant donor model (HeStar or HeWD) and accretor model (cowd) for your binary from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and save it in your Lab 1 working directory. Note, the donor model files are formatted as '< type >_< mass >M[_Sc< entropy >].mod' and accretor models are formatted as 'cowd_< mass >M_Tc2e7.mod'. 
 
-* Note: donor model files are formatted as '< type >_< mass >M[ * ]< entropy >.mod'
+Here, we specify the entropy of the Helium White Dwarfs because ... ""
 
+<br>
 
 ### Task 1. Project Setup
-The inlists in a binary directory are organized by number (1 and 2). For the purposes of this lab, 1 will refer to the donor star, while 2 will refer to the accretor. 
+The inlists (and some variables) in a binary directory are organized by number, 1 and 2. For the purposes of this lab, 1 will refer to the donor star, while 2 will refer to the accretor. 
 
-To begin, open <code>inlist_project</code>. Set the binary masses and period to the values chosen in Task 0 using <code>m1</code> <code>m2</code> and <code>initial_period_in_days</code>. 
+To begin, open <code>inlist_project</code>. Set the binary masses and period to the values chosen in Task 0 using <code>m1</code>, <code>m2</code>, and <code>initial_period_in_days</code>. 
+
+Next, let's set some orbital angular momentum controls. In our case, we want to include gravitational wave radiation and contributions from mass loss, while ignoring the effects of magnetic braking. Take a look at the MESA documentation to find the corresponding orbital jdot flags and set them accordingly.
+
 <hint><details>
 <summary> Hint (click here) </summary><p>
-m1 is the donor mass in Msun and m2 is the accretor mass in Msun
+Search "orbital jdot controls" in the MESA Documentation, specifically under binary_controls. The common format for the three flags is 'do_jdot_X'.
 </p></details></hint>
+<br>
 
-Next, turn in jdot, set the following jdot flags:
-```
-do_jdot_gr = .true.
-do_jdot_ml = .true.
-do_jdot_mb = .false
-```
+Finally, we will need to modify the timestep controls for the run. These 'f_' parameters provide the ability to set an upper limit on each timestep based on a particular quantity (ie. envelope mass, binary separation, orbital angular momentum, etc). Let's set an upper limit to based on the orbital angular momentum and your number of threads. Look at the MESA documentation and set the the timestep control for change in orbital angular momentum. If you are using two (2) threads, then set this value to 2d-3. Otherwise, if using more than two (2) threads, then set this value to 5d-4. 
 
-Finally, change the timestep values in the run. Set fj in accordance with the number of threads you are currently using. If you aren't sure what that value is run <code>echo $OMP_NUM_THREADS</code>. 
-```
-fm = 0.01d0
-fm_hard = -1d0
-fa = 0.01d0
-fa_hard = 0.02d0
-fr = 0.01d0
-fr_hard = -1d0
-fj = ! Enter your number of threads here !
-fj_hard = 0.01d0
-```
+<hint><details>
+<summary> Hint (click here) </summary><p>
+If you aren't sure what that value is run <code>echo $OMP_NUM_THREADS</code>. 
+</p></details></hint>
+<br>
 
 Don't forget to save the inlist!
+<br>
 
 ### Task 2. Setting up the donor
-Open the donor inlist
-<hint><details>
-<summary> Hint (click here) </summary><p>
-The donor inlist is inlist1
-</p></details></hint>
+Now we need to set up our donor star. This work will all be done in the donor inlist (inlist1). 
 
 In 'load', make the following changes to load from the saved model file. Remember to add in the local path to your donor model:
 ```
@@ -63,17 +54,15 @@ load_model_filename = ! copy filepath to donor model here
 ```
 
 We will be using a new reaction network called 'co_burn'. To do this, set <code>change_initial_net</code> to True and new_net_name to 'co_burn.net'
-<hint><details>
-<summary> Hint (click here) </summary><p>
-This can be placed between the !!!! under "! change net". Also, remember to use .true. !
-</p></details></hint>
 
-Now, we can set the initial model number and age for the run by adding:
+Now, we can set the initial model number, age, and dt for the run by adding:
 ```
 set_initial_model_number = .true.
 initial_model_number = 0
 set_initial_age = .true.
 initial_age = 0
+set_initial_dt = .true.
+years_for_initial_dt = 1d3
 ```
 
 Next, turn on the pgstar flag to display the on-screen plots.
@@ -81,16 +70,18 @@ Next, turn on the pgstar flag to display the on-screen plots.
 <summary> Hint (click here) </summary><p>
 pgstar_flag = .true.
 </p></details></hint>
+<br>
 
 Now, we want to stop the model once the donor loses a given mass. Using the information in the Google sheet, find the target final mass of the donor model. 
 <hint><details>
 <summary> Hint (click here) </summary><p>
 (mass of donor - max loss)
 </p></details></hint>
+<br>
 
 Set the stop flag for the model to this target final mass:
 ```
-star_min_limit = ! target minimum mass
+star_mass_min_limit = ! target minimum mass
 ```
 
 Next, we need to change some solver settings to speed things up. First, Set eps_mdot_leak_frac_factor and eps_mdot_factor to 0d0. Then, set the maximum jump limit, max_resid_jump_limit, to 1d20.
@@ -102,13 +93,13 @@ eps_mdot_factor = 0d0
 max_resid_jump_limit = 1d20
 </code>
 </p></details></hint>
+<br>
 
 Next, we need something interesting to look at during our runs (we turned on that pgstar flag for a reason!). Our first plot is a temperature/density profile. Turn the TRho profile on and set the min/max values of the window.
 <hint><details>
 <summary> Hint (click here) </summary><p>
 Set TRho_profile_win_flag = .true.
 </p></details></hint>
-
 <hint><details>
 <summary> Hint (click here) </summary><p>
 <code>
@@ -119,6 +110,7 @@ TRho_Profile_ymax = 8.5
 </code>
 You can choose your own values as well. Experiment!
 </p></details></hint>
+<br>
 
 We can make this first plot a little more informative by showing the Equation of State regions. Set show_TRho_Profile_eos_regions to True. 
 
@@ -159,12 +151,14 @@ load_saved_model = .true.
 load_model_filename = ! copy filepath to accretor model here
 ```
 </p></details></hint>
+<br>
 
 Unlike the donor, we unfortunately don't actually care about what this stand-in accretor looks like at the end (we will evolve that later), so set save_model_when_terminate to False. 
 <hint><details>
 <summary> Hint (click here) </summary><p>
 <code>save_model_when_terminate = .false.</code> under "! DO NOT save a model at the end of the run"
 </p></details></hint>
+<br>
 
 Just as with the donor, we will be using a new reaction network, so repeat the steps from Task 2 here (using co_burn.net).
 <hint><details>
@@ -174,6 +168,7 @@ change_initial_net = .true.
 new_net_name = 'co_burn.net'
 </code>
 </p></details></hint>
+<br>
 
 Next, Turn on the pgstar flag and plot the temperature/density profile. 
 <hint><details>
@@ -181,6 +176,7 @@ Next, Turn on the pgstar flag and plot the temperature/density profile.
 <code> pgstar_flag = .true. </code> under "! display on-screen plots"
 <code> TRho_profile_win_flag = .true. </code>
 </p></details></hint>
+<br>
 
 Turn on the flags to show the TRho Profile legend and the numerical info about the star. 
 <hint><details>
@@ -188,6 +184,7 @@ Turn on the flags to show the TRho Profile legend and the numerical info about t
 <code> show_TRho_Profile_legend = .true. </code> 
 <code> Show_TRho_Profile_text_info = .true. </code>
 </p></details></hint>
+<br>
 
 Now, let's set the window size using the aspect ratio (height/width):
 ```
@@ -231,6 +228,7 @@ Each of them is marked by a '!!!!!'
 <summary> Hint (click here) </summary><p>
 Delete the '!' infront of the variables
 </p></details></hint>
+<br>
 
 Double check that each of the above values is uncommented! (And don't forget to save)
 
@@ -246,6 +244,7 @@ It is finally time! Run the model and watch the magic of computers! The runs sho
 <summary> Hint (click here) </summary><p>
 Don't forget to ./mk
 </p></details></hint>
+<br>
 
 
 ### Task 5 - Investigate
@@ -254,6 +253,7 @@ Once the model has completed look at the plots. INSERT DISCUSSION OF WHAT IS SEE
 
 Feel free to repeat with another donor, are there any differences?
 
+Current timing: 15 minutes to make inlist changes (Tryston)
 
 * * *
 
