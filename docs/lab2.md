@@ -60,6 +60,16 @@ Search for the following in the MESA Documentation: <code>power_he_burn_upper_li
 
 If you need a solution: you can find it [here](./lab2_solns.md)
 
+### Bonus Task: extra output
+
+As a bonus task, you may choose to add a history column to your output that calculates the thickness of the helium shell as it is accreted. 
+
+<hint><details>
+<summary> Hint (click here) </summary><p>
+The helium shell thickness can be calculated as <code>star_mass - co_core_mass</code> or <code>star_mass - initial_mass</code>
+</p></details></hint>
+<br>
+
 ## Task 2: make/clean/run
 Upon completion, record your helium shell thickness and the time of helium ignition to [the google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869).
 
