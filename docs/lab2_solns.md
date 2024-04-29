@@ -4,7 +4,7 @@ title: Lab 2 Solutions
 ---
 
 
-### Task 1: Generate your inlist
+## Task 1: Generate your inlist
 
 in <code>star_job</code>:
 
@@ -58,7 +58,7 @@ in <code>controls</code>:
 
 
 
-### Task 3: Create a new reaction network
+## Task 3: Create a new reaction network
 
 <code>nco.net</code>:
 
