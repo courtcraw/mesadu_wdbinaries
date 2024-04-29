@@ -14,6 +14,10 @@ For this lab we will be running constant mass accretion onto the accretor in sin
 ## Task 0: Download files
 Choose your mass and accretion rate from the [google spreadsheet of options](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869), then download correct the WD initial model from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries). (test some of the different masses)
 
+### Bonus task: pgstar inist
+
+You may choose to download the <code>inlist_pgstar</code> file from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) if you wish. It will contain a nicely formatted pgstar grid for all your viewing needs. Alternatively, you may generate your own if you prefer. We recommend the following panels: Abundances, T-Rho and Mdot vs star age (see history_panels).
+
 ## Task 1: Generate your inlist
 Start by copying the <code>$MESA_DIR/star/work</code> directory. Make the following edits to your inlist
 
@@ -101,23 +105,31 @@ Now we'll update the reaction rate for $$^{14}C(\alpha,\gamma)^{18}O$$. Download
   ! adjusting nuclear reaction rates
     rate_tables_dir = 'tables_hashimoto'
     rate_cache_suffix = 'hashimoto'
-    ion_coulomb_corrections = 'PCR2009' ! not sure if needed
-    electron_coulomb_corrections = 'Itoh2002' ! not sure if needed
-    use_3a_fl87 = .true. ! not sure if needed
 ```
 
-* Court note: I don't know much practical details about this, but I know how to make it work?? Hope someone can expand on exactly how this works??
+If you look inside the file <code>tables_hashimoto/rate_list.txt</code> you will see this:
+
+```
+! this is an example of a rates list file for use with mesa/rates
+
+! the mesa/data/net_data/rates directory has sample rate files
+
+! pairs of rate name and rate file
+
+r_c14_ag_o18   'c14rate_Hashimoto_reduced.txt'
+```
+
+The last line here indicates that the rate for the $$^{14}C(\alpha,\gamma)^{18}O$$ reaction will be read from a file called <code>c14rate_Hashimoto_reduced.txt</code> which also lives in the folder called <code>tables_hashimoto</code>. Opening this file will reveal a simple two column file that MESA will read to load the new reaction rates. You may also inspect <code>tables_hashimoto/weak_rate_list.txt</code> which works similarly. See the documentation for further info.
+
 
 ## Task 4: make/clean/run
 Upon completion, record your helium shell thickness and the time of helium ignition to [the google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869).
 
 Interpretation: how did the reaction change those two things?
 
-Bonus task: run through helium flash over lunch time if you wish. - see the heating timescale getting short (some cases where the heating timescale is shorter than the dynamical timescale or the sound speed, there is a time where the heating timescale gets long)
+## Bonus task (over lunch)
 
-* Could add str_ptr mixing_type (0 to 7, 1=convection), to find the mass of the convective zone rather than just using 10^3 or 4 in our case (this is a different estimate than the pure subtraction)
-
-
+If you would like to view what happens after helium ignition, you can turn off the stopping condition in the inlist and allow your model to run over lunchtime. You will see very interesting things happening in your T-Rho diagram!
 
 
 
@@ -125,6 +137,9 @@ Bonus task: run through helium flash over lunch time if you wish. - see the heat
 
 # TA notes
 
+Bonus task: run through helium flash over lunch time if you wish. - see the heating timescale getting short (some cases where the heating timescale is shorter than the dynamical timescale or the sound speed, there is a time where the heating timescale gets long)
+
+* Could add str_ptr mixing_type (0 to 7, 1=convection), to find the mass of the convective zone rather than just using 10^3 or 4 in our case (this is a different estimate than the pure subtraction)
 
 * Court note: not done yet but closer than before. running with updated rates and network runs at 3 min runtime on 4 cores
 
