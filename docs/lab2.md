@@ -109,7 +109,7 @@ Now lets generate our own reaction network. Begin by copying <code>co_burn.net</
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-The two isotopes you will need are <code>c14</code> and </code>o18</code>
+The two isotopes you will need are <code>c14</code> and <code>o18</code>
 </p></details></hint>
 <br>
 
