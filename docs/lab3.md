@@ -229,9 +229,12 @@ The variable for m_dot is <code>s% mass_change</code>
 ## Task 2. Measuring the accretor at Helium flash
 Run the model. Was it successful? If not, note the reason for the error. 
 
-You should have received a Fortran runtime error pointing back to our run_star_extras modifications from Task 1. Recall that we are attempting to trace through a history file based on the current age of the star. At the same time, however, MESA is loading a saved model, treating it as the current star, and running through the entire history file before a step can occur. Let's make some modifications to <code>inlist_project</code> to remedy this. Set the initial age and model numbers to 0, then delete (or comment out) the accretion rate. 
+You should have received a Fortran runtime error pointing back to our run_star_extras modifications from Task 1 (below). 
+<img src="./assets/ErrorExample.png" alt="Example of Error from first run attempt" width="200"/>
 
-Run the model (don't forget to clean and make). During the model's evolution, you should see a "lump" form that grows and ignites. Where is this "lump"?
+Recall that we are attempting to trace through a history file based on the current age of the star. At the same time, however, MESA is loading a saved model, treating it as the current star, and running through the entire history file before a step can occur. Let's make some modifications to <code>inlist_project</code> to remedy this. Set the initial age and model numbers to 0, then delete (or comment out) the accretion rate. 
+
+Run the model (don't forget to clean and make). During the model's evolution, you should see a "lump" that grows and ignites. Where is this "lump"?
 
 Once the model has completed, open the history.data log. Use the data to find the rotation rate at the helium flash. Assume the accretor rotates as a solid body. Record this rotation rate, Helium shell thickness, and the time to Helium flash in [the google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869). Compare the Helium shell thickness and time to Helium flash with the results from Lab 2. 
 
