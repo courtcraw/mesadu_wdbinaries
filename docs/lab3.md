@@ -28,20 +28,21 @@ This lab will combine the work we have done so far in labs 1 and 2. To ease the 
 
 <div class="filetext-title"> The Lab 3 starting directory should contain these files </div> 
 <div class="filetext"><p>
-inlist_project
-inlist_pgstar
-inlist
-nco.net
-binary_history.data
-cowd_< >M_Tc2e7.mod
-tables_hashimoto/
-src/
-make/
-mk
-clean
-re
-rn
+inlist_project <br />
+inlist_pgstar <br />
+inlist <br />
+nco.net <br />
+binary_history.data <br />
+cowd_< >M_Tc2e7.mod <br />
+tables_hashimoto/ <br />
+src/ <br />
+make/ <br />
+mk <br />
+clean <br />
+re <br />
+rn <br />
 </p></div>
+<br>
 
 
 ### Task 1. Writing the interpolation Code
@@ -49,14 +50,15 @@ Open <code>run_star_extras.f90</code> and take a look through the file. The code
 
 Recall the control flow in MESA (below), that is, which routines get called at which points during a MESA run. Identify which subroutine (or function) would need to be modified in order to interpolate the varying mdot produced in Lab 1 and find that routine in <code>run_star_extras</code>. Remember, this interpolation will need to be completed before MESA attempts to solve the star's state.  
 
-![Control Flow Diagram](./assets/ControlFlowDiagram.png)
+<img src="./assets/ControlFlowDiagram.png" alt="Control Flow Diagram" width="200"/>
+
 * Note: This diagram can be found in the MESA Documentation [here](https://docs.mesastar.org/en/latest/using_mesa/extending_mesa.html#control-flow)
 
 Look through the subroutines in <code>run_star_extras</code> and observe their general form. A subroutine (or function) is named, variables are declared, the error status is set and checked, the "stuff" of the subroutine occurs, then the subroutine ends. Since we have just identified the function we will be modifying, let's take a look at the variables we will need. Open the donor history file, <code>binary_history.data</code> and take a look around. How many columns are before the mdot (log_abs_mdot)? How many rows before our relevant data begins? 
 
 If all is according to plan, you should notice six (6) labeled columns before <code>log_abs_mdot</code>, and six (6) header rows before data begins. Below is an example of the structure of this <code>binary_history.data</code> file, note that the particular data may vary. 
 
-![Structure of History file](./assets/HistoryDataStructure.png)
+<img src="./assets/HistoryDataStructure.png" alt="Structure of History file" width="200"/>
 
 When opening the file, our interpolation function will read the contents row by row. This allows us to easily skip the header section (we will worry about this later). However, on a given row, we will only need <code>star_age</code>, <code>log_dt</code>, and <code>log_abs_mdot</code>, and so need places to dump the irrelevant data that is intertwined. This can be done by establishing placeholder variables that we can set and ignore throughout the calculation. Take note of the order and data type for the columns. 
 
@@ -227,9 +229,12 @@ The variable for m_dot is <code>s% mass_change</code>
 ## Task 2. Measuring the accretor at Helium flash
 Run the model. Was it successful? If not, note the reason for the error. 
 
-You should have received a Fortran runtime error pointing back to our run_star_extras modifications from Task 1. Recall that we are attempting to trace through a history file based on the current age of the star. At the same time, however, MESA is loading a saved model, treating it as the current star, and running through the entire history file before a step can occur. Let's make some modifications to <code>inlist_project</code> to remedy this. Set the initial age and model numbers to 0, then delete (or comment out) the accretion rate. 
+You should have received a Fortran runtime error pointing back to our run_star_extras modifications from Task 1 (below). 
+<img src="./assets/ErrorExample.png" alt="Example of Error from first run attempt" width="200"/>
 
-Run the model (don't forget to clean and make). During the model's evolution, you should see a "lump" form that grows and ignites. Where is this "lump"?
+Recall that we are attempting to trace through a history file based on the current age of the star. At the same time, however, MESA is loading a saved model, treating it as the current star, and running through the entire history file before a step can occur. Let's make some modifications to <code>inlist_project</code> to remedy this. Set the initial age and model numbers to 0, then delete (or comment out) the accretion rate. 
+
+Run the model (don't forget to clean and make). During the model's evolution, you should see a "lump" that grows and ignites. Where is this "lump"?
 
 Once the model has completed, open the history.data log. Use the data to find the rotation rate at the helium flash. Assume the accretor rotates as a solid body. Record this rotation rate, Helium shell thickness, and the time to Helium flash in [the google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869). Compare the Helium shell thickness and time to Helium flash with the results from Lab 2. 
 
