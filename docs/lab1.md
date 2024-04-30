@@ -7,7 +7,7 @@ description: Using the Binary Module - Evolving a donor star
 # Solving for Mass Transfer in a DWD binary system
 
 
-For this lab we will look into AM CVn binaries. AM CVn binaries are ultracompact binaries with orbital periods less than 1 hour, where a white dwarf accretes from a helium-rich companion [Ramsay+2018](https://ui.adsabs.harvard.edu/abs/2018A%26A...620A.141R/abstract).
+For this lab we will look into AM CVn binaries. AM CVn binaries are ultracompact binaries with orbital periods less than 1 hour, where a white dwarf accretes from a helium-rich companion ([Ramsay+2018](https://ui.adsabs.harvard.edu/abs/2018A%26A...620A.141R/abstract)).
 
 
 * * * 
