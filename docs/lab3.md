@@ -16,7 +16,7 @@ For this lab, we will use run_star_extras to interpolate the Mdot from Lab 1 and
 
 
 ## Task 0. Project Setup 
-Make a clean copy of your directory from Lab 2 then copy over the binary_history file generated in Lab 1. 
+Make a clean copy of your directory from Lab 2 then copy over the binary_history file generated in Lab 1. If you didn't complete the lab for any reason, you may instead download the Lab 2 solutions from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries). 
 
 
 ## Task 1. Writing the interpolation Code

@@ -39,7 +39,7 @@ Finally, we will need to modify the timestep controls for the run. These 'f_' pa
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-If you aren't sure how many threads you are using, run <code>echo $OMP_NUM_THREADS</code>. 
+If you aren't sure how many threads you are using, run <code>echo $OMP_NUM_THREADS</code> in the terminal. 
 </p></details></hint>
 <br>
 
@@ -47,7 +47,7 @@ Don't forget to save the inlist!
 <br>
 
 ## Task 2. Setting up the donor
-We need to set up our donor star. This work will all be done in the donor inlist, <code>inlist1</code>. Start by editing <code>&star_job</code> to load in the saved donor model file from earlier, change the initial reaction network to 'co_burn', and turn on pgstar. Visit the MESA documentation for these variables. 
+We now need to set up our donor star. This work will all be done in the donor inlist, <code>inlist1</code>. Start by editing <code>&star_job</code> to load in the saved donor model file from earlier, change the initial reaction network to 'co_burn', and turn on pgstar. Visit the MESA documentation for these variables. 
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
@@ -136,19 +136,10 @@ Double check that each of the above values is uncommented! (And don't forget to 
 
 ## Task 5 - Run the model
 It is finally time! Run the model and watch the magic of computers! The runs should take approximately 8 minutes. If the run appears desparately stuck, let us know. Keep in mind that run time will be dependent on which donor model is being used and how many threads are available.
-<hint><details>
-<summary> Hint (click here) </summary><p>
-./clean
-</p></details></hint>
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-./rn
-</p></details></hint>
-
-<hint><details>
-<summary> Hint (click here) </summary><p>
-Don't forget to ./mk
+Don't forget to ./clean then ./mk
 </p></details></hint>
 <br>
 
