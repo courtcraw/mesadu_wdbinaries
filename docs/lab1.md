@@ -39,7 +39,7 @@ The inlists (and some variables) in a binary directory are organized by number, 
 
 To begin, open <code>inlist_project</code>. Set the binary masses and period to the values chosen in Task 0 using <code>m1</code>, <code>m2</code>, and <code>initial_period_in_days</code>. 
 
-Next, let's set some orbital angular momentum controls. In our case, we want to include gravitational wave radiation and contributions from mass loss, while ignoring the effects of magnetic braking. Take a look at the MESA documentation to find the corresponding orbital jdot flags and set them accordingly.
+Next, let's set some orbital angular momentum controls. In our case, we want to include gravitational wave radiation only, while ignoring the effects of magnetic braking and mass loss (we assume fully conservative mass transfer). Take a look at the MESA documentation to find the corresponding orbital jdot flags and set them accordingly.
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
@@ -125,7 +125,7 @@ Don't forget to save your inlist!
 
 
 ## Task 4 - Adding history columns
-In order for this exercise to be a useful shortcut, we need to save out additional data in our history columns for later use. To do this, add(uncomment) the following values to your history columns:
+In order for this exercise to be a useful shortcut, we need to save out additional data in our history columns for later use. To do this, add(uncomment) the following values to your binary_history_columns.list:
 
 * <code>period_minutes</code>
 * <code>binary_separation</code>
