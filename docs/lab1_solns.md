@@ -122,14 +122,145 @@ In <code> inlist_project</code>:
 
 ### Task 2. Setting up the donor
 <hint><details>
-In <code>inlist1</code>
-<summary> Solution </summary><p>
+<summary> &star_job </summary><p>
 <code>
+&star_job
 
+  ! load
+    !!!!!
+    load_saved_model = .true.
+    load_model_filename = 'HeWD_0.150M_Sc2.0.mod' ! Replace with filepath
+    !!!!!
 
+  ! change net
+    !!!!!
+    change_initial_net = .true.
+    new_net_name = 'co_burn.net'
+    !!!!!
+
+  ! set initial model number and age
+    !!!!!
+    set_initial_model_number = .true.
+    initial_model_number = 0
+
+    set_initial_age = .true.
+    initial_age = 0
+	
+    set_initial_dt = .true.
+    years_for_initial_dt = 1d3
+    !!!!!
+
+  ! display on-screen plots
+    !!!!!
+    pgstar_flag = .true.
+    !!!!!
+
+/ ! end of star_job namelist
 </code>
 </p></details></hint>
+<br>
 
+
+<hint><details>
+<summary> &controls </summary><p>
+<code>
+&controls
+  ! starting specifications
+
+  ! when to stop
+    !!!!!
+    star_mass_min_limit = 0.10d0 ! Dependent on star
+    !!!!!
+
+  ! wind
+
+  ! atmosphere
+
+  ! turn off burning
+
+    max_abar_for_burning = -1
+
+  ! rotation
+
+  ! element diffusion
+
+  ! mlt
+
+  ! mixing
+
+  ! timesteps
+
+
+  ! mesh
+
+     mesh_delta_coeff = 2.0d0
+
+  ! solver
+  
+     energy_eqn_option = 'eps_grav'
+
+     ! set these two to zero avoid numerical problems
+       !!!!!
+       eps_mdot_leak_frac_factor = 0d0
+       eps_mdot_factor = 0d0
+       !!!!!
+     
+     ! assist the timesteps
+       !!!!!
+       max_resid_jump_limit = 1d20
+       !!!!!
+
+  ! output
+
+    extra_terminal_output_file = 'log1' 
+    log_directory = 'LOGS1'
+
+    profile_interval = 50
+    history_interval = 1
+    terminal_interval = 1
+    write_header_frequency = 10
+
+/ ! end of controls namelist
+</code>
+</p></details></hint>
+<br>
+
+<hint><details>
+<summary> &pgstar </summary><p>
+<code>
+&pgstar
+  ! show temperature/density profile
+    !!!!!
+    TRho_Profile_win_flag = .true.
+    TRho_Profile_xmin = -8.1
+    TRho_Profile_xmax = 7.2
+    TRho_Profile_ymin = 2.6
+    TRho_Profile_ymax = 8.5
+    !!!!!
+
+  ! add eos regions
+    !!!!!
+    show_TRho_Profile_eos_regions = .true.
+    !!!!!
+
+  ! plot the period of the first star
+    !!!!!
+    History_Panels1_win_flag = .true.
+    History_Panels1_num_panels = 2
+    History_Panels1_xaxis_name = 'period_minutes'
+    History_Panels1_yaxis_name(1) = 'lg_mstar_dot_1'
+    History_Panels1_yaxis_reversed(1) = .false.
+    History_Panels1_ymin(1) = -13d0
+    History_Panels1_ymax(1) = -6d0
+    History_Panels1_dymin(1) = -1
+    History_Panels1_other_yaxis_name(1) = ''
+    !!!!!
+      
+      
+/ ! end of pgstar namelist
+</code>
+</p></details></hint>
+<br>
 
 ### Task 3 - Setting up the Accretor
 <hint><details>
