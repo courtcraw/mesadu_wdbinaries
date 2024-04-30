@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Minilab 3
+title: Lab 3
 description: Varying the Accretion Rate
 ---
 

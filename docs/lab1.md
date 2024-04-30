@@ -8,13 +8,15 @@ description: Using the Binary Module - Evolving a donor star
 
 This can serve as a bit of an introduction to what the lab is about
 
+* * * 
+
 # Lab Instructions
 
 For this lab we will be running a generic binary system with one of the stars as a point mass (which one? elaborate here). Each task will have a solution given [here](./lab1_solns.md). Feel free to visit the solutions as needed, but we encourage you to work through with the hints first. 
 
 
 ## Task 0. Download Files
-Download the Lab 1 working directory from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). Then, download the relevant donor model (HeStar or HeWD) and accretor model (cowd) for your binary from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and save it in your Lab 1 working directory. Note, the donor model files are formatted as '< type >_< mass >M[_Sc< entropy >].mod' and accretor models are formatted as 'cowd_< mass >M_Tc2e7.mod'. 
+Download the Lab 1 working directory from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). Then, download the relevant donor model (HeStar or HeWD) and accretor model (cowd) for your binary from the <code>initial_donor_models</code> folder in the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and save it in your Lab 1 working directory. Note, the donor model files are formatted as '< type >_< mass >M[_Sc< entropy >].mod' and accretor models are formatted as 'cowd_< mass >M_Tc2e7.mod'. 
 
 Here, we specify the entropy of the Helium White Dwarfs because ... ""
 
@@ -29,7 +31,7 @@ Next, let's set some orbital angular momentum controls. In our case, we want to 
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-Search "orbital jdot controls" in the MESA Documentation, specifically under binary_controls. The common format for the three flags is 'do_jdot_X'.
+Search "orbital jdot controls" in the MESA Documentation, specifically under binary_controls. The common format for the three flags is <code>'do_jdot_X'</code>.
 </p></details></hint>
 <br>
 

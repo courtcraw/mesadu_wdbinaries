@@ -18,14 +18,14 @@ MESA Down Under Sheet -> https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZ
 <hint><details>
 <summary> Binary Mass and Period </summary><p>
 In <code> inlist_project</code>:
-<code>
+```
    ! Set the binary masses and period
      !!!!!      
      m1 = 0.15d0
      m2 = 1.0d0
      initial_period_in_days = 0.004d0
      !!!!!
-</code>
+```
 </p></details></hint>
 <br>
 
