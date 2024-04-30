@@ -11,27 +11,26 @@ However, for this lab we will look into the case of stable mass transfer.
 
 AM CVn binaries are ultracompact binaries with orbital periods between 5 and 69 minutes, where a white dwarf stably accretes from a helium-rich companion (e.g., [Ramsay+2018](https://ui.adsabs.harvard.edu/abs/2018A%26A...620A.141R/abstract)). 
 Their orbital evolution is driven by angular momentum loss due to the emission of gravitational waves, detectable by future space-based gravitational wave detectors like LISA (e.g.,[Kupfer+2024](https://ui.adsabs.harvard.edu/abs/2024ApJ...963..100K/abstract)). 
-There are three formation channels for AM CVn binaries. The donor can either be a helium white dwarf formed from a common envelope event, a non-degenerate helium-burning star, or an evolved Cataclysmic Variable formed from stable mass transfer. In this lab, we will look into the first two scenarios, involving a helium white dwarf or a helium star. Common to all these scenarios is that the donor eventually becomes a fully to semi-degenerate object. The donor responds to mass loss by expanding, and since it is filling its Roche lobe, the orbit also expands. 
+There are three formation channels for AM CVn binaries. The donor can either be a helium white dwarf formed from a common envelope event, a non-degenerate helium-burning star, or an evolved Cataclysmic Variable formed from stable mass transfer. Common to all these scenarios is that the donor eventually becomes a fully to semi-degenerate object. The donor responds to mass loss by expanding, and since it is filling its Roche lobe, the orbit also expands. 
 The component masses and the donor's mass-radius relation set the rate of orbital angular momentum loss, and in turn the mass transfer rate. 
+In this lab, we will look into the first two scenarios involving a helium white dwarf or a helium star, and in particular the mass transfer rate for different types of donors. 
 
 
+In the helium star channel (e.g.,[Yungelson2008](https://ui.adsabs.harvard.edu/abs/2008AstL...34..620Y/abstract),[Sarkar+2023](https://ui.adsabs.harvard.edu/abs/2023MNRAS.519.2567S/abstract)), the donor undergoes core helium burning at first. Gravitational waves bring the donor into contact, and the nuclear burning in the donor eventually quenches due to mass loss. In this lab, we will use a few different masses and initial orbital periods at zero-age core helium burning. 
 
-
-
-
+A donor in the helium white dwarf channel (e.g.,[Deloye+2007](https://ui.adsabs.harvard.edu/abs/2007MNRAS.381..525D/abstract),[Wong&Bildsten2021](https://ui.adsabs.harvard.edu/abs/2021ApJ...923..125W/abstract)) is not necessarilly fully degenerate (zero-temperature). Depending on its post-common envelope orbital period, it could remain semi-degenerate due to a short cooling time. We will explore a range of central specific entropies at contact. A higher entropy value (less degenerate) yields a larger radius. 
 
 
 * * * 
 
 # Lab Instructions
 
-For this lab we will be running a generic binary system with one of the stars as a point mass (which one? elaborate here). Each task will have a solution given [here](./lab1_solns.md). Feel free to visit the solutions as needed, but we encourage you to work through with the hints first. 
+For this lab we will be running a generic binary system with the accretor as a point mass, assuming fully conservative mass transfer. Each task will have a solution given [here](./lab1_solns.md). Feel free to visit the solutions as needed, but we encourage you to work through with the hints first. 
 
 
 ## Task 0. Download Files
 Download the Lab 1 working directory from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). Then, download the relevant donor model (HeStar or HeWD) and accretor model (cowd) for your binary from the <code>initial_donor_models</code> folder in the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and save it in your Lab 1 working directory. Note, the donor model files are formatted as '< type >_< mass >M[_Sc< entropy >].mod' and accretor models are formatted as 'cowd_< mass >M_Tc2e7.mod'. 
 
-Here, we specify the entropy of the Helium White Dwarfs because blah
 
 <br>
 
