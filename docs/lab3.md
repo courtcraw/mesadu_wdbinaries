@@ -49,33 +49,31 @@ Now, we need to tell Fortran to open the history.data file. Use your profound ac
 <hint><details>
 <summary> Hint (click here) </summary><p>
 <code>
-!! open file
-         open(unit=33, file='history.data', action='read')
+!! open file <br />
+open(unit=33, file='history.data', action='read')
 </code>
 </p></details></hint>
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-<code>
 The unit number is largely arbitrary, 33 is chosen for consistency, not necessity. 
-</code>
 </p></details></hint>
 <br>
 
 Let's make sure to skip through that header that we saw earlier. Remember how many rows were in the header? Create a do loop that reads the file (henceforth '33'), but does nothing for those first header rows. 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-Our Do loop will have the form:
+Our Do loop will have the form:<br />
 <code>
 do i = 1, < upper bound ><br />
-   func()<br />
+  func()<br />
 end do
 </code>
 </p></details></hint>
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-The func() is <code>read(33, *)</code> where * is an automatic format assignment
+The func() is <code>read(33, *)</code>. * is an automatic format assignment
 </p></details></hint>
 <br>
 
@@ -94,12 +92,12 @@ Once we have an established format we can read in the history contents. Start a 
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-<code>read(file, format) outputs</code>
+The read function takes the form: read(file, format) outputs
 </p></details></hint>
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-To access the second column of the fortran array use <code>< var >(2)</code>
+To access the second column of the fortran array use (2) following the variable name.
 </p></details></hint>
 
 <hint><details>
@@ -112,10 +110,10 @@ Recall there was no mention to add a condition for this do loop as was used earl
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-The format for if/else in Fortran is:
-if (condition) then
-else
-endif
+The format for if/else in Fortran is:<br />
+if (condition) then<br />
+else<br />
+endif<br />
 </p></details></hint>
 
 <hint><details>
@@ -137,7 +135,7 @@ s% dt_next = min( s% dt_next, exp10(log_dt(1)) * secyer )
 ```
 <hint><details>
 <summary> Hint (click here) </summary><p>
-<code>end do </code>
+<code>end do </code><br />
 <code>close(33) </code>
 </p></details></hint>
 <br>
@@ -159,20 +157,20 @@ Finally, write the linear interpolation for m_dot and set the value for the star
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-The form of the linear interpolation is
-Y = Y_0 + ((Y_1 - Y_0)/(X_1 - X_0)) * (X - X_0)
+The form of the linear interpolation is <br /> <br />
+Y = Y_0 + ((Y_1 - Y_0)/(X_1 - X_0)) * (X - X_0) <br />
 ,where Y is the Mdot and X is the star age.
 </p></details></hint>
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-The variable names to complete the interpolation are:
-Y = log_Mdot_interp
-X = s% star_age
-Y(0) = log_Mdot(1)
-Y(1) = log_Mdot(2)
-X(0) = star_age(1)
-X(1) = star_age(2)
+The variable names to complete the interpolation are:<br />
+Y = log_Mdot_interp<br />
+X = s% star_age<br />
+Y(0) = log_Mdot(1)<br />
+Y(1) = log_Mdot(2)<br />
+X(0) = star_age(1)<br />
+X(1) = star_age(2)<br />
 </p></details></hint>
 
 <hint><details>
