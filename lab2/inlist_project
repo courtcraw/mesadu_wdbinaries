@@ -1,0 +1,106 @@
+&star_job
+  ! see star/defaults/star_job.defaults
+
+  ! load 
+    create_pre_main_sequence_model = .false.
+
+    load_saved_model = .true.
+    load_model_filename = 'cowd_1.000M_Tc2e7.mod'
+
+  ! save a model at the end of the run
+    save_model_when_terminate = .false.
+    save_model_filename = '15M_at_TAMS.mod'
+
+  ! new net
+    change_initial_net = .true.
+    new_net_name = 'nco.net' ! changed this
+
+  ! adjusting nuclear reaction rates
+    rate_tables_dir = 'tables_hashimoto'
+    rate_cache_suffix = 'hashimoto'
+
+  ! initial time step
+
+    set_initial_dt = .true.
+    years_for_initial_dt = 1d-1
+
+  ! hydro
+
+    ! change_initial_v_flag = .true.
+    ! new_v_flag = .true.
+
+  ! display on-screen plots
+    pgstar_flag = .true.
+
+/ ! end of star_job namelist
+
+
+&eos
+  ! eos options
+  ! see eos/defaults/eos.defaults
+
+/ ! end of eos namelist
+
+
+&kap
+  ! kap options
+  ! see kap/defaults/kap.defaults
+  use_Type2_opacities = .true.
+  Zbase = 0.02
+
+/ ! end of kap namelist
+
+
+&controls
+  ! see star/defaults/controls.defaults
+
+  ! starting specifications
+
+  ! when to stop
+  !power_he_burn_upper_limit = 1d4
+
+  ! wind
+
+  ! atmosphere
+
+  ! rotation
+
+  ! element diffusion
+
+  ! mlt
+
+  ! mixing
+
+     use_ledoux_criterion = .true.
+
+  ! timesteps
+
+     delta_lgL_He_limit = 0.02d0 !0.025d0
+
+  ! mesh
+
+     mesh_delta_coeff = 1.2d0
+
+     xa_function_species(1) = 'he4'
+     xa_function_weight(1) = 0 !30
+     xa_function_param(1) = 1d-2
+
+  ! solver
+  
+     energy_eqn_option = 'eps_grav'
+
+     max_resid_jump_limit = 1d20 !1d6
+
+     make_gradr_sticky_in_solver_iters = .true.
+
+     report_solver_progress = .true.
+     ! use_gold_tolerances = .true.
+
+  ! mdot
+
+     mass_change = 3d-8
+
+  ! output
+
+/ ! end of controls namelist
+OBB
