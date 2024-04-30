@@ -7,7 +7,12 @@ description: Using the Binary Module - Evolving a donor star
 # Solving for Mass Transfer in a DWD binary system
 
 
-For this lab we will look into AM CVn binaries. AM CVn binaries are ultracompact binaries with orbital periods less than 1 hour, where a white dwarf accretes from a helium-rich companion ([Ramsay+2018](https://ui.adsabs.harvard.edu/abs/2018A%26A...620A.141R/abstract)).
+For this lab we will look into AM CVn binaries. AM CVn binaries are ultracompact binaries with orbital periods less than 1 hour, where a white dwarf accretes from a helium-rich companion (e.g., [Ramsay+2018](https://ui.adsabs.harvard.edu/abs/2018A%26A...620A.141R/abstract)). 
+Their orbital evolution is driven by the emission of gravitational waves, detectable by future space-based gravitational wave detectors like LISA (e.g.,[Kupfer+2024](https://ui.adsabs.harvard.edu/abs/2024ApJ...963..100K/abstract)). 
+
+There are three formation channels for AM CVn binaries. The donor can either be a helium white dwarf formed from a common envelope event, a non-degenerate helium-burning star, or an evolved Cataclysmic Variable formed from stable mass transfer. In this lab, we will look into the first two scenarios. 
+
+
 
 
 * * * 
