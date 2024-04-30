@@ -7,7 +7,8 @@ description: Varying the Accretion Rate
 
 # Introduction 
 
-Here is some physics stuff that Sunny will write later
+In lab 1 we explored the mass transfer rate from the donor, but did not evolve the accretor. In lab 2 we explored the accretion up to the helium flash on the accretor, for a fixed accretion rate. Now, we want to see what would happen to the accretor if we use the time-dependent mass transfer rate from lab 1. Normally, you would evolve both the donor and accretor together in the binary module, by setting <code>evolve_both_stars = .true.</code> in the binary inlist. This would take too long for the MESA summer school. So instead, we will implement this in the star module. We will take the history file from lab 1, read in the mass transfer rate, and add this to the accretor using run_star_extras. 
+
 
 * * *
 
