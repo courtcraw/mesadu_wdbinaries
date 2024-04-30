@@ -37,7 +37,7 @@ Finally, we will need to modify the timestep controls for the run. These 'f_' pa
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-If you aren't sure what that value is run <code>echo $OMP_NUM_THREADS</code>. 
+If you aren't sure how many threads you are using, run <code>echo $OMP_NUM_THREADS</code>. 
 </p></details></hint>
 <br>
 
@@ -45,15 +45,13 @@ Don't forget to save the inlist!
 <br>
 
 ### Task 2. Setting up the donor
-Now we need to set up our donor star. This work will all be done in the donor inlist (inlist1). 
+We need to set up our donor star. This work will all be done in the donor inlist, <code>inlist1</code>. Start by editing <code>&star_job</code> to load in the saved donor model file from earlier, change the initial reaction network to 'co_burn', and turn on pgstar. Visit the MESA documentation for these variables. 
 
-In 'load', make the following changes to load from the saved model file. Remember to add in the local path to your donor model:
-```
-load_saved_model = .true.
-load_model_filename = ! copy filepath to donor model here
-```
-
-We will be using a new reaction network called 'co_burn'. To do this, set <code>change_initial_net</code> to True and new_net_name to 'co_burn.net'
+<hint><details>
+<summary> Hint (click here) </summary><p>
+Search for <code>load_saved_model</code>, <code>load_model_filename</code>, and <code>change_initial_net</code>
+</p></details></hint>
+<br>
 
 Now, we can set the initial model number, age, and dt for the run by adding:
 ```
@@ -65,75 +63,32 @@ set_initial_dt = .true.
 years_for_initial_dt = 1d3
 ```
 
-Next, turn on the pgstar flag to display the on-screen plots.
+We want to stop the model once the donor loses a given mass. Using the information in the Google sheet, find the target final mass of the donor model and set the <code>star_mass_min_limit</code> variable to that value. 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-pgstar_flag = .true.
+star_mass_min_limit = (mass of donor - max loss)
 </p></details></hint>
 <br>
 
-Now, we want to stop the model once the donor loses a given mass. Using the information in the Google sheet, find the target final mass of the donor model. 
-<hint><details>
-<summary> Hint (click here) </summary><p>
-(mass of donor - max loss)
-</p></details></hint>
-<br>
+Let's change some solver settings to speed things up. First, Set <code>eps_mdot_leak_frac_factor</code> and <code>eps_mdot_factor</code> to 0d0. Then, set the maximum jump limit, <code>max_resid_jump_limit</code>, to 1d20.
 
-Set the stop flag for the model to this target final mass:
-```
-star_mass_min_limit = ! target minimum mass
-```
+We need something interesting to look at during our runs (we turned on that pgstar flag for a reason!). Our first plot is a temperature/density profile. Turn the TRho profile on and set the min/max values of the window. We recommend x = [-8.1, 7.2] and y = [2.6, 8.5], but feel free to experiment. Now, make this plot a little more informative by showing the Equation of State regions.
 
-Next, we need to change some solver settings to speed things up. First, Set eps_mdot_leak_frac_factor and eps_mdot_factor to 0d0. Then, set the maximum jump limit, max_resid_jump_limit, to 1d20.
-<hint><details>
-<summary> Hint (click here) </summary><p>
-<code>
-eps_mdot_leak_frac_factor = 0d0
-eps_mdot_factor = 0d0
-max_resid_jump_limit = 1d20
-</code>
-</p></details></hint>
-<br>
-
-Next, we need something interesting to look at during our runs (we turned on that pgstar flag for a reason!). Our first plot is a temperature/density profile. Turn the TRho profile on and set the min/max values of the window.
-<hint><details>
-<summary> Hint (click here) </summary><p>
-Set TRho_profile_win_flag = .true.
-</p></details></hint>
-<hint><details>
-<summary> Hint (click here) </summary><p>
-<code>
-TRho_Profile_xmin = -8.1
-TRho_Profile_xmax = 7.2
-TRho_Profile_ymin = 2.6
-TRho_Profile_ymax = 8.5
-</code>
-You can choose your own values as well. Experiment!
-</p></details></hint>
-<br>
-
-We can make this first plot a little more informative by showing the Equation of State regions. Set show_TRho_Profile_eos_regions to True. 
-
-The second plot will show us the period of the first star (our lovely donor). Start by adding another panel to the pgstar plot:
+Our second plot will show us the period of the first star against the mass loss (our lovely donor). We will add another panel to the pgstar plot using 'History_Panels1'. Look through <code>binary_history_columns.list</code> to find the axis names to plot the period in minutes and the mdot of the first star (as a log):
 ```
 History_Panels1_win_flag = .true.
 History_Panels1_num_panels = 2
-```
 
-Plot the binary period on the x-axis and the m_dot on the y-axis by setting 
-```
-History_Panels1_xaxis_name = 'period_minutes'
-History_Panels1_yaxis_name(1) = 'lg_mstar_dot_1'
-```
+History_Panels1_xaxis_name =  ! Period in minutes
+History_Panels1_yaxis_name(1) =  ! log10 of donor star abs(mdot)
 
-Now, let's add some formatting values to make this useful:
-```
 History_Panels1_yaxis_reversed(1) = .false.
 History_Panels1_ymin(1) = -13d0
 History_Panels1_ymax(1) = -6d0
 History_Panels1_dymin(1) = -1
 History_Panels1_other_yaxis_name(1) = ''
 ```
+
 
 Don't forget to save the inlist!
 
