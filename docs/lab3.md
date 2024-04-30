@@ -4,6 +4,13 @@ title: Lab 3
 description: Varying the Accretion Rate
 ---
 
+
+# Introduction 
+
+Here is some physics stuff that Sunny will write later
+
+* * *
+
 [link to the google spreadsheet for lab 3](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=2060915946)
 
 # (More) Realistic(ish) Mass Transfer onto a WD accretor
