@@ -4,7 +4,7 @@ title: Lab 2 Solutions
 ---
 
 
-### Task 1: Generate your inlist
+## Task 1: Generate your inlist
 
 in <code>star_job</code>:
 
@@ -50,7 +50,6 @@ in <code>controls</code>:
      energy_eqn_option = 'eps_grav'
      max_resid_jump_limit = 1d20 !1d6
      make_gradr_sticky_in_solver_iters = .true.
-     report_solver_progress = .true.
 
   ! mdot
      mass_change = 3d-8 ! replace with your accretion rate
@@ -59,7 +58,7 @@ in <code>controls</code>:
 
 
 
-### Task 3: Create a new reaction network
+## Task 3: Create a new reaction network
 
 <code>nco.net</code>:
 

@@ -4,6 +4,13 @@ title: Lab 3
 description: Varying the Accretion Rate
 ---
 
+
+# Introduction 
+
+Here is some physics stuff that Sunny will write later
+
+* * *
+
 [link to the google spreadsheet for lab 3](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=2060915946)
 
 # (More) Realistic(ish) Mass Transfer onto a WD accretor
@@ -13,6 +20,7 @@ This is the background info about cool stars and why and physics and stuff...
 # Lab Instructions
 For this lab, we will use run_star_extras to interpolate the Mdot from Lab 1 and ultimately measure a more-realistic thickness of the Helium shell (as compared to our values from Lab 2)
 <br>
+
 
 
 ### Task 0. Project Setup 
@@ -216,7 +224,7 @@ The variable for m_dot is <code>s% mass_change</code>
 <br>
 
 
-### Task 2. Measuring the accretor at Helium flash
+## Task 2. Measuring the accretor at Helium flash
 Run the model. Was it successful? If not, note the reason for the error. 
 
 You should have received a Fortran runtime error pointing back to our run_star_extras modifications from Task 1. Recall that we are attempting to trace through a history file based on the current age of the star. At the same time, however, MESA is loading a saved model, treating it as the current star, and running through the entire history file before a step can occur. Let's make some modifications to <code>inlist_project</code> to remedy this. Set the initial age and model numbers to 0, then delete (or comment out) the accretion rate. 
@@ -247,7 +255,7 @@ The moment of inertia, I, of a solid sphere is (2/5)MR^2
 <br>
 
 
-### Bonus Task. Exploring timescales
+## Bonus Task. Exploring timescales
 
 
 # BONUS. Evolutionary Timescale

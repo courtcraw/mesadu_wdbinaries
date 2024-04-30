@@ -6,21 +6,30 @@ description: Using the Binary Module - Evolving a donor star
 
 # Solving for Mass Transfer in a DWD binary system
 
-This can serve as a bit of an introduction to what the lab is about
+
+For this lab we will look into AM CVn binaries. AM CVn binaries are ultracompact binaries with orbital periods less than 1 hour, where a white dwarf accretes from a helium-rich companion (e.g., [Ramsay+2018](https://ui.adsabs.harvard.edu/abs/2018A%26A...620A.141R/abstract)). 
+Their orbital evolution is driven by the emission of gravitational waves, detectable by future space-based gravitational wave detectors like LISA (e.g.,[Kupfer+2024](https://ui.adsabs.harvard.edu/abs/2024ApJ...963..100K/abstract)). 
+
+There are three formation channels for AM CVn binaries. The donor can either be a helium white dwarf formed from a common envelope event, a non-degenerate helium-burning star, or an evolved Cataclysmic Variable formed from stable mass transfer. In this lab, we will look into the first two scenarios. 
+
+
+
+
+* * * 
 
 # Lab Instructions
 
 For this lab we will be running a generic binary system with one of the stars as a point mass (which one? elaborate here). Each task will have a solution given [here](./lab1_solns.md). Feel free to visit the solutions as needed, but we encourage you to work through with the hints first. 
 
 
-### Task 0. Download Files
-Download the Lab 1 working directory from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). Then, download the relevant donor model (HeStar or HeWD) and accretor model (cowd) for your binary from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and save it in your Lab 1 working directory. Note, the donor model files are formatted as '< type >_< mass >M[_Sc< entropy >].mod' and accretor models are formatted as 'cowd_< mass >M_Tc2e7.mod'. 
+## Task 0. Download Files
+Download the Lab 1 working directory from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). Then, download the relevant donor model (HeStar or HeWD) and accretor model (cowd) for your binary from the <code>initial_donor_models</code> folder in the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and save it in your Lab 1 working directory. Note, the donor model files are formatted as '< type >_< mass >M[_Sc< entropy >].mod' and accretor models are formatted as 'cowd_< mass >M_Tc2e7.mod'. 
 
-Here, we specify the entropy of the Helium White Dwarfs because ... ""
+Here, we specify the entropy of the Helium White Dwarfs because blah
 
 <br>
 
-### Task 1. Project Setup
+## Task 1. Project Setup
 The inlists (and some variables) in a binary directory are organized by number, 1 and 2. For the purposes of this lab, 1 will refer to the donor star, while 2 will refer to the accretor. 
 
 To begin, open <code>inlist_project</code>. Set the binary masses and period to the values chosen in Task 0 using <code>m1</code>, <code>m2</code>, and <code>initial_period_in_days</code>. 
@@ -29,7 +38,7 @@ Next, let's set some orbital angular momentum controls. In our case, we want to 
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-Search "orbital jdot controls" in the MESA Documentation, specifically under binary_controls. The common format for the three flags is 'do_jdot_X'.
+Search "orbital jdot controls" in the MESA Documentation, specifically under binary_controls. The common format for the three flags is <code>'do_jdot_X'</code>.
 </p></details></hint>
 <br>
 
@@ -37,15 +46,15 @@ Finally, we will need to modify the timestep controls for the run. These 'f_' pa
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-If you aren't sure how many threads you are using, run <code>echo $OMP_NUM_THREADS</code>. 
+If you aren't sure how many threads you are using, run <code>echo $OMP_NUM_THREADS</code> in the terminal. 
 </p></details></hint>
 <br>
 
 Don't forget to save the inlist!
 <br>
 
-### Task 2. Setting up the donor
-We need to set up our donor star. This work will all be done in the donor inlist, <code>inlist1</code>. Start by editing <code>&star_job</code> to load in the saved donor model file from earlier, change the initial reaction network to 'co_burn', and turn on pgstar. Visit the MESA documentation for these variables. 
+## Task 2. Setting up the donor
+We now need to set up our donor star. This work will all be done in the donor inlist, <code>inlist1</code>. Start by editing <code>&star_job</code> to load in the saved donor model file from earlier, change the initial reaction network to 'co_burn', and turn on pgstar. Visit the MESA documentation for these variables. 
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
@@ -92,7 +101,7 @@ History_Panels1_other_yaxis_name(1) = ''
 Don't forget to save the inlist!
 
 
-### Task 3 - Setting up the Accretor
+## Task 3 - Setting up the Accretor
 Open the accretor inlist. As in Task 2, we want to load in an initial saved model, except the accretors will use the CoWD< >.mod files. In "load", turn on <code>load_saved_model</code> and set <code>load_model_filenam</code> to your CoWD model file. We will be using a new reaction network, so repeat those steps from Task 2 here (using co_burn.net).
 
 Unlike the donor, we unfortunately don't actually care about what this stand-in accretor looks like at the end (we will evolve that later), so set <code>save_model_when_terminate</code> to False. 
@@ -110,7 +119,7 @@ Finally, display the abundance profiles and set the X-axis minimum to 0.99. Thes
 Don't forget to save your inlist!
 
 
-### Task 4 - Adding history columns
+## Task 4 - Adding history columns
 In order for this exercise to be a useful shortcut, we need to save out additional data in our history columns for later use. To do this, add(uncomment) the following values to your history columns:
 
 * <code>period_minutes</code>
@@ -132,26 +141,17 @@ Each of them is marked by a '!!!!!'
 Double check that each of the above values is uncommented! (And don't forget to save)
 
 
-### Task 5 - Run the model
+## Task 5 - Run the model
 It is finally time! Run the model and watch the magic of computers! The runs should take approximately 8 minutes. If the run appears desparately stuck, let us know. Keep in mind that run time will be dependent on which donor model is being used and how many threads are available.
-<hint><details>
-<summary> Hint (click here) </summary><p>
-./clean
-</p></details></hint>
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-./rn
-</p></details></hint>
-
-<hint><details>
-<summary> Hint (click here) </summary><p>
-Don't forget to ./mk
+Don't forget to ./clean then ./mk
 </p></details></hint>
 <br>
 
 
-### Task 5 - Investigate
+## Task 5 - Investigate
 Once the model has completed look at the plots. INSERT DISCUSSION OF WHAT IS SEEN HERE. 
 
 
