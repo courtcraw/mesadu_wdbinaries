@@ -6,7 +6,12 @@ description: Constant Mass Accretion
 
 # Introduction 
 
-Here is some physics stuff that Sunny will write later
+
+So far we have pretended that the accretor will happily accept whatever helium we feed it. However, if mass is dumped onto the accretor surface at a rate faster than heat can be transported, the material is compressed and heats up. It is then possible for the helium layer to reach ignition, leading to a helium flash. Historically, the helium flash is of interest to people modeling type Ia supernova progenitors. If the helium shell is sufficiently thick, during the helium flash, the local heating timescale (timescale to heat a fluid element by nuclear burning) can become shorter than the local dynamical timescale (timescale for sound waves to cross a local pressure scale height), yielding a helium detonation. The helium detonation sends a shock wave into the carbon-oxygen core, and can jump-start detonation of the carbon. This "double-detonation" scenario is one of the many proposed channels for forming a type Ia supernova. 
+In recent years, there has been a lot more focus on double-detonation during a double white dwarf merger (unstable mass transfer), for example see [Guillochon+2010](https://ui.adsabs.harvard.edu/abs/2010ApJ...709L..64G/abstract). 
+
+We will instead take a walk through history and look at double-detonations due to stable mass transfer. The thickness of the helium shell determines whether a detonation is likely. In turn, the thickness of the helium shell is determined by the mass accretion rate. To develop some intuition, we will first consider constant accretion rates. In lab 3 we will connect these to actual binary donors. 
+
 
 * * *
 
