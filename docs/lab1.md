@@ -103,7 +103,7 @@ We still need something neat to watch during the run, so turn on pgstar. Add a t
 <summary> Hint (click here) </summary><p>
 You can display the numerical info about the star using <code> Show_TRho_Profile_text_info</code>
 </p></details></hint>
-<br>
+<br />
 
 Finally, display the abundance profiles and set the X-axis minimum to 0.99. These variables can also be found in the pgstar documentation.
 
@@ -127,6 +127,7 @@ In order for this exercise to be a useful shortcut, we need to save out addition
 <summary> Hint (click here) </summary><p>
 Each of them is marked by a '!!!!!'
 </p></details></hint>
+<br />
 
 Double check that each of the above values is uncommented! (And don't forget to save)
 
