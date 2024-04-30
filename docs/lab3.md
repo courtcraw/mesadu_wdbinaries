@@ -62,13 +62,13 @@ The unit number is largely arbitrary, 33 is chosen for consistency, not necessit
 </p></details></hint>
 <br>
 
-Let's make sure to skip through that header that we saw earlier. Remember how many rows were in the header? Create a do loop reads the file (henceforth '33'), but does nothing. 
+Let's make sure to skip through that header that we saw earlier. Remember how many rows were in the header? Create a do loop that reads the file (henceforth '33'), but does nothing for those first header rows. 
 <hint><details>
 <summary> Hint (click here) </summary><p>
 Our Do loop will have the form:
 <code>
-do i = 1, < upper bound >\
-   func()\
+do i = 1, < upper bound ><br />
+   func()<br />
 end do
 </code>
 </p></details></hint>
