@@ -6,11 +6,17 @@ description: Using the Binary Module - Evolving a donor star
 
 # Solving for Mass Transfer in a DWD binary system
 
+Double white dwarf binaries can display a rich variety of outcomes, depending on their mass ratio (e.g.,[Marsh+2004](https://ui.adsabs.harvard.edu/abs/2004MNRAS.350..113M/abstract)). Some will undergo unstable mass transfer and merge/explode, forming either a type Ia supernova or a merger product like an R Coronae Borealis star. 
+However, for this lab we will look into the case of stable mass transfer. 
 
-For this lab we will look into AM CVn binaries. AM CVn binaries are ultracompact binaries with orbital periods less than 1 hour, where a white dwarf accretes from a helium-rich companion (e.g., [Ramsay+2018](https://ui.adsabs.harvard.edu/abs/2018A%26A...620A.141R/abstract)). 
-Their orbital evolution is driven by the emission of gravitational waves, detectable by future space-based gravitational wave detectors like LISA (e.g.,[Kupfer+2024](https://ui.adsabs.harvard.edu/abs/2024ApJ...963..100K/abstract)). 
+AM CVn binaries are ultracompact binaries with orbital periods between 5 and 69 minutes, where a white dwarf stably accretes from a helium-rich companion (e.g., [Ramsay+2018](https://ui.adsabs.harvard.edu/abs/2018A%26A...620A.141R/abstract)). 
+Their orbital evolution is driven by angular momentum loss due to the emission of gravitational waves, detectable by future space-based gravitational wave detectors like LISA (e.g.,[Kupfer+2024](https://ui.adsabs.harvard.edu/abs/2024ApJ...963..100K/abstract)). 
+There are three formation channels for AM CVn binaries. The donor can either be a helium white dwarf formed from a common envelope event, a non-degenerate helium-burning star, or an evolved Cataclysmic Variable formed from stable mass transfer. In this lab, we will look into the first two scenarios, involving a helium white dwarf or a helium star. Common to all these scenarios is that the donor eventually becomes a fully to semi-degenerate object. The donor responds to mass loss by expanding, and since it is filling its Roche lobe, the orbit also expands. 
+The component masses and the donor's mass-radius relation set the rate of orbital angular momentum loss, and in turn the mass transfer rate. 
 
-There are three formation channels for AM CVn binaries. The donor can either be a helium white dwarf formed from a common envelope event, a non-degenerate helium-burning star, or an evolved Cataclysmic Variable formed from stable mass transfer. In this lab, we will look into the first two scenarios. 
+
+
+
 
 
 
