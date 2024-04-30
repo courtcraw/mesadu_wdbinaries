@@ -15,11 +15,11 @@ For this lab, we will use run_star_extras to interpolate the Mdot from Lab 1 and
 <br>
 
 
-### Task 0. Project Setup 
+## Task 0. Project Setup 
 Make a clean copy of your directory from Lab 2 then copy over the binary_history file generated in Lab 1. 
 
 
-### Task 1. Writing the interpolation Code
+## Task 1. Writing the interpolation Code
 In order to meaningfully alter run_star_extras, we need to copy in the available standard subroutines. To begin, open run_star_extras and replace the include statement with contents of <code>$MESA_DIR/star/job/standard_run_star_extras.inc</code>. Check that the code compiles, to ensure that this copy was clean. 
 
 Recall the control flow in MESA, that is, which routines get called at which points during a MESA run. For this lab, which routine should the interpolation script go in? Keep in mind, the goal is to interpolate the varying mdot from Lab 1 and use that as the mdot accreting onto our target star. 
@@ -185,7 +185,7 @@ The variable for m_dot is <code>s% mass_change</code>
 <br>
 
 
-### Task 2. Measuring the accretor at Helium flash
+## Task 2. Measuring the accretor at Helium flash
 Run the model. Was it successful? If not, note the reason for the error. 
 
 You should have received a Fortran runtime error pointing back to our run_star_extras modifications from Task 1. Recall that we are attempting to trace through a history file based on the current age of the star. At the same time, however, MESA is loading a saved model, treating it as the current star, and running through the entire history file before a step can occur. Let's make some modifications to <code>inlist_project</code> to remedy this. Set the initial age and model numbers to 0, then delete (or comment out) the accretion rate. 
@@ -216,7 +216,7 @@ The moment of inertia, I, of a solid sphere is (2/5)MR^2
 <br>
 
 
-### Bonus Task. Exploring timescales
+## Bonus Task. Exploring timescales
 
 
 # BONUS. Evolutionary Timescale

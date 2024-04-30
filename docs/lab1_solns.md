@@ -4,7 +4,7 @@ title: Lab 1 Solutions
 ---
 
 
-### Task 0. Download Files
+## Task 0. Download Files
 <hint><details>
 <summary> Links </summary><p>
 Github Repo -> https://github.com/courtcraw/mesadu_wdbinaries
@@ -14,7 +14,7 @@ MESA Down Under Sheet -> https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZ
 <br>
 
 
-### Task 1: Project Setup
+## Task 1: Project Setup
 <hint><details>
 <summary> Binary Mass and Period </summary><p>
 In <code> inlist_project</code>:
@@ -120,7 +120,7 @@ In <code> inlist_project</code>:
 </p></details></hint>
 <br>
 
-### Task 2. Setting up the donor
+## Task 2. Setting up the donor
 <hint><details>
 <summary> &star_job </summary><p>
 <code>
@@ -414,7 +414,7 @@ In <code>Inlist1</code>
 </p></details></hint>
 <br>
 
-### Task 3 - Setting up the Accretor
+## Task 3 - Setting up the Accretor
 <hint><details>
 <summary> &star_job </summary><p>
 <code>
@@ -631,7 +631,7 @@ In <code>inlist2</code>:
 </p></details></hint>
 <br>
 
-### Task 4 - Adding history columns
+## Task 4 - Adding history columns
 In <code>binary_history_columns.list</code>
 <hint><details>
 <summary> Full Solution </summary><p>
