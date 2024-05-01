@@ -51,7 +51,7 @@ Open <code>run_star_extras.f90</code> and take a look through the file. The code
 
 Recall the control flow in MESA (below), that is, which routines get called at which points during a MESA run. Identify which subroutine (or function) would need to be modified in order to interpolate the varying mdot produced in Lab 1 and find that routine in <code>run_star_extras</code>. Remember, this interpolation will need to be completed before MESA attempts to solve the star's state.  
 
-<img src="./assets/ControlFlowDiagram.png" alt="Control Flow Diagram" width="200"/>
+<img src="./assets/ControlFlowDiagram.png" alt="Control Flow Diagram" width="600"/>
 
 * Note: This diagram can be found in the MESA Documentation [here](https://docs.mesastar.org/en/latest/using_mesa/extending_mesa.html#control-flow)
 
@@ -59,7 +59,7 @@ Look through the subroutines in <code>run_star_extras</code> and observe their g
 
 If all is according to plan, you should notice six (6) labeled columns before <code>log_abs_mdot</code>, and six (6) header rows before data begins. Below is an example of the structure of this <code>binary_history.data</code> file, note that the particular data may vary. 
 
-<img src="./assets/HistoryDataStructure.png" alt="Structure of History file" width="200"/>
+<img src="./assets/HistoryDataStructure.png" alt="Structure of History file" width="600"/>
 
 When opening the file, our interpolation function will read the contents row by row. This allows us to easily skip the header section (we will worry about this later). However, on a given row, we will only need <code>star_age</code>, <code>log_dt</code>, and <code>log_abs_mdot</code>, and so need places to dump the irrelevant data that is intertwined. This can be done by establishing placeholder variables that we can set and ignore throughout the calculation. Take note of the order and data type for the columns. 
 
@@ -231,7 +231,8 @@ The variable for m_dot is <code>s% mass_change</code>
 Run the model. Was it successful? If not, note the reason for the error. 
 
 You should have received a Fortran runtime error pointing back to our run_star_extras modifications from Task 1 (below). 
-<img src="./assets/ErrorExample.png" alt="Example of Error from first run attempt" width="200"/>
+
+<img src="./assets/ErrorExample.png" alt="Example of Error from first run attempt" width="600"/>
 
 Recall that we are attempting to trace through a history file based on the current age of the star. At the same time, however, MESA is loading a saved model, treating it as the current star, and running through the entire history file before a step can occur. Let's make some modifications to <code>inlist_project</code> to remedy this. Set the initial age and model numbers to 0, then delete (or comment out) the accretion rate. 
 
