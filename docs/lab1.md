@@ -125,7 +125,7 @@ Don't forget to save the inlist!
 
 <br>
 
-## Task 3 - Setting up the Accretor
+## Task 3. Setting up the Accretor
 Do we need to do anything for the accretor? Look at the variables in <code>inlist_project</code> for an answer.
 
 <hint><details>
@@ -135,7 +135,7 @@ We don't need to set up the accretor, because <code>evolve_both_stars</code> is 
 <br>
 
 
-## Task 4 - Adding history columns
+## Task 4. Adding history columns
 In order for this exercise to be a useful shortcut, we need to save out additional data in our history columns for later use. To do this, uncomment the following values in your <code>binary_history_columns.list</code>:
 
 * <code>period_minutes</code>
@@ -158,7 +158,7 @@ Double check that each of the above values is uncommented! (And don't forget to 
 
 <br>
 
-## Task 5 - Run the model
+## Task 5. Run the model
 It is finally time! Run the model and watch the magic of computers! The runs should take approximately 8 minutes. If the run appears desparately stuck, let us know. Keep in mind that run time will be dependent on which donor model is being used and how many threads are available.
 
 <hint><details>

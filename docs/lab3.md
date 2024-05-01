@@ -11,20 +11,12 @@ In lab 1 we explored the mass transfer rate from the donor, but did not evolve t
 
 
 * * *
-
-[link to the google spreadsheet for lab 3](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=2060915946)
-
-# (More) Realistic(ish) Mass Transfer onto a WD accretor
-
-This is the background info about cool stars and why and physics and stuff... 
-
 # Lab Instructions
 For this lab, we will use run_star_extras to interpolate the Mdot from Lab 1 and ultimately measure a more-realistic thickness of the Helium shell (as compared to our values from Lab 2)
+
 <br>
 
-
-
-### Task 0. Project Setup 
+## Task 0. Copy Files
 This lab will combine the work we have done so far in labs 1 and 2. To ease the set up process, we will be continuing from the end point of Lab 2. Make a clean copy of your directory from Lab 2 then copy over the binary_history file generated in Lab 1. If you didn't complete Lab 2 for any reason, you may instead download the Lab 2 solutions from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries).
 
 <div class="filetext-title"> The Lab 3 starting directory should contain these files </div> 
@@ -46,7 +38,7 @@ rn <br />
 <br>
 
 
-### Task 1. Writing the interpolation Code
+## Task 1. Writing the interpolation Code
 Open <code>run_star_extras.f90</code> and take a look through the file. The code is establishing a new module <code>run_star_extras</code>, using a set of other modules found in other files, then including a standard set of subroutines from <code>'standard_run_star_extras.inc'</code>. <code>'standard_run_star_extras.inc'</code> can be found at <code>$MESA_DIR/star/job/standard_run_star_extras.inc</code>. Replace the include statement with the contents of that file, then check that the code compiles. This compilation step ensures that the copy was clean. If you wish to have a more scaffolded approach to this lab, you can download a partially annotated version of <code>run_star_extras.f90</code> from the github repo [here](https://github.com/courtcraw/mesadu_wdbinaries)
 
 Recall the control flow in MESA (below), that is, which routines get called at which points during a MESA run. Identify which subroutine (or function) would need to be modified in order to interpolate the varying mdot produced in Lab 1 and find that routine in <code>run_star_extras</code>. Remember, this interpolation will need to be completed before MESA attempts to solve the star's state.  
@@ -59,7 +51,7 @@ Look through the subroutines in <code>run_star_extras</code> and observe their g
 
 If all is according to plan, you should notice six (6) labeled columns before <code>log_abs_mdot</code>, and six (6) header rows before data begins. Below is an example of the structure of this <code>binary_history.data</code> file, note that the particular data may vary. 
 
-<img src="./assets/HistoryDataStructure.png" alt="Structure of History file" width="600"/>
+<img src="./assets/HistoryDataStructure.png" alt="Structure of History file" width="1000"/>
 
 When opening the file, our interpolation function will read the contents row by row. This allows us to easily skip the header section (we will worry about this later). However, on a given row, we will only need <code>star_age</code>, <code>log_dt</code>, and <code>log_abs_mdot</code>, and so need places to dump the irrelevant data that is intertwined. This can be done by establishing placeholder variables that we can set and ignore throughout the calculation. Take note of the order and data type for the columns. 
 
@@ -226,8 +218,12 @@ The variable for m_dot is <code>s% mass_change</code>
 </p></details></hint>
 <br>
 
+### BONUS. Writing to terminal
+Write each of the variables used in the interpolation to the terminal to check the calculation
 
-## Task 2. Measuring the accretor at Helium flash
+<br>
+
+## Task 2. Project Setup
 Run the model. Was it successful? If not, note the reason for the error. 
 
 You should have received a Fortran runtime error pointing back to our run_star_extras modifications from Task 1 (below). 
@@ -236,9 +232,20 @@ You should have received a Fortran runtime error pointing back to our run_star_e
 
 Recall that we are attempting to trace through a history file based on the current age of the star. At the same time, however, MESA is loading a saved model, treating it as the current star, and running through the entire history file before a step can occur. Let's make some modifications to <code>inlist_project</code> to remedy this. Set the initial age and model numbers to 0, then delete (or comment out) the accretion rate. 
 
-Run the model (don't forget to clean and make). During the model's evolution, you should see a "lump" that grows and ignites. Where is this "lump"?
+<br>
 
-Once the model has completed, open the history.data log. Use the data to find the rotation rate at the helium flash. Assume the accretor rotates as a solid body. Record this rotation rate, Helium shell thickness, and the time to Helium flash in [the google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869). Compare the Helium shell thickness and time to Helium flash with the results from Lab 2. 
+## Task 3. Run the model
+Run the model (don't forget to clean and make). During the model's evolution, you should see a "lump" that grows and ignites in the TRho plot. Where is this "lump"? Compare this to what you saw in Lab 2. How does this comparison relate to [Bauer+2017](https://ui.adsabs.harvard.edu/abs/2017ApJ...845...97B/abstract), Figure 8?
+
+<br>
+
+## Task 4. Find Helium shell thickness and time to Helium flash
+Once the model has completed, copy the procedure from Lab 2 to record Helium shell thickness and time to Helium flash in the [Google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869). Compare these values with the results from Lab 2. 
+
+<br>
+
+## Task 5. Calculating rotation rate of the accretor at Helium flash
+Open the <code>history.data</code> log. Use the data to find the rotation rate at the helium flash. Assume the accretor rotates as a solid body. Record this rotation rate in the [Google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869).
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
@@ -261,19 +268,10 @@ The moment of inertia, I, of a solid sphere is (2/5)MR^2
 </p></details></hint>
 <br>
 
-
-## Bonus Task. Exploring timescales
-
-
-# BONUS. Evolutionary Timescale
-<task><details><summary>Plot the density vs temperature of the constant case</summary></details></task>
-<task><details><summary>Plot the density vs temperature of the varying case</summary></details></task>
-<task><details><summary>Compare to Bauer Fig 8</summary></details></task>
-* Expand out
+### BONUS. Evolutionary Timescale
 
 
 * * *
-
 
 
 [Back to main page](./)

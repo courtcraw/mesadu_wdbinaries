@@ -11,8 +11,9 @@ Github Repo -> https://github.com/courtcraw/mesadu_wdbinaries
 
 MESA Down Under Sheet -> https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440
 
+<br>
 
-## Task 1: Project Setup
+## Task 1. Project Setup
 Binary Mass and Period
 In <code> inlist_project</code>:
 ```
@@ -396,11 +397,11 @@ In <code>Inlist1</code>
 ```
 <br>
 
-## Task 3 - Setting up the Accretor
+## Task 3. Setting up the Accretor
 None :) 
 <br>
 
-## Task 4 - Adding history columns
+## Task 4. Adding history columns
 In <code>binary_history_columns.list</code>
 Full Solution 
 ```
@@ -517,7 +518,7 @@ Full Solution
 ```
 <br>
 
-## Task 5 - Run the model
+## Task 5. Run the model
 In <code>inlist1</code>
 ```
 &pgstar
