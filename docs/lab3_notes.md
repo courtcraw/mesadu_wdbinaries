@@ -22,3 +22,10 @@
 * Evolve to helium flash - maybe (if possible)
 * Goal is to record the total helium mass at helium flash as a function of Mdot (crowdsourced) - see Evan Bauer paper
 * More realistic look at what stars actually do before helium flash
+
+
+# BONUS. Evolutionary Timescale
+<task><details><summary>Plot the density vs temperature of the constant case</summary></details></task>
+<task><details><summary>Plot the density vs temperature of the varying case</summary></details></task>
+<task><details><summary>Compare to Bauer Fig 8</summary></details></task>
+* Expand out
