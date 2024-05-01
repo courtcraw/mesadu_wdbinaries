@@ -18,9 +18,9 @@ In <code> inlist_project</code>:
 ```
    ! Set the binary masses and period
      !!!!!      
-     m1 = 0.15d0
-     m2 = 1.0d0
-     initial_period_in_days = 0.004d0
+     m1 = 0.15d0 ! Your donor mass
+     m2 = 1.0d0 ! Your Accretor mass
+     initial_period_in_days = 0.004d0 ! Period of your binary
      !!!!!
 ```
 <br>
@@ -30,9 +30,9 @@ In <code> inlist_project</code>:
 ```
    ! jdot 
      !!!!!
-     do_jdot_gr = .true.
-     do_jdot_ml = .true.
-     do_jdot_mb = .false.
+     do_jdot_gr = .true.  ! Gravitational Wave Radiation
+     do_jdot_ml = .false. ! Mass Loss
+     do_jdot_mb = .false. ! Magnetic Braking
      !!!!!
 ```
 <br>
@@ -47,7 +47,7 @@ In <code> inlist_project</code>:
      fa = 0.01d0
      fa_hard = 0.02d0
      fr_hard = -1d0
-     fj = 5d-4 ! or 2d-3
+     fj = 5d-4 ! or 2d-3, if using 2 threads
      fj_hard = 0.01d0
      !!!!!
 ```
@@ -68,9 +68,9 @@ In <code> inlist_project</code>:
 &binary_controls
    ! Set the binary masses and period
      !!!!!      
-     m1 = 0.15d0
-     m2 = 1.0d0
-     initial_period_in_days = 0.004d0
+     m1 = 0.15d0 ! Your donor mass
+     m2 = 1.0d0 ! Your Accretor mass
+     initial_period_in_days = 0.004d0 ! Period of your binary
      !!!!!
 
    ! transfer efficiency controls
@@ -90,19 +90,19 @@ In <code> inlist_project</code>:
 
    ! jdot 
      !!!!!
-     do_jdot_gr = .true.
-     do_jdot_ml = .true.
-     do_jdot_mb = .false.
+     do_jdot_gr = .true.  ! Gravitational Wave Radiation
+     do_jdot_ml = .false. ! Mass Loss
+     do_jdot_mb = .false. ! Magnetic Braking
      !!!!!
 
    ! time step 
      !!!!!
-     fm = 0.01d0
+     fm = 0.01d0      ! envelope mass
      fm_hard = -1d0
-     fa = 0.01d0
+     fa = 0.01d0      ! binary separation
      fa_hard = 0.02d0
-     fr_hard = -1d0
-     fj = 5d-4 !2d-3 !5d-4
+     fr_hard = -1d0   ! change in (r-rl)/rl
+     fj = 5d-4        ! change in angular momentum, use 2d-3 if using 2 threads
      fj_hard = 0.01d0
      !!!!!
          
@@ -397,214 +397,7 @@ In <code>Inlist1</code>
 <br>
 
 ## Task 3 - Setting up the Accretor
-&star_job
-```
-&star_job
-  ! see star/defaults/star_job.defaults
-
-  ! load 
-    create_pre_main_sequence_model = .false.
-    !!!!!
-    load_saved_model = .true.
-    load_model_filename = 'cowd_1.000M_Tc2e7.mod'
-    !!!!!    
-
-  ! DO NOT save a model at the end of the run
-    !!!!!
-    save_model_when_terminate = .false.
-    !!!!!
-
-  ! new net
-    !!!!!
-    change_initial_net = .true.
-    new_net_name = 'co_burn.net'
-    !!!!!
-
-  ! display on-screen plots
-    !!!!!
-    pgstar_flag = .true.
-    !!!!!
-
-/ ! end of star_job namelist
-```
-<br>
-
-&pgstar
-```
-&pgstar
-  ! see star/defaults/pgstar.defaults
-
-  ! MESA uses PGPLOT for live plotting and gives the user a tremendous
-  ! amount of control of the presentation of the information.
-
-  ! show temperature/density profile - this plots the internal structure at single timestep
-    !!!!!
-    TRho_profile_win_flag = .true.
-    !!!!!
-
-  ! add legend explaining colors
-    !!!!!
-    show_TRho_Profile_legend = .true.
-    !!!!!
-
-  ! display numerical info about the star
-    !!!!!
-    show_TRho_Profile_text_info = .true.
-    !!!!!
-
-  ! set window size (aspect_ratio = height/width)
-    !!!!!
-    TRho_Profile_win_width = 8
-    TRho_Profile_win_aspect_ratio = 0.75
-    !!!!!
-
-  ! show Abundances
-    !!!!!
-    Abundance_win_flag = .true.
-    Abundance_xmin = 0.99d0
-    !!!!!
-
-/ ! end of pgstar namelist
-```
-<br>
-
-Full solution
-In <code>inlist2</code>:
-```
-&star_job
-  ! see star/defaults/star_job.defaults
-
-  ! load 
-    create_pre_main_sequence_model = .false.
-    !!!!!
-    load_saved_model = .true.
-    load_model_filename = 'cowd_1.000M_Tc2e7.mod'
-    !!!!!    
-
-  ! DO NOT save a model at the end of the run
-    !!!!!
-    save_model_when_terminate = .false.
-    !!!!!
-
-  ! new net
-    !!!!!
-    change_initial_net = .true.
-    new_net_name = 'co_burn.net'
-    !!!!!
-
-  ! display on-screen plots
-    !!!!!
-    pgstar_flag = .true.
-    !!!!!
-
-/ ! end of star_job namelist
-
-
-&eos
-  ! eos options
-  ! see eos/defaults/eos.defaults
-
-/ ! end of eos namelist
-
-
-&kap
-  ! kap options
-  ! see kap/defaults/kap.defaults
-  use_Type2_opacities = .true.
-  Zbase = 0.02
-
-/ ! end of kap namelist
-
-
-&controls
-  ! see star/defaults/controls.defaults
-
-  ! starting specifications
-
-  ! when to stop
-
-  ! wind
-
-  ! atmosphere
-
-  ! rotation
-
-  ! element diffusion
-
-  ! mlt
-
-  ! mixing
-
-     use_ledoux_criterion = .true.
-
-  ! timesteps
-
-     delta_lgL_He_limit = 0.02d0 !0.025d0
-
-  ! mesh
-
-     mesh_delta_coeff = 1.5d0
-
-     xa_function_species(1) = 'he4'
-     xa_function_weight(1) = 0 !30
-     xa_function_param(1) = 1d-2
-
-     mesh_dlog_cno_dlogP_extra = 1d0 !0.25d0
-
-  ! solver
-  
-     energy_eqn_option = 'eps_grav'
-
-     max_resid_jump_limit = 1d20 !1d6
-
-     make_gradr_sticky_in_solver_iters = .true.
-
-     report_solver_progress = .true.
-     use_gold_tolerances = .false.
-
-  ! mdot
-
-    ! mass_change = 3d-8
-
-  ! output
-
-/ ! end of controls namelist
-
-&pgstar
-  ! see star/defaults/pgstar.defaults
-
-  ! MESA uses PGPLOT for live plotting and gives the user a tremendous
-  ! amount of control of the presentation of the information.
-
-  ! show temperature/density profile - this plots the internal structure at single timestep
-    !!!!!
-    TRho_profile_win_flag = .true.
-    !!!!!
-
-  ! add legend explaining colors
-    !!!!!
-    show_TRho_Profile_legend = .true.
-    !!!!!
-
-  ! display numerical info about the star
-    !!!!!
-    show_TRho_Profile_text_info = .true.
-    !!!!!
-
-  ! set window size (aspect_ratio = height/width)
-    !!!!!
-    TRho_Profile_win_width = 8
-    TRho_Profile_win_aspect_ratio = 0.75
-    !!!!!
-
-  ! show Abundances
-    !!!!!
-    Abundance_win_flag = .true.
-    Abundance_xmin = 0.99d0
-    !!!!!
-
-/ ! end of pgstar namelist
-```
+None :) 
 <br>
 
 ## Task 4 - Adding history columns
@@ -722,7 +515,48 @@ Full Solution
       !CE_num1 ! number of times star 1 has initiated a CE phase
       !CE_num2 ! number of times star 2 has initiated a CE phase
 ```
+<br>
 
+## Task 5 - Run the model
+In <code>inlist1</code>
+```
+&pgstar
+  ! show temperature/density profile
+    !!!!!
+    TRho_Profile_win_flag = .true.
+    TRho_Profile_xmin = -8.1
+    TRho_Profile_xmax = 7.2
+    TRho_Profile_ymin = 2.6
+    TRho_Profile_ymax = 8.5
+    !!!!!
 
+  ! add eos regions
+    !!!!!
+    show_TRho_Profile_eos_regions = .true.
+    !!!!!
+
+  ! add legend explaining colors
+    show_TRho_Profile_legend = .true.
+
+  ! plot the period of the first star
+    !!!!!
+    History_Panels1_win_flag = .true.
+    History_Panels1_num_panels = 2
+    History_Panels1_xaxis_name = 'period_minutes'
+    History_Panels1_yaxis_name(1) = 'lg_mstar_dot_1'
+    History_Panels1_yaxis_reversed(1) = .false.
+    History_Panels1_ymin(1) = -13d0
+    History_Panels1_ymax(1) = -6d0
+    History_Panels1_dymin(1) = -1
+    History_Panels1_other_yaxis_name(1) = ''
+    !!!!!
+      
+      
+/ ! end of pgstar namelist
+```
+
+<br>
+
+* Note that the Full Solution in the Github Repo is for the case of a 0.15 M HeWD donor and 1 M Donor. 
 
 
