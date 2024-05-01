@@ -558,6 +558,114 @@ In <code>inlist1</code>
 
 <br>
 
+## BONUS. Calculating Timescales
+In <code>run_binary_extras</code>:
+```
+subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
+    integer, intent(in) :: id, n
+    character (len=maxlen_history_column_name) :: names(n)
+    real(dp) :: vals(n)
+    integer :: k
+    integer, intent(out) :: ierr
+    type (star_info), pointer :: s
+    ierr = 0
+    call star_ptr(id, s, ierr)
+    if (ierr /= 0) return
+    
+    ! note: do NOT add the extras names to history_columns.list
+    ! the history_columns.list is only for the built-in history column options.
+    ! it must not include the new column names you are adding here.
+
+    ! thermal timescale (yr)
+    names(1) = 't_th'
+    vals(1) = 0d0
+    do k = 1, s% nz
+      vals(1) = vals(1) + s% cp(k) * s% T(k) * s% dm(k)
+    end do
+    vals(1) = vals(1) / (s% L_surf * Lsun) / secyer
+
+    ! timescale for mass change (yr)
+    names(2) = 't_Mdot'
+    vals(2) = 1d99
+    write(*,*) s% mstar/s% mstar_dot / secyer
+    if (abs(s% mstar_dot/Msun*secyer) > 1d-20) then
+      vals(2) = abs( s% mstar/ s% mstar_dot / secyer )
+    end if    
+
+end subroutine data_for_extra_history_columns
+```
+<br>
+
+In <code>run_star_extras</code>:
+```
+      integer function how_many_extra_history_columns(id)
+         integer, intent(in) :: id
+         integer :: ierr
+         type (star_info), pointer :: s
+         ierr = 0
+         call star_ptr(id, s, ierr)
+         if (ierr /= 0) return
+         how_many_extra_history_columns = 2
+      end function how_many_extra_history_columns
+```
+<br>
+
+
+In <code>inlist1</code>:
+```
+&pgstar
+  ! show temperature/density profile
+    !!!!!
+    TRho_Profile_win_flag = .true.
+    TRho_Profile_xmin = -8.1
+    TRho_Profile_xmax = 7.2
+    TRho_Profile_ymin = 2.6
+    TRho_Profile_ymax = 8.5
+    !!!!!
+
+  ! add eos regions
+    !!!!!
+    show_TRho_Profile_eos_regions = .true.
+    !!!!!
+
+  ! add legend explaining colors
+    show_TRho_Profile_legend = .true.
+
+  ! plot the period of the first star
+    !!!!!
+    History_Panels1_win_flag = .true.
+    History_Panels1_num_panels = 2
+    History_Panels1_xaxis_name = 'period_minutes'
+    History_Panels1_yaxis_name(1) = 'lg_mstar_dot_1'
+    History_Panels1_yaxis_reversed(1) = .false.
+    History_Panels1_ymin(1) = -13d0
+    History_Panels1_ymax(1) = -6d0
+    History_Panels1_dymin(1) = -1
+    History_Panels1_other_yaxis_name(1) = ''
+    !!!!!
+
+  ! Bonus Plots: thermal timescale
+    History_Panels1_yaxis_name(2) = 't_th'
+    History_Panels1_yaxis_reversed(2) = .false.
+    History_Panels1_ymin(2) = 5d0
+    History_Panels1_ymax(2) = 12d0
+    History_Panels1_yaxis_log(2) = .true.
+    History_Panels1_dymin(2) = -1
+
+  ! Bonus Plots: timescale for mass change
+    History_Panels1_other_yaxis_name(2) = 't_Mdot'
+    History_Panels1_other_yaxis_reversed(2) = .false.
+    History_Panels1_other_ymin(2) = 5d0
+    History_Panels1_other_ymax(2) = 12d0
+    History_Panels1_other_yaxis_log(2) = .true.
+    History_Panels1_other_dymin(2) = -1
+      
+/ ! end of pgstar namelist
+
+```
+<br>
+
+
 * Note that the Full Solution in the Github Repo is for the case of a 0.15 M HeWD donor and 1 M Donor. 
 
 

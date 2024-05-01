@@ -181,6 +181,111 @@ The run should terminate with the code <code>star_mass_min_limit</code>, indicat
 
 Feel free to repeat with another donor. Are there any behavior differences?
 
+### BONUS. Calculating Timescales
+The general behavior of timescales can provide us with insights into the behavior of a system. As a bonus exercise, we will add the global thermal timescale and the mass transfer timescale as history columns. Both of these timescales can be derived from the variables floating around in MESA, generally following:
+```
+Global thermal timescale = integral ( cp * T * dm ) / L
+Mass transfer timescale ~ M/Mdot
+```
+
+In order to add these values to history columns, we cannot simply add the values to <code>history_columns.list</code>, instead we need to modify <code>run_star_extras</code>. 
+
+Open <code>run_star_extras</code> and replace the include statement with the contents of <code>$MESA_DIR/star/job/standard_run_star_extras.inc</code>. Then, find the subroutine and function that would allow us to add data to additional history columns. Take a look through the [MESA Documentation](https://docs.mesastar.org/en/latest/using_mesa/extending_mesa.html) if you are not sure.
+
+<hint><details>
+<summary> Hint (click here) </summary><p>
+We will be making our changes in the subroutine <code>data_for_extra_history_columns</code> 
+</p></details></hint>
+<br>
+
+In this subroutine, declare an additional integer, k. Remember the format for variable initializations is <code>type :: name</code>. 
+
+Now, let's add in the thermal timescale in years. Establish a name and initial value for this column, then write a Do loop for the integral.  
+```
+! thermal timescale (yr)
+names(1) = 't_th'
+vals(1) = 0d0
+do k = 1, () ! Add end condition for Do loop
+    vals(1) = () ! Add calculation step in loop
+end do 
+vals(1) = ! Finish calculation outside of integral
+```
+<hint><details>
+<summary> Hint (click here) </summary><p>
+Look through <code>$MESA_DIR/star_data</code> for the available data in the star pointer, <code>s%</code> 
+</p></details></hint>
+
+<hint><details>
+<summary> Hint (click here) </summary><p>
+The variables you'll need to use are: <br />
+<code>s% nz</code><br />
+<code>s% cp(k)</code><br />
+<code>s% T(k)</code><br />
+<code>s% dm(k)</code><br />
+<code>s% L_surf</code><br />
+</p></details></hint>
+
+<hint><details>
+<summary> Hint (click here) </summary><p>
+The calculation step outside the integral is <code>vals(1) = vals(1) / (s% L_surf * Lsun) / secyer</code>
+</p></details></hint>
+<br>
+
+Next, we can add the timescale for mass change in years. As with the thermal timescale, we will need to establish a name for this column, <code>t_Mdot</code> and an initial value for this column, <code>1d99</code>. Add a write step that shows prints the result of the thermal timescale calculation to the terminal. Only set the column to the absolute value of this calculation, if |Mdot|is over 1d-20. Otherwise, leave the column at <code>1d99</code>. Remember to watch the units!
+```
+! timescale for mass change (yr)
+names(2) = 't_Mdot'
+vals(2) = 1d99
+write(*,*) ! Add the calculation here
+if () then
+   vals(2) = ()
+end if
+```
+<hint><details>
+<summary> Hint (click here) </summary><p>
+The variables you'll need to use are: <br />
+<code>s% mstar</code><br />
+<code>s% mstar_dot</code><br />
+</p></details></hint>
+
+
+<hint><details>
+<summary> Hint (click here) </summary><p>
+<code>write(*,*) s% mstar/s% mstar_dot / secyer</code>
+</p></details></hint>
+
+
+<hint><details>
+<summary> Hint (click here) </summary><p>
+<code>if (abs(s% mstar_dot/Msun*secyer) > 1d-20) then</code>
+</p></details></hint>
+
+<hint><details>
+<summary> Hint (click here) </summary><p>
+<code>vals(2) = abs( s% mstar/ s% mstar_dot / secyer )</code>
+</p></details></hint>
+<br>
+
+In order to prep MESA for these extra history columns, update the relevant value in <code>how_many_extra_binary_history_columns</code>. 
+
+Finally, add some useful pgstar plots of these values to the donor inlist:
+```
+History_Panels1_yaxis_name(2) = 't_th'
+History_Panels1_yaxis_reversed(2) = .false.
+History_Panels1_ymin(2) = 5d0
+History_Panels1_ymax(2) = 12d0
+History_Panels1_yaxis_log(2) = .true.
+History_Panels1_dymin(2) = -1
+
+History_Panels1_other_yaxis_name(2) = 't_Mdot'
+History_Panels1_other_yaxis_reversed(2) = .false.
+History_Panels1_other_ymin(2) = 5d0
+History_Panels1_other_ymax(2) = 12d0
+History_Panels1_other_yaxis_log(2) = .true.
+History_Panels1_other_dymin(2) = -1
+```
+
+Rerun the model. Do you notice any features in the new timescale plots? What do these values tell us about the behavior of the donor?
 
 * * *
 
