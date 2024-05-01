@@ -268,8 +268,6 @@ The moment of inertia, I, of a solid sphere is (2/5)MR^2
 </p></details></hint>
 <br>
 
-### BONUS. Evolutionary Timescale
-
 
 * * *
 

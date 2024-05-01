@@ -181,6 +181,20 @@ The run should terminate with the code <code>star_mass_min_limit</code>, indicat
 
 Feel free to repeat with another donor. Are there any behavior differences?
 
+### BONUS. Calculating Timescales
+Calculate the global thermal timescale and the mass transfer timescale at the end of the run. Are there any variables we already have access to that can help us solve for these values? If not, feel free to modify run_star_extras to do these calculatons.
+
+What do these values tell us about the behavior of the donor? Add them to the [Google sheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440).
+
+<hint><details>
+<summary> Hint (click here) </summary><p>
+Global thermal timescale = integral ( cp * T * dm ) / L
+Mass transfer timescale ~ J_orb / Jdot_orb
+</p></details></hint>
+<br>
+
+
+
 
 * * *
 
