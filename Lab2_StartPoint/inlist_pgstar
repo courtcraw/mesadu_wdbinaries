@@ -1,0 +1,158 @@
+&pgstar
+
+  ! MESA uses PGPLOT for live plotting and gives the user a tremendous
+  ! amount of control of the presentation of the information.
+	
+  ! switch to white background if you prefer
+  file_white_on_black_flag = .true.
+  win_white_on_black_flag = .true.
+
+
+!###############################
+! Please change the xmin for all of these values to something appropriate for your initial accretor
+! This is in solar masses
+!##############################
+
+    	 Abundance_xmin = 0.8
+         Mixing_xmin = 0.8 
+         Power_xmin = 0.8 
+         Kipp_mass_min = 0.8
+
+
+!##############################
+! Use History Panels 1 if you did the history column bonus task
+! use History Track 1 if you did not do this bonus task
+!##############################
+
+         Grid1_plot_name(2) = 'History_Track1'
+!         Grid1_plot_name(2) = 'History_Panels1'
+
+!##############################
+! Some other minor adjustments 
+!##############################
+
+         Kipp_xaxis_name = 'star_age'
+         Kipp_xaxis_log = .true.
+	 
+
+!##############################
+! This part matters if you did not do the history bonus
+!##############################
+
+         History_Track1_title = 'Accretion'
+         History_Track1_xname = 'model_number'
+         History_Track1_yname = 'log_abs_mdot'
+         History_Track1_xaxis_label = 'model number'
+         History_Track1_yaxis_label = 'log_abs_mdot'
+
+!##############################
+! If you did the history bonus this will be called
+!##############################
+
+	 History_Panels1_title = 'Accretion'
+	 History_Panels1_num_panels = 1
+	 History_Panels1_yaxis_name(1) = 'log_abs_mdot'
+	 History_Panels1_other_yaxis_name(1) = 'he_shell_mass'
+	 History_Panels1_xaxis_name = 'star_age'
+	 History_Panels1_xaxis_log = .true.
+         
+
+!##############################
+! Grid Plot Commands
+!##############################
+
+         Grid1_win_flag = .true.
+
+         Grid1_win_width = 12
+         Grid1_win_aspect_ratio = 0.6 ! aspect_ratio = height/width
+
+         Grid1_xleft = 0.07 ! fraction of full window width for margin on left
+         Grid1_xright = 0.95 ! fraction of full window width for margin on right
+         Grid1_ybot = 0.08 ! fraction of full window width for margin on bottom
+         Grid1_ytop = 0.92 ! fraction of full window width for margin on top
+         Grid1_title = ''
+
+         Grid1_num_cols = 9 ! divide plotting region into this many equal width cols
+         Grid1_num_rows = 6 ! divide plotting region into this many equal height rows
+         Grid1_num_plots = 6 ! <= 10
+
+         Grid1_plot_name(1) = 'TRho_Profile'
+         Grid1_plot_row(1) = 1 ! number from 1 at top
+         Grid1_plot_rowspan(1) = 3 ! plot spans this number of rows
+         Grid1_plot_col(1) =  1 ! number from 1 at left
+         Grid1_plot_colspan(1) = 6 ! plot spans this number of columns
+         Grid1_plot_pad_left(1) = 0.0 ! fraction of full window width for padding on left
+         Grid1_plot_pad_right(1) = 0.05 ! fraction of full window width for padding on right
+         Grid1_plot_pad_top(1) = 0.0 ! fraction of full window height for padding at top
+         Grid1_plot_pad_bot(1) = 0.06 ! fraction of full window height for padding at bottom
+         Grid1_txt_scale_factor(1) = 0.7 ! multiply txt_scale for subplot by this
+
+!         Grid1_plot_name(2) = 'History_Track1'
+!	  Grid1_plot_name(2) = 'History_Panels1'
+         Grid1_plot_row(2) = 4 ! number from 1 at top
+         Grid1_plot_rowspan(2) = 3 ! plot spans this number of rows
+         Grid1_plot_col(2) =  1 ! number from 1 at left
+         Grid1_plot_colspan(2) = 3 ! plot spans this number of columns
+         Grid1_plot_pad_left(2) = 0.00 ! fraction of full window width for padding on left
+         Grid1_plot_pad_right(2) = 0.1 ! fraction of full window width for padding on right
+         Grid1_plot_pad_top(2) = 0.06 ! fraction of full window height for padding at top
+         Grid1_plot_pad_bot(2) = 0.03 ! fraction of full window height for padding at bottom
+         Grid1_txt_scale_factor(2) = 0.7 ! multiply txt_scale for subplot by this
+
+         Grid1_plot_name(3) = 'Kipp'
+         Grid1_plot_row(3) = 4 ! number from 1 at top
+         Grid1_plot_rowspan(3) = 3 ! plot spans this number of rows
+         Grid1_plot_col(3) =  4 ! number from 1 at left
+         Grid1_plot_colspan(3) = 3 ! plot spans this number of columns
+         Grid1_plot_pad_left(3) = 0.04 ! fraction of full window width for padding on left
+         Grid1_plot_pad_right(3) = 0.04 ! fraction of full window width for padding on right
+         Grid1_plot_pad_top(3) = 0.06 ! fraction of full window height for padding at top
+         Grid1_plot_pad_bot(3) = 0.03 ! fraction of full window height for padding at bottom
+         Grid1_txt_scale_factor(3) = 0.7 ! multiply txt_scale for subplot by this
+
+         Grid1_plot_name(4) = 'Abundance'
+         Grid1_plot_row(4) = 1 ! number from 1 at top
+         Grid1_plot_rowspan(4) = 2 ! plot spans this number of rows
+         Grid1_plot_col(4) =  7 ! number from 1 at left
+         Grid1_plot_colspan(4) = 3 ! plot spans this number of columns
+         Grid1_plot_pad_left(4) = 0.07 ! fraction of full window width for padding on left
+         Grid1_plot_pad_right(4) = 0.0 ! fraction of full window width for padding on right
+         Grid1_plot_pad_top(4) = 0.0 ! fraction of full window height for padding at top
+         Grid1_plot_pad_bot(4) = 0.06 ! fraction of full window height for padding at bottom
+         Grid1_txt_scale_factor(4) = 0.7 ! multiply txt_scale for subplot by this
+
+         Grid1_plot_name(5) = 'Power'
+	 Power_title = ''
+         Grid1_plot_row(5) = 3 ! number from 1 at top
+         Grid1_plot_rowspan(5) = 2 ! plot spans this number of rows
+         Grid1_plot_col(5) =  7 ! number from 1 at left
+         Grid1_plot_colspan(5) = 3 ! plot spans this number of columns
+         Grid1_plot_pad_left(5) = 0.07 ! fraction of full window width for padding on left
+         Grid1_plot_pad_right(5) = 0.0 ! fraction of full window width for padding on right
+         Grid1_plot_pad_top(5) = 0.01 ! fraction of full window height for padding at top
+         Grid1_plot_pad_bot(5) = 0.03 ! fraction of full window height for padding at bottom
+         Grid1_txt_scale_factor(5) = 0.7 ! multiply txt_scale for subplot by this
+
+	 Grid1_plot_name(6) = 'Mixing'
+	 Mixing_title = ''
+         Grid1_plot_row(6) = 5 ! number from 1 at top
+         Grid1_plot_rowspan(6) = 2 ! plot spans this number of rows
+         Grid1_plot_col(6) =  7 ! number from 1 at left
+         Grid1_plot_colspan(6) = 3 ! plot spans this number of columns
+         Grid1_plot_pad_left(6) = 0.07 ! fraction of full window width for padding on left
+         Grid1_plot_pad_right(6) = 0.0 ! fraction of full window width for padding on right
+         Grid1_plot_pad_top(6) = 0.04 ! fraction of full window height for padding at top
+         Grid1_plot_pad_bot(6) = 0.0 ! fraction of full window height for padding at bottom
+         Grid1_txt_scale_factor(6) = 0.7 ! multiply txt_scale for subplot by this
+
+
+         ! file output
+         Grid1_file_flag = .false.
+         Grid1_file_dir = 'grid'
+         Grid1_file_prefix = 'grid_'
+         Grid1_file_interval = 5 ! output when `mod(model_number,Grid1_file_interval)==0`
+         Grid1_file_width = -1 ! negative means use same value as for window
+         Grid1_file_aspect_ratio = -1 ! negative means use same value as for window
+
+
+/ ! end of pgstar namelist
