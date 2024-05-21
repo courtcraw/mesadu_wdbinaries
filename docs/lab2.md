@@ -205,6 +205,8 @@ If you would like to view what happens after helium ignition, you can turn off t
 
 
 ![Helium Flash Movie](img/he_flash.mp4)
+![Helium Flash Movie](https://media.githubusercontent.com/media/courtcraw/mesadu_wdbinaries/main/docs/img/he_flash.mp4)
+<!-- https://media.githubusercontent.com/media/_Username_/_Project_/_Branch_/_Path_to_file_ -->
 
 * * *
 
