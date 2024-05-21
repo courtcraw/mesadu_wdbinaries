@@ -208,6 +208,11 @@ If you would like to view what happens after helium ignition, you can turn off t
 ![Helium Flash Movie](https://media.githubusercontent.com/media/courtcraw/mesadu_wdbinaries/main/docs/img/he_flash.mp4)
 <!-- https://media.githubusercontent.com/media/_Username_/_Project_/_Branch_/_Path_to_file_ -->
 
+<video width="640" height="480" controls>
+  <source src="img/he_flash.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 * * *
 
 # Solutions
