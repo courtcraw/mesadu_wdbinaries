@@ -64,7 +64,7 @@ There are many ways you could calculate this, but the following is the simplest:
 
 in your <code>src/run_star_extras.f90</code>:
 
-```
+```fortran
       integer function how_many_extra_history_columns(id)
         integer, intent(in) :: id
         integer :: ierr

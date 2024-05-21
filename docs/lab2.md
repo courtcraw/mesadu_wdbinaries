@@ -89,7 +89,7 @@ Call the new history column <code>he_shell_mass</code>, and it can be calculated
 
 for your <code>inlist_pgstar</code>:
 
-We have provided a nice <code>inlist_pgstar</code> file in the [github rep (direct link to file)](https://github.com/courtcraw/mesadu_wdbinaries/blob/main/Lab2_StartPoint/inlist_pgstar) which you may download and use. It will contain a nicely formatted pgstar grid for all your viewing needs. You'll need to adjust a few options within the file:
+We have provided a nice <code>inlist_pgstar</code> file in the [github repo (direct link to file)](https://github.com/courtcraw/mesadu_wdbinaries/blob/main/Lab2_StartPoint/inlist_pgstar) which you may download and use. It will contain a nicely formatted pgstar grid for all your viewing needs. You'll need to adjust a few options within the file:
 
 * The first commented chunk will instruct you to change the <code>[plot]_xmin</code> value (in solar masses) for the four plots. You should adjust this value to the size of your chosen accretor model, but slightly smaller, so that you can monitor the growth of the helium shell.
 * The second commented chunk has two options to choose between depending on if you did or did not do the previous bonus task (creating the <code>he_shell_mass</code> history column). The default will assume you have not done this bonus task. If you did complete the bonus task, you should switch to the other one. The only difference is that the second one will plot both the accretion rate and the <code>he_shell_mass</code>, and the default option will plot only the accretion rate.
