@@ -23,21 +23,18 @@ For this lab we will be running constant mass accretion onto the accretor in sin
 
 [link to the google spreadsheet of options](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869)
 
-[link to the github repo](https://github.com/courtcraw/mesadu_wdbinaries)
+[link to the github repo (general link)](https://github.com/courtcraw/mesadu_wdbinaries)
 
 [link to the MESA documentation](https://docs.mesastar.org/en/latest/)
 
 [Lab 2 solutions if needed](./lab2_solns.md)
 
 ## Task 0: Download files
-Choose your mass and accretion rate from the [google spreadsheet of options](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869), then download the correct WD initial accretor model from <code>initial_accretor_models</code> folder in the [github repo](https://github.com/courtcraw/mesadu_wdbinaries). 
+Choose your mass and accretion rate from the [google spreadsheet of options](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869), then download the correct WD initial accretor model from <code>initial_accretor_models</code> folder in the [github repo (direct link to folder)](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/initial_accretor_models). 
 
-<!-- ### Bonus task: pgstar inlist
-
-You may choose to download the <code>inlist_pgstar</code> file from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) if you wish. It will contain a nicely formatted pgstar grid for all your viewing needs. Alternatively, you may generate your own if you prefer. We recommend the following panels: Abundances, T-Rho and Mdot vs star age (see history_panels). -->
 
 ## Task 1: Generate your inlist
-Start by copying the <code>$MESA_DIR/star/work</code> directory to your Lab 2 working directory. Make the following edits to your <code>inlist_project</code> (notice that <code>inlist</code> is only a header file that points to <code>inlist_project</code> and <code>inlist_pgstar</code>).
+Start by copying the <code>$MESA_DIR/star/work</code> directory to your Lab 2 working directory. Make the following edits to your <code>inlist_project</code> by searching for the appropriate inlist item in [the MESA documentation](https://docs.mesastar.org/en/latest/reference.html) (notice that <code>inlist</code> is only a header file that points to <code>inlist_project</code> and <code>inlist_pgstar</code>).
 
 In <code>star_job</code>:
 
@@ -88,22 +85,21 @@ As a bonus task, you may choose to add a history column to your output that calc
 
 Call the new history column <code>he_shell_mass</code>, and it can be calculated in many ways. A few suggestions are <code>star_mass - co_core_mass</code>, <code>star_mass - initial_mass</code>, or <code>mass_change * star_age</code> (remember mass_change is in Msun/yr and star_age is in yrs). The first option contains only variables contained in <code>star_ptr</code> whereas the second two will require you to define a constant value. 
 
-
 ## Task 2: Inlist pgstar
 
 for your <code>inlist_pgstar</code>:
 
-We have provided a nice <code>inlist_pgstar</code> file in the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) which you may download and use. It will contain a nicely formatted pgstar grid for all your viewing needs. You'll need to adjust a few options within the file:
+We have provided a nice <code>inlist_pgstar</code> file in the [github rep (direct link to file)](https://github.com/courtcraw/mesadu_wdbinaries/blob/main/Lab2_StartPoint/inlist_pgstar) which you may download and use. It will contain a nicely formatted pgstar grid for all your viewing needs. You'll need to adjust a few options within the file:
 
 * The first commented chunk will instruct you to change the <code>[plot]_xmin</code> value (in solar masses) for the four plots. You should adjust this value to the size of your chosen accretor model, but slightly smaller, so that you can monitor the growth of the helium shell.
 * The second commented chunk has two options to choose between depending on if you did or did not do the previous bonus task (creating the <code>he_shell_mass</code> history column). The default will assume you have not done this bonus task. If you did complete the bonus task, you should switch to the other one. The only difference is that the second one will plot both the accretion rate and the <code>he_shell_mass</code>, and the default option will plot only the accretion rate.
 
-This <code>inlist_pgstar</code> will create a Kippenhahn diagram so don't forget to copy over the <code>history_columns.list</code> defaults and uncomment the <code>mixing_regions</code> and <code>burning_regions</code> lines.
+This <code>inlist_pgstar</code> will create a Kippenhahn diagram so don't forget to copy over the <code>history_columns.list</code> defaults and uncomment the <code>mixing_regions</code> and <code>burning_regions</code> lines if you want it to appear properly.
 
 
 ## Task 3: clean/make/run
 
-Now go ahead and compile and run your model. At first you should see very little change, but start by watching the T-Rho diagram. You'll notice the envelope start to increase in temperature as the accretion heats up the outer layers (this is called shock heating). You'll then see a small bump in the T-Rho diagram that will move towards the center of the star. Eventually this bump will increase past the Helium ignition line in the T-Rho diagram and the Power and Kippenhahn plots will begin changing. At this point you should also see the abundance profile changing as Helium rich material is accreted. Your model will terminate soon after ignition. Below is an example of what you should see at the end of a run.
+Now go ahead and compile and run your model. At first you should see very little change, but watch the T-Rho diagram. You'll notice the envelope start to increase in temperature as the accretion heats up the outer layers (this is called shock heating). You'll then see a small bump in the T-Rho diagram that will move towards the center of the star. Eventually this bump will increase past the Helium ignition line in the T-Rho diagram and the Power and Kippenhahn plots will begin changing. At this point you should also see the abundance profile changing as Helium rich material is accreted. Your model will terminate soon after ignition. Below is an example of what you should see at the end of a run.
 
 Upon completion of the run, record your helium shell thickness at ignition and the time of helium ignition to [the google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869). Remember that the model will stop running at helium ignition, so this is simply the final values from your history files.
 
@@ -115,14 +111,6 @@ The helium shell thickness is <code>star_mass - co_core_mass</code>
 
 
 ![A completed run](img/lab2_example.png)
-
-<!-- Upon completion of the run, record your helium shell thickness at ignition and the time of helium ignition to [the google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869). Remember that the model will stop running at helium ignition, so this is simply the final values from your history files.
-
-<hint><details>
-<summary> Hint (click here) </summary><p>
-The helium shell thickness is <code>star_mass - co_core_mass</code>
-</p></details></hint>
-<br> -->
 
 ## Task 4: Create a new reaction network
 
@@ -178,13 +166,15 @@ The two isotopes you will need are <code>c14</code> and <code>o18</code>
 </p></details></hint>
 <br>
 
-Now we'll update the reaction rate for $$^{14}C(\alpha,\gamma)^{18}O$$. Download the zip file called <code>tables_hashimoto.zip</code> from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries). If you unzip this file, there will be a folder called <code>tables_hashimoto</code> which you should place inside your Lab 2 work directory. Now add the following section to the <code>star_job</code> section of your inlist:
+Now we'll update the reaction rate for $$^{14}C(\alpha,\gamma)^{18}O$$. Download the zip file called <code>tables_hashimoto.zip</code> from the [github repo (direct link to zip)](https://github.com/courtcraw/mesadu_wdbinaries/blob/main/tables_hashimoto.zip). Once you unzip this file, there will be a folder called <code>tables_hashimoto</code> which you should place inside your Lab 2 work directory. Now add the following section to the <code>star_job</code> section of your inlist:
 
 ```
   ! adjusting nuclear reaction rates
     rate_tables_dir = 'tables_hashimoto'
     rate_cache_suffix = 'hashimoto'
 ```
+
+These tables are called such as they come from [Hashimoto+ 1986](https://ui.adsabs.harvard.edu/abs/1986ApJ...307..687H/abstract). The weak rates were provided by Gabriel Martínez-Pinedo and used in [Bauer+ 2017](https://ui.adsabs.harvard.edu/abs/1986ApJ...307..687H/abstract).
 
 If you look inside the file <code>tables_hashimoto/rate_list.txt</code> you will see this:
 
@@ -209,10 +199,12 @@ As everyone finishes their models, we can ask: how does the Helium shell thickne
 
 ## Lab Extension (over lunch)
 
+Expected Runtime: ~30 minutes on 4 cores
+
 If you would like to view what happens after helium ignition, you can turn off the stopping condition in the inlist and allow your model to run over lunchtime. You will see very interesting things happening in your T-Rho diagram! If you haven't, we highly recommend adding <code>pause_before_terminate = .true.</code> to the <code>star_job</code> section of <code>inlist_project</code> so that you can view the pgstar output when you return from lunch. Below is a video of what you should see, in case you decide not to run this.
 
 
-
+![Helium Flash Movie](img/he_flash.mp4)
 
 * * *
 
