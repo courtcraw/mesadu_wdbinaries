@@ -97,8 +97,15 @@ We have provided a nice <code>inlist_pgstar</code> file in the [github repo](htt
 * The first commented chunk will instruct you to change the <code>[plot]_xmin</code> value (in solar masses) for the four plots. You should adjust this value to the size of your chosen accretor model, but slightly smaller, so that you can monitor the growth of the helium shell.
 * The second commented chunk has two options to choose between depending on if you did or did not do the previous bonus task (creating the <code>he_shell_mass</code> history column). The default will assume you have not done this bonus task. If you did complete the bonus task, you should switch to the other one. The only difference is that the second one will plot both the accretion rate and the <code>he_shell_mass</code>, and the default option will plot only the accretion rate.
 
+This <code>inlist_pgstar</code> will create a Kippenhahn diagram so don't forget to copy over the <code>history_columns.list</code> defaults and uncomment the <code>mixing_regions</code> and <code>burning_regions</code> lines.
+
 
 ## Task 3: clean/make/run
+
+Now go ahead and compile and run your model. At first you should see very little change, but start by watching the T-Rho diagram. You'll notice the envelope start to increase in temperature as the accretion heats up the outer layers (this is called shock heating). You'll then see a small bump in the T-Rho diagram that will move towards the center of the star. Eventually this bump will increase past the Helium ignition line in the T-Rho diagram and the Power and Kippenhahn plots will begin changing. At this point you should also see the abundance profile changing as Helium rich material is accreted. Your model will terminate soon after ignition. Below is an example of what you should see at the end of a run.
+
+[A completed run](img/lab2_example.png)
+
 Upon completion of the run, record your helium shell thickness at ignition and the time of helium ignition to [the google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869). Remember that the model will stop running at helium ignition, so this is simply the final values from your history files.
 
 <hint><details>
