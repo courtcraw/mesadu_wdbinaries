@@ -24,6 +24,9 @@ in <code>star_job</code>:
 
   ! display on-screen plots
      pgstar_flag = .true.
+
+  ! Optional!
+     pause_before_terminate = .true.
 ```
 
 in <code>controls</code>:

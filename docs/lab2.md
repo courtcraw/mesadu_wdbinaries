@@ -46,10 +46,11 @@ In <code>star_job</code>:
 * We will set the network (<code>change_initial_net</code>) to <code>co_burn.net</code> for this first part. 
 * Set the initial timestep to zero (or 1d-1). 
 * Ensure pgstar output is on (it should be on by default).
+* Optional (recommended): instruct the model to pause before it terminates so you can view the pgstar output before closing
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-Search for the following in the MESA Documentation: <code>load_saved_model</code>, <code>change_initial_net</code>, <code>set_initial_dt</code>, and <code>pgstar_flag</code>
+Search for the following in the MESA Documentation: <code>load_saved_model</code>, <code>change_initial_net</code>, <code>set_initial_dt</code>, <code>pgstar_flag</code>, and <code>pause_before_terminate</code>
 </p></details></hint>
 <br>
 
@@ -104,7 +105,7 @@ This <code>inlist_pgstar</code> will create a Kippenhahn diagram so don't forget
 
 Now go ahead and compile and run your model. At first you should see very little change, but start by watching the T-Rho diagram. You'll notice the envelope start to increase in temperature as the accretion heats up the outer layers (this is called shock heating). You'll then see a small bump in the T-Rho diagram that will move towards the center of the star. Eventually this bump will increase past the Helium ignition line in the T-Rho diagram and the Power and Kippenhahn plots will begin changing. At this point you should also see the abundance profile changing as Helium rich material is accreted. Your model will terminate soon after ignition. Below is an example of what you should see at the end of a run.
 
-[A completed run](img/lab2_example.png)
+![A completed run](img/lab2_example.png)
 
 Upon completion of the run, record your helium shell thickness at ignition and the time of helium ignition to [the google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869). Remember that the model will stop running at helium ignition, so this is simply the final values from your history files.
 
@@ -199,7 +200,7 @@ As everyone finishes their models, we can ask: how does the Helium shell thickne
 
 ## Lab Extension (over lunch)
 
-If you would like to view what happens after helium ignition, you can turn off the stopping condition in the inlist and allow your model to run over lunchtime. You will see very interesting things happening in your T-Rho diagram!
+If you would like to view what happens after helium ignition, you can turn off the stopping condition in the inlist and allow your model to run over lunchtime. You will see very interesting things happening in your T-Rho diagram! If you haven't, we highly recommend adding <code>pause_before_terminate = .true.</code> to the <code>star_job</code> section of <code>inlist_project</code> so that you can view the pgstar output when you return from lunch.
 
 
 
