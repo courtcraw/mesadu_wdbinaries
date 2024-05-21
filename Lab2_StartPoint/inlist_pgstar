@@ -40,10 +40,11 @@
 !##############################
 
          History_Track1_title = 'Accretion'
-         History_Track1_xname = 'model_number'
+         History_Track1_xname = 'star_age'
          History_Track1_yname = 'log_abs_mdot'
-         History_Track1_xaxis_label = 'model number'
+         History_Track1_xaxis_label = 'star age'
          History_Track1_yaxis_label = 'log_abs_mdot'
+         History_Track1_log_xaxis = .true.
 
 !##############################
 ! If you did the history bonus this will be called
