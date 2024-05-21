@@ -203,11 +203,6 @@ Expected Runtime: ~30 minutes on 4 cores
 
 If you would like to view what happens after helium ignition, you can turn off the stopping condition in the inlist and allow your model to run over lunchtime. You will see very interesting things happening in your T-Rho diagram! If you haven't, we highly recommend adding <code>pause_before_terminate = .true.</code> to the <code>star_job</code> section of <code>inlist_project</code> so that you can view the pgstar output when you return from lunch. Below is a video of what you should see, in case you decide not to run this.
 
-
-![Helium Flash Movie](img/he_flash.mp4)
-![Helium Flash Movie](https://media.githubusercontent.com/media/courtcraw/mesadu_wdbinaries/main/docs/img/he_flash.mp4)
-<!-- https://media.githubusercontent.com/media/_Username_/_Project_/_Branch_/_Path_to_file_ -->
-
 <video width="640" height="480" controls>
   <source src="img/he_flash.mp4" type="video/mp4">
   Your browser does not support the video tag.
