@@ -42,12 +42,13 @@ In <code>star_job</code>:
 * We will need to set the code to load in the accretor model that you just downloaded. 
 * We will set the network (<code>change_initial_net</code>) to <code>co_burn.net</code> for this first part. 
 * Set the initial timestep to zero (or 1d-1). 
+* Set the initial time to zero
 * Ensure pgstar output is on (it should be on by default).
 * Optional (recommended): instruct the model to pause before it terminates so you can view the pgstar output before closing
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-Search for the following in the MESA Documentation: <code>load_saved_model</code>, <code>change_initial_net</code>, <code>set_initial_dt</code>, <code>pgstar_flag</code>, and <code>pause_before_terminate</code>
+Search for the following in the MESA Documentation: <code>load_saved_model</code>, <code>change_initial_net</code>, <code>set_initial_dt</code>, <code>set_initial_age</code>, <code>pgstar_flag</code>, and <code>pause_before_terminate</code>
 </p></details></hint>
 <br>
 

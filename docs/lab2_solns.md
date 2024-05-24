@@ -22,6 +22,10 @@ in <code>star_job</code>:
      set_initial_dt = .true.
      years_for_initial_dt = 1d-1
 
+  ! initial age
+     set_initial_age = .true.
+     initial_age = 0
+
   ! display on-screen plots
      pgstar_flag = .true.
 
