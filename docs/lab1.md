@@ -29,7 +29,7 @@ For this lab, we will be running a generic binary system with the accretor as a 
 
 
 ## Task 0. Download Files
-Download the Lab 1 working directory from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). Then, download the relevant donor model (HeStar or HeWD) and accretor model (cowd) for your binary from the <code>initial_donor_models</code> folder in the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and save it in your Lab 1 working directory. Note, the donor model files are formatted as '< type >_< mass >M[_Sc< entropy >].mod' and accretor models are formatted as 'cowd_< mass >M_Tc2e7.mod'. 
+Download the Lab 1 working directory from the [GitHub repository](https://github.com/courtcraw/mesadu_wdbinaries) and claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). Then, download the relevant donor model (HeStar or HeWD) and accretor model (cowd) for your binary from the <code>initial_donor_models</code> folder in the [GitHub repo](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/initial_donor_models) and save it in your Lab 1 working directory. Note, the donor model files are formatted as '< type >_< mass >M[_Sc< entropy >].mod' and accretor models are formatted as 'cowd_< mass >M_Tc2e7.mod'. As for the accretor models, contained in the folder <code>initial_accretors_models</code>, you don’t have to do anything for now.
 
 <div class="filetext-title"> The Lab 1 starting directory should contain these files </div> 
 <div class="filetext"><p>
@@ -56,15 +56,21 @@ The inlists (and some variables) in a binary directory are organized by number, 
 
 To begin, open <code>inlist_project</code>. Set the binary masses and period to the values chosen in Task 0 using <code>m1</code>, <code>m2</code>, and <code>initial_period_in_days</code>. 
 
-Next, let's set some orbital angular momentum controls. In our case, we want to include gravitational wave radiation only, while ignoring the effects of magnetic braking and mass loss (we assume fully conservative mass transfer). Take a look at the MESA documentation to find the corresponding orbital jdot flags and set them accordingly.
+Next, let's set some orbital angular momentum controls. In our case, we want to include gravitational wave radiation only, while ignoring the effects of magnetic braking and mass loss (we assume fully conservative mass transfer). Take a look at the [MESA documentation](https://docs.mesastar.org/en/latest/modules.html) to find the corresponding orbital jdot flags and set them accordingly.
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-Search "orbital jdot controls" in the MESA Documentation, specifically under binary_controls. The common format for the three flags is <code>'do_jdot_X'</code>.
+Search "orbital jdot controls" in the [MESA documentation](https://docs.mesastar.org/en/latest/modules.html), specifically under binary_controls. The common format for the three flags is <code>'do_jdot_X'</code>.
 </p></details></hint>
 <br>
 
-Finally, we will need to modify the timestep controls for the run. These 'f_' parameters provide the ability to set an upper limit on each timestep based on a particular quantity (ie. envelope mass, binary separation, orbital angular momentum, etc). Let's set an upper limit to based on the orbital angular momentum and your number of threads. Look at the MESA documentation and set the the timestep control for change in orbital angular momentum. If you are using two (2) threads, then set this value to 2d-3. Otherwise, if using more than two (2) threads, then set this value to 5d-4. 
+Finally, we will need to modify the timestep controls for the run. These 'f' parameters provide the ability to set an upper limit on each timestep based on a particular quantity (ie. envelope mass, binary separation, orbital angular momentum, etc). Let's set an upper limit on the orbital angular momentum based on your number of threads. Look at the [MESA documentation](https://docs.mesastar.org/en/latest/modules.html) and set the the timestep control for change in orbital angular momentum. If you are using two (2) threads, then set this value to 2d-3. Otherwise, if using more than two (2) threads, then set this value to 5d-4. Note, there are two "kinds" of limits that can be set. We wish to set the soft version here, as opposed to the hard limit (denoted by the suffix "_hard"). 
+
+<hint><details>
+<summary> Hint (click here) </summary><p>
+The section on timestep controls based on relative changes is [here](https://docs.mesastar.org/en/latest/reference/binary_controls.html#fj).
+</p></details></hint>
+<br>
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
@@ -72,16 +78,22 @@ If you aren't sure how many threads you are using, run <code>echo $OMP_NUM_THREA
 </p></details></hint>
 <br>
 
-Don't forget to save the inlist!
+Don't forget to save the inlist! [Solutions](./lab1_solns.md)
 
 <br>
 
 ## Task 2. Setting up the donor
-We now need to set up our donor star. This work will all be done in the donor inlist, <code>inlist1</code>. Start by editing <code>&star_job</code> to load in the saved donor model file from earlier, change the initial reaction network to 'co_burn', and turn on pgstar. Visit the MESA documentation for these variables. 
+We now need to set up our donor star. This work will all be done in the donor inlist, <code>inlist1</code>. Start by editing <code>&star_job</code> to load in the saved donor model file from earlier, change the initial reaction network to 'co_burn', and turn on pgstar. Visit the [MESA documentation](https://docs.mesastar.org/en/latest/modules.html) for these variables. 
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-Search for <code>load_saved_model</code>, <code>load_model_filename</code>, and <code>change_initial_net</code>
+Search for <code>load_saved_model</code>, <code>load_model_filename</code>, <code>change_initial_net</code>, and <code>pgstar_flag</code>
+</p></details></hint>
+<br>
+
+<hint><details>
+<summary> Hint (click here) </summary><p>
+We only need to set <code>change_initial_net</code> here, not <code>change_net</code>. 
 </p></details></hint>
 <br>
 
@@ -95,7 +107,7 @@ set_initial_dt = .true.
 years_for_initial_dt = 1d3
 ```
 
-We want to stop the model once the donor loses a given mass. Using the information in the [Google sheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440), find the target final mass of the donor model and set the <code>star_mass_min_limit</code> variable to that value. 
+We want to stop the model once the donor loses a given mass. Using the information in the [Google sheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440), find the target final mass of the donor model and set the <code>star_mass_min_limit</code> variable in <code>&controls</code> to that value. 
 <hint><details>
 <summary> Hint (click here) </summary><p>
 star_mass_min_limit = (mass of donor - max loss)
@@ -121,7 +133,7 @@ History_Panels1_dymin(1) = -1
 History_Panels1_other_yaxis_name(1) = ''
 ```
 
-Don't forget to save the inlist!
+Don't forget to save the inlist! [Solutions](./lab1_solns.md)
 
 <br>
 
@@ -154,7 +166,7 @@ Each of them is marked by a '!!!!!'
 </p></details></hint>
 <br>
 
-Double check that each of the above values is uncommented! (And don't forget to save)
+Double check that each of the above values is uncommented! (And don't forget to save) [Solutions](./lab1_solns.md)
 
 <br>
 
