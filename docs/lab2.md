@@ -17,7 +17,7 @@ We will instead take a walk through history and look at double-detonations due t
 
 # Lab Instructions
 
-For this lab we will be running constant mass accretion onto the accretor in single star MESA. Our goal is to evolve to the He flash in these kinds of systems.
+For this lab we will be running constant mass accretion onto the accretor in single star MESA.
 
 ### Some helpful links
 

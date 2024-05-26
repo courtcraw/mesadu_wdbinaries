@@ -27,9 +27,18 @@ A donor in the helium white dwarf channel (e.g.,[Deloye+2007](https://ui.adsabs.
 
 For this lab, we will be running a generic binary system with the accretor as a point mass, assuming fully conservative mass transfer. Each task will have a solution given [here](./lab1_solns.md). Feel free to visit the solutions as needed, but we encourage you to work through with the hints first. 
 
+### Some helpful links
+
+[link to the google spreadsheet of options](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440)
+
+[link to the github repo (general link)](https://github.com/courtcraw/mesadu_wdbinaries)
+
+[link to the MESA documentation](https://docs.mesastar.org/en/latest/)
+
+[Lab 1 solutions if needed](./lab1_solns.md)
 
 ## Task 0. Download Files
-Download the Lab 1 working directory from the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). Then, download the relevant donor model (HeStar or HeWD) and accretor model (cowd) for your binary from the <code>initial_donor_models</code> folder in the [github repo](https://github.com/courtcraw/mesadu_wdbinaries) and save it in your Lab 1 working directory. Note, the donor model files are formatted as '< type >_< mass >M[_Sc< entropy >].mod' and accretor models are formatted as 'cowd_< mass >M_Tc2e7.mod'. 
+Download the Lab 1 working directory from the [github repo (direct link)](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/Lab1_StartPoint) and claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). Then, download the relevant donor model (HeStar or HeWD) for your binary from the <code>initial_donor_models</code> folder in the [github repo (direct link)](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/initial_donor_models) and save it in your Lab 1 working directory. Note, the donor model files are formatted as `< type >_< mass >M[_Sc< entropy >].mod` and accretor models are formatted as `cowd_< mass >M_Tc2e7.mod`. As we are modelling the accretor as a point mass, we do not actually need to download an accretor model yet!
 
 <div class="filetext-title"> The Lab 1 starting directory should contain these files </div> 
 <div class="filetext"><p>
@@ -39,7 +48,6 @@ inlist2 <br />
 inlist_project <br />
 binary_history_columns.list <br />
 < type >_< mass >M[_Sc< entropy >].mod <br />
-cowd_< >M_Tc2e7.mod <br />
 mesa_49_and_fe56.net <br />
 src/ <br />
 make/ <br />
@@ -51,12 +59,14 @@ rn <br />
 
 <br>
 
-## Task 1. Project Setup
-The inlists (and some variables) in a binary directory are organized by number, 1 and 2. For the purposes of this lab, 1 will refer to the donor star, while 2 will refer to the accretor. 
+## Task 1. Editing inlist_project
+The inlists in this binary directory are organized by number, 1 being the donor and 2 being the accretor, along with an <code>inlist_project</code> that contains parameters for both stars. 
 
-To begin, open <code>inlist_project</code>. Set the binary masses and period to the values chosen in Task 0 using <code>m1</code>, <code>m2</code>, and <code>initial_period_in_days</code>. 
+Begin by editing <code>inlist_project</code> in the <code>binary_controls</code> section (all relevant areas are notated by a !!! in the inlist):
 
-Next, let's set some orbital angular momentum controls. In our case, we want to include gravitational wave radiation only, while ignoring the effects of magnetic braking and mass loss (we assume fully conservative mass transfer). Take a look at the MESA documentation to find the corresponding orbital jdot flags and set them accordingly.
+* Set the binary masses and period to the values chosen in Task 0 using <code>m1</code>, <code>m2</code>, and <code>initial_period_in_days</code>. 
+
+* Next, let's set some orbital angular momentum controls (search "orbital jdot controls" under <code>binary_controls</code> in the [MESA Documentation](https://docs.mesastar.org/en/latest/)). In our case, we want to include gravitational wave radiation only, while ignoring the effects of magnetic braking and mass loss (we assume fully conservative mass transfer). Take a look at the MESA documentation to find the corresponding orbital jdot flags and set them accordingly.
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
@@ -64,11 +74,11 @@ Search "orbital jdot controls" in the MESA Documentation, specifically under bin
 </p></details></hint>
 <br>
 
-Finally, we will need to modify the timestep controls for the run. These 'f_' parameters provide the ability to set an upper limit on each timestep based on a particular quantity (ie. envelope mass, binary separation, orbital angular momentum, etc). Let's set an upper limit to based on the orbital angular momentum and your number of threads. Look at the MESA documentation and set the the timestep control for change in orbital angular momentum. If you are using two (2) threads, then set this value to 2d-3. Otherwise, if using more than two (2) threads, then set this value to 5d-4. 
+* Finally, we will need to modify the timestep controls for the run. These `f_` parameters provide the ability to set an upper limit on each timestep based on a particular quantity (ie. envelope mass, binary separation, orbital angular momentum, etc). Let's set an upper limit to based on the orbital angular momentum and your number of threads. Look at the [MESA Documentation](https://docs.mesastar.org/en/latest/) and set the the timestep control for change in orbital angular momentum. If you are using two (2) threads, then set this value to 2d-3. Otherwise, if using more than two (2) threads, then set this value to 5d-4. Note that each option will have two parameters, e.g. <code>fj</code> and <code>fj_hard</code>. We will only alter the first ones, not <code>fj_hard</code>, etc.
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-If you aren't sure how many threads you are using, run <code>echo $OMP_NUM_THREADS</code> in the terminal. 
+You are looking to set the parameters <code>fm</code>, <code>fa</code>, and <code>fj</code>. If you aren't sure how many threads you are using, run <code>echo $OMP_NUM_THREADS</code> in the terminal. 
 </p></details></hint>
 <br>
 
@@ -77,7 +87,9 @@ Don't forget to save the inlist!
 <br>
 
 ## Task 2. Setting up the donor
-We now need to set up our donor star. This work will all be done in the donor inlist, <code>inlist1</code>. Start by editing <code>&star_job</code> to load in the saved donor model file from earlier, change the initial reaction network to 'co_burn', and turn on pgstar. Visit the MESA documentation for these variables. 
+We now need to set up our donor star. This work will all be done in the donor inlist, <code>inlist1</code>. 
+
+* Start by editing <code>&star_job</code> to load in the saved donor model file from earlier, change the initial reaction network to `co_burn`, and turn on pgstar. Visit [the MESA documentation](https://docs.mesastar.org/en/latest/reference.html) for these variables. 
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
@@ -85,7 +97,8 @@ Search for <code>load_saved_model</code>, <code>load_model_filename</code>, and 
 </p></details></hint>
 <br>
 
-Now, we can set the initial model number, age, and dt for the run by adding:
+
+* Now, we can set the initial model number, age, and dt for the run by adding:
 ```
 set_initial_model_number = .true.
 initial_model_number = 0
@@ -95,18 +108,52 @@ set_initial_dt = .true.
 years_for_initial_dt = 1d3
 ```
 
-We want to stop the model once the donor loses a given mass. Using the information in the [Google sheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440), find the target final mass of the donor model and set the <code>star_mass_min_limit</code> variable to that value. 
+* Now we can move to <code>&controls</code>. We want to stop the model once the donor loses a given mass. Using the information in the [Google sheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440), find the target final mass of the donor model and set the <code>star_mass_min_limit</code> variable to that value. 
 <hint><details>
 <summary> Hint (click here) </summary><p>
 star_mass_min_limit = (mass of donor - max loss)
 </p></details></hint>
 <br>
 
-Let's change some solver settings to speed things up. First, Set <code>eps_mdot_leak_frac_factor</code> and <code>eps_mdot_factor</code> to 0d0. Then, set the maximum jump limit, <code>max_resid_jump_limit</code>, to 1d20.
+* Now let's add some solver settings to speed things up. 
+```
+  ! solver
+  
+     energy_eqn_option = 'eps_grav'
 
-We need something interesting to look at during our runs (we turned on that pgstar flag for a reason!). Our first plot is a temperature/density profile. Turn the TRho profile on and set the min/max values of the window. We recommend x = [-8.1, 7.2] and y = [2.6, 8.5], but feel free to experiment. Now, make this plot a little more informative by showing the Equation of State regions.
+     ! set these two to zero avoid numerical problems
+       !!!!!
+       eps_mdot_leak_frac_factor = 0d0
+       eps_mdot_factor = 0d0
+       !!!!!
+     
+     ! assist the timesteps
+       !!!!!
+       max_resid_jump_limit = 1d20
+       !!!!!
+```
 
-Our second plot will show us the period of the first star (our lovely donor) against mass loss. We will add another panel to the pgstar plot using 'History_Panels1'. Look through <code>binary_history_columns.list</code> to find the axis names to plot the period in minutes and the mdot of the first star (as a log). Include these variables as <code>History_Panels1_xaxis_name</code> and <code>History_Panels1_yaxis_name(1)</code>, respectively, in the code below. 
+<!-- First, set <code>eps_mdot_leak_frac_factor</code> and <code>eps_mdot_factor</code> to 0d0. Then, set the maximum jump limit, <code>max_resid_jump_limit</code>, to 1d20. -->
+
+* Now lets move to <code>&pgstar</code>. We need something interesting to look at during our runs (we turned on that pgstar flag for a reason!). Our first plot is a temperature/density profile. Turn the TRho profile on and set the min/max values of the window. We recommend x = [-8.1, 7.2] and y = [2.6, 8.5], but feel free to experiment. Now, make this plot a little more informative by showing the Equation of State regions.
+
+```
+  ! show temperature/density profile
+    !!!!!
+    TRho_Profile_win_flag = .true.
+    TRho_Profile_xmin = -8.1
+    TRho_Profile_xmax = 7.2
+    TRho_Profile_ymin = 2.6
+    TRho_Profile_ymax = 8.5
+    !!!!!
+
+  ! add eos regions
+    !!!!!
+    show_TRho_Profile_eos_regions = .true.
+    !!!!!
+```
+
+* Our second plot will show us the period of the first star (our lovely donor) against mass loss. We will add another panel to the pgstar plot using `History_Panels1`. Look through <code>binary_history_columns.list</code> to find the axis names to plot the period in minutes and the mdot of the first star (as a log). Include these variables as <code>History_Panels1_xaxis_name</code> and <code>History_Panels1_yaxis_name(1)</code>, respectively, in the code below. 
 ```
 History_Panels1_win_flag = .true.
 History_Panels1_num_panels = 2
@@ -126,7 +173,8 @@ Don't forget to save the inlist!
 <br>
 
 ## Task 3. Setting up the Accretor
-Do we need to do anything for the accretor? Look at the variables in <code>inlist_project</code> for an answer.
+Given that we are evolving the accetor as a point mass, is there any remaining setup we need to do for that star?
+<!-- Do we need to do anything for the accretor? Look at the variables in <code>inlist_project</code> for an answer. -->
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
@@ -159,13 +207,13 @@ Double check that each of the above values is uncommented! (And don't forget to 
 <br>
 
 ## Task 5. Run the model
-It is finally time! Run the model and watch the magic of computers! The runs should take approximately 8 minutes. If the run appears desparately stuck, let us know. Keep in mind that run time will be dependent on which donor model is being used and how many threads are available.
+It is finally time! Clean, Make, and Run the model and watch the magic of computers! The runs should take approximately 8 minutes. If the run appears desparately stuck, let us know. Keep in mind that run time will be dependent on which donor model is being used and how many threads are available. If the run is taking too long, you can stop it and use the solution file for Lab 3.
 
-<hint><details>
+<!-- <hint><details>
 <summary> Hint (click here) </summary><p>
 Don't forget to ./clean then ./mk
 </p></details></hint>
-<br>
+<br> -->
 
 Once the model starts, you'll notice some colors on our Temperature-Density plot. Let's add a little bit more information on the fly! Keep the run going and open <code>inlist1</code>. Add the following under <code>pgstar</code> and save the file:
 ```
@@ -179,10 +227,11 @@ Now, watch the behavior of the Mdot vs period plot. Are there any features you n
 
 The run should terminate with the code <code>star_mass_min_limit</code>, indicating our stopping condition was successful. 
 
-Feel free to repeat with another donor. Are there any behavior differences?
+Feel free to repeat with another donor if you have extra time, or compare with your neighbor's model. Are there any behavior differences?
 
 ### BONUS. Calculating Timescales
 The general behavior of timescales can provide us with insights into the behavior of a system. As a bonus exercise, we will add the global thermal timescale and the mass transfer timescale as history columns. Both of these timescales can be derived from the variables floating around in MESA, generally following:
+
 ```
 Global thermal timescale = integral ( cp * T * dm ) / L
 Mass transfer timescale ~ M/Mdot
@@ -201,7 +250,7 @@ We will be making our changes in the subroutine <code>data_for_extra_history_col
 In this subroutine, declare an additional integer, k. Remember the format for variable initializations is <code>type :: name</code>. 
 
 Now, let's add in the thermal timescale in years. Establish a name and initial value for this column, then write a Do loop for the integral.  
-```
+```fortran
 ! thermal timescale (yr)
 names(1) = 't_th'
 vals(1) = 0d0
@@ -232,7 +281,7 @@ The calculation step outside the integral is <code>vals(1) = vals(1) / (s% L_sur
 <br>
 
 Next, we can add the timescale for mass change in years. As with the thermal timescale, we will need to establish a name for this column, <code>t_Mdot</code> and an initial value for this column, <code>1d99</code>. Add a write step that shows prints the result of the thermal timescale calculation to the terminal. Only set the column to the absolute value of this calculation, if |Mdot|is over 1d-20. Otherwise, leave the column at <code>1d99</code>. Remember to watch the units!
-```
+```fortran
 ! timescale for mass change (yr)
 names(2) = 't_Mdot'
 vals(2) = 1d99
@@ -289,6 +338,9 @@ Rerun the model. Do you notice any features in the new timescale plots? What do 
 
 * * *
 
+# Solutions
+
+If you need any solutions for Lab 1: you can find them [here](./lab1_solns.md)
 
 
 [Back to main page](./)
