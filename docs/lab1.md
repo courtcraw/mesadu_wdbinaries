@@ -154,6 +154,7 @@ star_mass_min_limit = (mass of donor - max loss)
 ```
 
 * Our second plot will show us the period of the first star (our lovely donor) against mass loss. We will add another panel to the pgstar plot using `History_Panels1`. Look through <code>binary_history_columns.list</code> to find the axis names to plot the period in minutes and the mdot of the first star (as a log). Include these variables as <code>History_Panels1_xaxis_name</code> and <code>History_Panels1_yaxis_name(1)</code>, respectively, in the code below. 
+
 ```
 History_Panels1_win_flag = .true.
 History_Panels1_num_panels = 2
