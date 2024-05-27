@@ -42,8 +42,7 @@ In <code>star_job</code>:
 * Turn off pre-main sequence model generation.
 * We will need to set the code to load in the accretor model that you just downloaded. 
 * We will set the network (<code>change_initial_net</code>) to <code>co_burn.net</code> for this first part. 
-* Set the initial timestep to zero (or 1d-1). 
-* Set the initial time to zero
+* Set the initial timestep, time, and model number to zero (or 1d-1). Remember you did this in lab 1 as well! 
 * Ensure pgstar output is on (it should be on by default).
 * Optional (recommended): instruct the model to pause before it terminates so you can view the pgstar output before closing
 
@@ -192,6 +191,7 @@ r_c14_ag_o18   'c14rate_Hashimoto_reduced.txt'
 
 The last line here indicates that the rate for the $$^{14}C(\alpha,\gamma)^{18}O$$ reaction will be read from a file called <code>c14rate_Hashimoto_reduced.txt</code> which also lives in the folder called <code>tables_hashimoto</code>. Opening this file will reveal a simple two column file that MESA will read to load the new reaction rates. You may also inspect <code>tables_hashimoto/weak_rate_list.txt</code> which works similarly. See the documentation for further info.
 
+|:-------------|
 | STOP |
 |:-------------|
 | Did you change your reaction network to the one you just made? | 
