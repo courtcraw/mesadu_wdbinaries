@@ -163,17 +163,19 @@ In <code> inlist_project</code>:
   ! atmosphere
 
   ! turn off burning
-
-    max_abar_for_burning = -1 ! comment out if you run a Helium star
+    !!!!! Comment out if using HeStar model
+    max_abar_for_burning = -1
+    !!!!!
 
   ! rotation
 
   ! element diffusion
 
   ! mlt
-
-     !okay_to_reduce_gradT_excess = .true. ! use these if Helium star model
-     !gradT_excess_lambda1 = -1 ! use these if Helium star model
+    !!!!! Uncomment these if using HeStar model
+    !okay_to_reduce_gradT_excess = .true.
+    !gradT_excess_lambda1 = -1
+    !!!!!
 
   ! mixing
 
@@ -318,14 +320,20 @@ In <code>Inlist1</code>
   ! atmosphere
 
   ! turn off burning
-
+    !!!!! Comment out if using HeStar model
     max_abar_for_burning = -1
+    !!!!!
 
   ! rotation
 
   ! element diffusion
 
   ! mlt
+    !!!!! Uncomment these if using HeStar model
+    !okay_to_reduce_gradT_excess = .true.
+    !gradT_excess_lambda1 = -1
+    !!!!!
+
 
   ! mixing
 
@@ -540,6 +548,9 @@ In <code>inlist1</code>
   ! add legend explaining colors
     show_TRho_Profile_legend = .true.
 
+  ! add text information
+    show_TRho_Profile_text_info = .true.
+
   ! plot the period of the first star
     !!!!!
     History_Panels1_win_flag = .true.
@@ -631,6 +642,9 @@ In <code>inlist1</code>:
 
   ! add legend explaining colors
     show_TRho_Profile_legend = .true.
+
+  ! add text information
+    show_TRho_Profile_text_info = .true.
 
   ! plot the period of the first star
     !!!!!
