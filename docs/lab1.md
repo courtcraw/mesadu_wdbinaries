@@ -38,7 +38,12 @@ For this lab, we will be running a generic binary system with the accretor as a 
 [Lab 1 solutions if needed](./lab1_solns.md)
 
 ## Task 0. Download Files
-Download the Lab 1 working directory from the [github repo (direct link)](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/Lab1_StartPoint) and claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). Then, download the relevant donor model (HeStar or HeWD) for your binary from the <code>initial_donor_models</code> folder in the [github repo (direct link)](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/initial_donor_models) and save it in your Lab 1 working directory. Note, the donor model files are formatted as `< type >_< mass >M[_Sc< entropy >].mod` and accretor models are formatted as `cowd_< mass >M_Tc2e7.mod`. As we are modelling the accretor as a point mass, we do not actually need to download an accretor model yet!
+
+* Download the Lab 1 working directory from the [github repo (direct link)](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/Lab1_StartPoint) and claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). 
+
+* Then, download the relevant donor model (HeStar or HeWD) for your binary from the <code>initial_donor_models</code> folder in the [github repo (direct link)](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/initial_donor_models) and save it in your Lab 1 working directory. Note, the donor model files are formatted as `< type >_< mass >M[_Sc< entropy >].mod` and accretor models are formatted as `cowd_< mass >M_Tc2e7.mod`. As we are modelling the accretor as a point mass, we do not actually need to download an accretor model yet!
+
+* At this point, you should be roughly aware of the MESA run speed for your computer. If your computer tends to run slow, we recommend choosing a HeWD as your donor as those run faster than HeStars.
 
 <div class="filetext-title"> The Lab 1 starting directory should contain these files </div> 
 <div class="filetext"><p>
@@ -60,9 +65,9 @@ rn <br />
 <br>
 
 ## Task 1. Editing inlist_project
-The inlists in this binary directory are organized by number, 1 being the donor and 2 being the accretor, along with an <code>inlist_project</code> that contains parameters for both stars. 
+The inlists in this directory are organized by number, 1 being the donor and 2 being the accretor, along with an <code>inlist_project</code> that contains parameters for both stars. 
 
-Begin by editing <code>inlist_project</code> in the <code>binary_controls</code> section (all relevant areas are notated by a !!! in the inlist):
+Begin by editing <code>inlist_project</code> in the <code>binary_controls</code> section (all relevant areas are notated by a !!!!! in the inlist):
 
 * Set the binary masses and period to the values chosen in Task 0 using <code>m1</code>, <code>m2</code>, and <code>initial_period_in_days</code>. 
 
@@ -74,7 +79,7 @@ Search "orbital jdot controls" in the MESA Documentation, specifically under bin
 </p></details></hint>
 <br>
 
-* Finally, we will need to modify the timestep controls for the run. These `f_` parameters provide the ability to set an upper limit on each timestep based on a particular quantity (ie. envelope mass, binary separation, orbital angular momentum, etc). Let's set an upper limit to based on the orbital angular momentum and your number of threads. Look at the [MESA Documentation](https://docs.mesastar.org/en/latest/) and set the the timestep control for change in orbital angular momentum. If you are using two (2) threads, then set this value to 2d-3. Otherwise, if using more than two (2) threads, then set this value to 5d-4. Note that each option will have two parameters, e.g. <code>fj</code> and <code>fj_hard</code>. We will only alter the first ones, not <code>fj_hard</code>, etc.
+* Finally, we will need to modify the timestep controls for the run. These `f_` parameters provide the ability to set an upper limit on each timestep based on a particular quantity (ie. envelope mass, binary separation, orbital angular momentum, etc). Let's set an upper limit to based on the orbital angular momentum and your number of threads. Look at the [MESA Documentation](https://docs.mesastar.org/en/latest/) and set the the timestep control for change in orbital angular momentum. If you are using two (2) threads OR if you are evolving a Helium Star donor, then set this value to <code>2d-3</code>. Otherwise, if using more than two (2) threads, then set this value to <code>7d-4</code>. Note that each option will have two parameters, e.g. <code>fj</code> and <code>fj_hard</code>. We will only alter the first ones, not <code>fj_hard</code>, etc.
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
@@ -108,12 +113,20 @@ set_initial_dt = .true.
 years_for_initial_dt = 1d3
 ```
 
-* Now we can move to <code>&controls</code>. We want to stop the model once the donor loses a given mass. Using the information in the [Google sheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440), find the target final mass of the donor model and set the <code>star_mass_min_limit</code> variable to that value. 
+* Now we can move to <code>&controls</code>. We want to stop the model once the donor loses a given mass. Using the information in the [Google sheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440), find the target final mass of the donor model and set the <code>star_mass_min_limit</code> variable to that value. Note that the google sheet will give you the amount of mass lost, not the target minimum mass!
+
 <hint><details>
 <summary> Hint (click here) </summary><p>
-star_mass_min_limit = (mass of donor - max loss)
+star_mass_min_limit = (initial mass of donor - max loss)
 </p></details></hint>
 <br>
+
+<!-- * If you are running a HeStar donor (rather than a HeWD donor), then you will need to adjust 2 additional parameters in your <code>&controls</code> inlist. First, you will comment out the line <code>max_abar_for_burning = -1</code>. This will turn nuclear reactions back on for this model. Second, add the following lines underneath <code>! mlt </code> to turn on mlt++, which will provide numerical speedup for your models.
+
+```
+     okay_to_reduce_gradT_excess = .true.
+     gradT_excess_lambda1 = -1
+``` -->
 
 * Now let's add some solver settings to speed things up. 
 ```
@@ -131,6 +144,13 @@ star_mass_min_limit = (mass of donor - max loss)
        !!!!!
        max_resid_jump_limit = 1d20
        !!!!!
+```
+
+* If you are running a HeStar donor (rather than a HeWD donor), then you will need to adjust 2 additional parameters in your <code>&controls</code> inlist. First, you will comment out the line <code>max_abar_for_burning = -1</code>. This will turn nuclear reactions back on for this model. Second, add the following lines underneath <code>! mlt </code> to turn on mlt++, which will provide numerical speedup for your models.
+
+```
+     okay_to_reduce_gradT_excess = .true.
+     gradT_excess_lambda1 = -1
 ```
 
 <!-- First, set <code>eps_mdot_leak_frac_factor</code> and <code>eps_mdot_factor</code> to 0d0. Then, set the maximum jump limit, <code>max_resid_jump_limit</code>, to 1d20. -->
@@ -153,7 +173,7 @@ star_mass_min_limit = (mass of donor - max loss)
     !!!!!
 ```
 
-* Our second plot will show us the period of the first star (our lovely donor) against mass loss. We will add another panel to the pgstar plot using `History_Panels1`. Look through <code>binary_history_columns.list</code> to find the axis names to plot the period in minutes and the mdot of the first star (as a log). Include these variables as <code>History_Panels1_xaxis_name</code> and <code>History_Panels1_yaxis_name(1)</code>, respectively, in the code below. 
+* Our second plot will show us the period of the first star (our lovely donor) against mass loss. We will add another panel to the pgstar output using `History_Panels1`. Look through <code>binary_history_columns.list</code> to find the axis names to plot the period in minutes and the mdot of the first star (as a log). Include these variables as <code>History_Panels1_xaxis_name</code> and <code>History_Panels1_yaxis_name(1)</code>, respectively, in the code below. 
 
 ```
 History_Panels1_win_flag = .true.
@@ -185,6 +205,7 @@ We don't need to set up the accretor, because <code>evolve_both_stars</code> is 
 
 
 ## Task 4. Adding history columns
+
 In order for this exercise to be a useful shortcut, we need to save out additional data in our history columns for later use. To do this, uncomment the following values in your <code>binary_history_columns.list</code>:
 
 * <code>period_minutes</code>
@@ -216,21 +237,30 @@ Don't forget to ./clean then ./mk
 </p></details></hint>
 <br> -->
 
-Once the model starts, you'll notice some colors on our Temperature-Density plot. Let's add a little bit more information on the fly! Keep the run going and open <code>inlist1</code>. Add the following under <code>pgstar</code> and save the file:
+* Once the model starts, you'll notice some colors on our Temperature-Density plot. Let's add a little bit more information on the fly! Keep the run going and open <code>inlist1</code> in a new terminal tab. Add the following under <code>pgstar</code> and save the file:
 ```
 ! add legend explaining colors
 show_TRho_Profile_legend = .true.
 ```
-
 The plot should update automatically to describe the colors we are seeing without having to restart the run! Thanks pgstar!
 
-Now, watch the behavior of the Mdot vs period plot. Are there any features you notice? How do they relate to changes in the luminosity?
+* You can also add some text information on the fly to view the donor's current mass with the following lines as well:
+```
+show_TRho_Profile_text_info = .true.
+```
+
+* Now lets focus on the history panels. The upper panel, which shows the mass transfer rate versus the period in minutes, may appear blank for awhile as the binary inspirals. In general, your model will evolve leftwards in both of these panels, as the stars inspiral and decrease their orbital period. You can watch the luminosity and temperature of your donor star change during the inspiral.
+
+* Once mass transfer begins, you should see the mass transfer rate change in the upper panel. What happens to the luminosity and temperature of the donor as the mass transfer begins? How does the mass transfer rate change over time/orbital period?
 
 The run should terminate with the code <code>star_mass_min_limit</code>, indicating our stopping condition was successful. 
 
-Feel free to repeat with another donor if you have extra time, or compare with your neighbor's model. Are there any behavior differences?
+Now compare with your neighbor's model. Are there any behavior differences?
 
 ### BONUS. Calculating Timescales
+
+If you choose to do this bonus task, please begin by making a backup of your completed <code>LOGS1</code> directory, just in case you run out of time and don't get to complete this second run!
+
 The general behavior of timescales can provide us with insights into the behavior of a system. As a bonus exercise, we will add the global thermal timescale and the mass transfer timescale as history columns. Both of these timescales can be derived from the variables floating around in MESA, generally following:
 
 ```
