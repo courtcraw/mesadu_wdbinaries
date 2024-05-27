@@ -87,8 +87,6 @@ In <code> inlist_project</code>:
      max_change_factor = 2d0
      min_change_factor = 1.01d0
 
-     report_rlo_solver_progress = .true.
-
    ! jdot 
      !!!!!
      do_jdot_gr = .true.  ! Gravitational Wave Radiation
@@ -103,7 +101,7 @@ In <code> inlist_project</code>:
      fa = 0.01d0      ! binary separation
      fa_hard = 0.02d0
      fr_hard = -1d0   ! change in (r-rl)/rl
-     fj = 5d-4        ! change in angular momentum, use 2d-3 if using 2 threads
+     fj = 7d-4        ! change in angular momentum, use 2d-3 if using 2 threads or evolving Helium star
      fj_hard = 0.01d0
      !!!!!
          
@@ -166,13 +164,16 @@ In <code> inlist_project</code>:
 
   ! turn off burning
 
-    max_abar_for_burning = -1
+    max_abar_for_burning = -1 ! comment out if you run a Helium star
 
   ! rotation
 
   ! element diffusion
 
   ! mlt
+
+     !okay_to_reduce_gradT_excess = .true. ! use these if Helium star model
+     !gradT_excess_lambda1 = -1 ! use these if Helium star model
 
   ! mixing
 
