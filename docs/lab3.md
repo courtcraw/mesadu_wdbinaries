@@ -71,6 +71,7 @@ Recall the control flow in [MESA](https://docs.mesastar.org/en/latest/using_mesa
 <summary> Hint (click here) </summary><p>
 We will make the following changes in <code>extras_start_step</code> 
 </p></details></hint>
+<br>
 
 Look through the subroutines in <code>run_star_extras</code> and observe their general form. A subroutine (or function) is named, variables are declared, the error status is set and checked, the "stuff" of the subroutine occurs, then the subroutine ends. Since we have just identified the function we will be modifying, let's take a look at the variables we will need. Open the donor history file, <code>history.data</code> and take a look around. How many columns are before the mdot (`log_abs_mdot`)? How many rows before our relevant data begins? 
 
@@ -96,7 +97,7 @@ The types used are <code>integer</code>, <code>real(dp)</code>, and <code>real(d
 </p></details></hint>
 <br>
 
-Feel free to check out the [solutions](./lab3_solns.md), if you are stuck!
+Feel free to check out the [solutions](./lab3_solns.md) if you are stuck!
 
 Now that we have wrangled our variables, we need to tell Fortran to open the history.data file. Use your profound access to all of human knowledge to find the function that connects an external file to an input/ouput unit (ie. Google it or control-F [here](http://www.ndp77.net/dnld/Lahey_LaheyF90LR.pdf)). Set <code>unit=33</code>, <code>file = '< local path to history.data >'</code>, and <code>action='read'</code>. Remember to write this after the error check, beneath <code>extras_start_step = 0</code>. 
 
@@ -306,7 +307,7 @@ Recall that we are attempting to trace through a history file based on the curre
 ## Task 3. Run the model
 Run the model (don't forget to clean and make). During the model's evolution, you should see a "lump" that grows and ignites in the TRho plot. Where is this "lump"? Compare this to what you saw in Lab 2. How does this comparison relate to [Bauer+2017](https://ui.adsabs.harvard.edu/abs/2017ApJ...845...97B/abstract), Figure 8 (below)?
 
-<img src="./assets/Bauer+2017_Fig8.png" alt="Figure 8 from Bauer et al., 2017" width="600"/>
+<img src="./assets/Baueretal_2017_Fig8.png" alt="Figure 8 from Bauer et al., 2017" width="600"/>
 
 
 
