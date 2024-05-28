@@ -27,7 +27,7 @@ For this lab, we will use `run_star_extras.f90` to interpolate the Mdot from Lab
 <br>
 
 ## Task 0. Copy Files
-This lab will combine the work we have done so far in labs 1 and 2. To ease the set up process, we will be continuing from the end point of Lab 2. Make a copy of your directory from Lab 2 (excluding the `./photos` and `./LOGS` folders) then copy over the `./LOGS1/history.data` file generated in Lab 1. If you didn't complete Labs 1 or 2 for any reason, you may instead download the Lab 2 solutions from the [GitHub repo](https://github.com/courtcraw/mesadu_wdbinaries). The history files for Lab 1 are in the [GitHub repo (direct link)](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/Lab1_historyfiles), as well. They are formatted in folders labeled as < donor type >_< donor mass >_< donor entropy >_< accretor mass >_< binary period>.
+This lab will combine the work we have done so far in labs 1 and 2. To ease the set up process, we will be continuing from the end point of Lab 2. Make a copy of your directory from Lab 2 (excluding the `./photos` and `./LOGS` folders) then copy over the `./LOGS1/history.data` file generated in Lab 1. If you didn't complete Labs 1 or 2 for any reason, you may instead download the Lab 2 solutions from the [GitHub repo](https://github.com/courtcraw/mesadu_wdbinaries). A selection of history files for Lab 1 are in the [GitHub repo (direct link)](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/Lab1_historyfiles), as well. They are formatted in folders labeled as < donor type >_< donor mass >_< donor entropy >_< accretor mass >_< binary period>.
 
 <div class="filetext-title"> The Lab 3 starting directory should contain these files </div> 
 <div class="filetext"><p>
@@ -305,11 +305,11 @@ Recall that we are attempting to trace through a history file based on the curre
 <br>
 
 ## Task 3. Run the model
-Run the model (don't forget to clean and make). During the model's evolution, you should see a "lump" that grows and ignites in the TRho plot. Where is this "lump"? Compare this to what you saw in Lab 2. How does this comparison relate to [Bauer+2017](https://ui.adsabs.harvard.edu/abs/2017ApJ...845...97B/abstract), Figure 8 (below)?
+Run the model (don't forget to clean and make). During the model's evolution, you should see a bump that grows and ignites in the TRho plot that is larger than that seen in Lab 2. Compare this difference to [Bauer+2017](https://ui.adsabs.harvard.edu/abs/2017ApJ...845...97B/abstract), Figure 8 (below)?
 
 <img src="./assets/Baueretal_2017_Fig8.png" alt="Figure 8 from Bauer et al., 2017" width="600"/>
 
-
+By providing a more accurate accretion history, we have improved the resolution of this ignition feature. This is largely because the rate of accumulation is directly related to the thermal timescale of the accreted material. In other words, changes in accretion rate tie directly to the ability for thermal energy to "escape" from the material with faster accretion deadening this ability. Once this thermal timescale reaches a critical value at the base of this accreted shell, it ignites!
 
 
 <br>
