@@ -311,7 +311,6 @@ Run the model (don't forget to clean and make). During the model's evolution, yo
 
 By providing a more accurate accretion history, we have improved the resolution of this ignition feature. This is largely because the rate of accumulation is directly related to the thermal timescale of the accreted material. In other words, changes in accretion rate tie directly to the ability for thermal energy to "escape" from the material with faster accretion deadening this ability. Once this thermal timescale reaches a critical value at the base of this accreted shell, it ignites!
 
-
 <br>
 
 ## Task 4. Find Helium shell thickness and time to Helium flash
