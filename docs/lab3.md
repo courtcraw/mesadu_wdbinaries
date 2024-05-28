@@ -27,7 +27,7 @@ For this lab, we will use `run_star_extras.f90` to interpolate the Mdot from Lab
 <br>
 
 ## Task 0. Copy Files
-This lab will combine the work we have done so far in labs 1 and 2. To ease the set up process, we will be continuing from the end point of Lab 2. Make a copy of your directory from Lab 2 (excluding the `./photos` and `./LOGS` folders) then copy over the `./LOGS1/history.data` file generated in Lab 1. If you didn't complete Labs 1 or 2 for any reason, you may instead download the Lab solutions from the [GitHub repo](https://github.com/courtcraw/mesadu_wdbinaries).
+This lab will combine the work we have done so far in labs 1 and 2. To ease the set up process, we will be continuing from the end point of Lab 2. Make a copy of your directory from Lab 2 (excluding the `./photos` and `./LOGS` folders) then copy over the `./LOGS1/history.data` file generated in Lab 1. If you didn't complete Labs 1 or 2 for any reason, you may instead download the Lab 2 solutions from the [GitHub repo](https://github.com/courtcraw/mesadu_wdbinaries). The history files for Lab 1 are in the [GitHub repo (direct link)](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/Lab1_historyfiles), as well. They are formatted in folders labeled as < donor type >_< donor mass >_< donor entropy >_< accretor mass >_< binary period>.
 
 <div class="filetext-title"> The Lab 3 starting directory should contain these files </div> 
 <div class="filetext"><p>

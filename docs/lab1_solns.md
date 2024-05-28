@@ -143,6 +143,7 @@ In <code> inlist_project</code>:
     pgstar_flag = .true.
     !!!!!
 
+    pause_before_terminate = .true. 
 / ! end of star_job namelist
 ```
 <br>
@@ -284,6 +285,7 @@ In <code>Inlist1</code>
     pgstar_flag = .true.
     !!!!!
 
+    pause_before_terminate = .true. 
 / ! end of star_job namelist
 
 &eos
