@@ -101,11 +101,11 @@ Don't forget to save the inlist! [Solutions](./lab1_solns.md)
 ## Task 2. Setting up the donor
 We now need to set up our donor star. This work will all be done in the donor inlist, <code>inlist1</code>. 
 
-* Start by editing <code>&star_job</code> to load in the saved donor model file from earlier, change the initial reaction network to `co_burn`, and turn on pgstar. Visit the [MESA documentation](https://docs.mesastar.org/en/release-r24.03.1/reference.html) for these variables. 
+* Start by editing <code>&star_job</code> to load in the saved donor model file from earlier, change the initial reaction network to `co_burn.net`, and turn on pgstar. Visit the [MESA documentation](https://docs.mesastar.org/en/release-r24.03.1/reference.html) for these variables. 
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-Search for <code>load_saved_model</code>, <code>load_model_filename</code>, <code>change_initial_net</code>, and <code>pgstar_flag</code>
+Search for <code>load_saved_model</code>, <code>load_model_filename</code>, <code>change_initial_net</code>, <code>new_net_name</code> and <code>pgstar_flag</code>
 </p></details></hint>
 <br>
 
@@ -209,7 +209,7 @@ We don't need to set up the accretor, because <code>evolve_both_stars</code> is 
 
 ## Task 4. Adding history columns
 
-In order for this exercise to be a useful shortcut, we need to save out additional data in our history columns for later use. To do this, uncomment the following values in your <code>binary_history_columns.list</code>:
+In order for this exercise to be useful for lab 3, we need to save out additional data in our history columns for later use. To do this, uncomment the following values in your <code>binary_history_columns.list</code>:
 
 * <code>period_minutes</code>
 * <code>binary_separation</code>
@@ -308,7 +308,7 @@ The calculation step outside the integral is <code>vals(1) = vals(1) / (s% L_sur
 </p></details></hint>
 <br>
 
-Next, we can add the timescale for mass change in years. As with the thermal timescale, we will need to establish a name for this column, <code>t_Mdot</code> and an initial value for this column, <code>1d99</code>. Add a write step that shows prints the result of the thermal timescale calculation to the terminal. Only set the column to the absolute value of this calculation, if |Mdot|is over 1d-20. Otherwise, leave the column at <code>1d99</code>. Remember to watch the units!
+Next, we can add the timescale for mass change in years. As with the thermal timescale, we will need to establish a name for this column, <code>t_Mdot</code> and an initial value for this column, <code>1d99</code>. Add a write step that prints the result of the thermal timescale calculation to the terminal. Only set the column to the absolute value of this calculation, if |Mdot| is over 1d-20. Otherwise, leave the column at <code>1d99</code>. Remember to watch the units!
 ```fortran
 ! timescale for mass change (yr)
 names(2) = 't_Mdot'

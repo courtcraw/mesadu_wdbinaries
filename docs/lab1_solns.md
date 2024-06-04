@@ -574,7 +574,7 @@ In <code>inlist1</code>
 
 ## BONUS. Calculating Timescales
 In <code>run_binary_extras</code>:
-```
+```fortran
 subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
     integer, intent(in) :: id, n
     character (len=maxlen_history_column_name) :: names(n)
@@ -611,7 +611,7 @@ end subroutine data_for_extra_history_columns
 <br>
 
 In <code>run_star_extras</code>:
-```
+```fortran
       integer function how_many_extra_history_columns(id)
          integer, intent(in) :: id
          integer :: ierr

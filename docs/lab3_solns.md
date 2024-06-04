@@ -14,7 +14,7 @@ MESA Down Under Sheet -> https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZ
 
 ## Task 1. Writing the interpolation Code
 In <code>run_star_extras.f90</code>
-```
+```fortran
 integer function extras_start_step(id)
          integer, intent(in) :: id
          integer :: ierr

@@ -86,7 +86,7 @@ Navigate back to <code>run_star_extras</code> and initialize some variables. We 
 
 An example of variable initialization is below. Feel free to read more about Fortran arrays [here](https://web.stanford.edu/class/me200c/tutorial_90/07_arrays.html). Another good resource for Fortran90 basics is [this](https://pages.mtu.edu/~shene/COURSES/cs201/NOTES/F90-Basics.pdf). Feel free to explore these resources at your own pace after the Summer School. 
 
-```
+```fortran
 ! Add Variables
 integer :: i
 real(dp), dimension(2) :: star_age
@@ -117,7 +117,7 @@ open(unit=33, file='history.data', action='read')
 With the interface to the file established, let's make sure to skip through that header that we saw earlier. Remember how many rows were in the header? Create a do loop that reads the file (henceforth '33'), but does nothing for those first header rows. This "nothing" can be accomplished by simply reading the row, but not establishing any variables for the data to read to. Look through the prior resources to find the format of this read statement. Also, the format for these header rows varies, so use <code>*</code> to denote an automatic format assignment, called list-directed formatting. 
 
 The Do loop should have the form:
-```
+```fortran
 do i = 1, < upper bound >
   func()
 end do
@@ -134,8 +134,8 @@ The format for the read statement is <code>read(33, *)</code>
 </p></details></hint>
 <br>
 
-Now that we made it through that pesky header, it's time to get that mdot! Since the data from here on will follow a standard patten, let's set a format for the file contents. This is also for consistency/practice, not necessity, as format can be automatically assigned (list-directed) with <code>*</code>.
-```
+Now that we made it through that pesky header, it's time to get that mdot! Since the data from here on will follow a standard pattern, let's set a format for the file contents. This is also for consistency/practice, not necessity, as format can be automatically assigned (list-directed) with <code>*</code>.
+```fortran
 ! Set Format for file contents
 101 format(2(i40, 1x),5(1pes40.16e3, 1x))
 ```
@@ -147,7 +147,7 @@ What do i40 and 1pes40.16e3 mean? What formats are we setting here?
 <br>
 
 At this point, your script should contain the following in `./src/run_star_extras.f90`:
-```
+```fortran
 integer function extras_start_step(id)
          integer, intent(in) :: id
          integer :: ierr
@@ -230,7 +230,7 @@ The condition is <code>star_age(2) > s% star_age</code>
 
 
 End the do loop, close the file, and add the following lines to limit the next timestep. This ensures that the next step taken is the lesser of the current expected timestep and the timestep used in the donor evolution. This improves our result and limits the model from interpolating over outsized timesteps. 
-```
+```fortran
 !! LIMIT DT
 s% dt_next = min( s% dt_next, exp10(log_dt(1)) * secyer )
 ```
@@ -246,7 +246,7 @@ Due to the exit statement we placed in the Do loop, it is possible that we lack 
 When variables are initialized, their values are considered NaN (Not a Number) until assignment. We can use this fact to our advantage. Following IEEE standard, NaN /= NaN in Fortran, meaning no two NaN's are the same. If two rows have been read, then we will have successfully moved data in one of the variable arrays from the second column (2) to the first column (1). Until then, the first column (1) will remain a NaN value. This will serve as the logic behind our check. 
 
 If we have read two rows of the history file, <code>log_Mdot(1)==log_Mdot(1)</code> will evaluate True. Otherwise the unset NaN's will not equal each other, evaluating False. Add this if statement to our script:
-```
+```fortran
 !! Check that at least two history rows have been read (the variables will be NAN if not)
 if (log_Mdot(1)==log_Mdot(1)) then
     !! interpolate m_dot (linear)       
