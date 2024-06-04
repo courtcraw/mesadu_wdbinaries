@@ -25,7 +25,8 @@ For this lab we will be running constant mass accretion onto the accretor in sin
 
 [link to the github repo (general link)](https://github.com/courtcraw/mesadu_wdbinaries)
 
-[link to the MESA documentation](https://docs.mesastar.org/en/latest/)
+[link to the MESA documentation](https://docs.mesastar.org/en/release-r24.03.1/)
+<!-- (https://docs.mesastar.org/en/latest/) -->
 
 [Lab 2 solutions if needed](./lab2_solns.md)
 
@@ -35,7 +36,7 @@ Choose your mass and accretion rate from the [google spreadsheet of options](htt
 When you choose your model from the options, think about how the accretion rate you are choosing here compares to the accretion rates you solved for in Lab 1. Are they on the same order of magnitude? Would your binary have been well approximated by a constant accretion rate or was it very different?
 
 ## Task 1: Generate your inlist
-Start by copying the <code>$MESA_DIR/star/work</code> directory to your Lab 2 working directory. Make the following edits to your <code>inlist_project</code> by searching for the appropriate inlist item in [the MESA documentation](https://docs.mesastar.org/en/latest/reference.html) (notice that <code>inlist</code> is only a header file that points to <code>inlist_project</code> and <code>inlist_pgstar</code>).
+Start by copying the <code>$MESA_DIR/star/work</code> directory to your Lab 2 working directory. Make the following edits to your <code>inlist_project</code> by searching for the appropriate inlist item in [the MESA documentation](https://docs.mesastar.org/en/release-r24.03.1/reference.html) (notice that <code>inlist</code> is only a header file that points to <code>inlist_project</code> and <code>inlist_pgstar</code>).
 
 In <code>star_job</code>:
 
@@ -142,13 +143,13 @@ is equivalently written as:
 $$ ^{12}C(\alpha,\gamma)^{16}O $$
 
 <!-- And in MESA internals, this will be written as <code>r_c12_ag_o16</code>. -->
-In general, MESA doesn't use a standard notation for reactions, but in the networks there will usually be a comment explaining exactly reaction they mean if there is any ambiguity.
+In general, MESA doesn't use a standard notation for reactions, but in the networks there will usually be a comment explaining exactly which reaction they mean if there is any ambiguity. In the case of this particular reaction, MESA calls it <code>r_c12_ag_o16</code>.
 
 #### The actual task
 
 Now, we will run the same inlists but with a new reaction network of our creation. We will generate our own reaction network that includes the "NCO" reaction chain ($$^{14}N(e^-,\nu)^{14}C(\alpha,\gamma)^{18}O$$) and also adjust the reaction rate for $$^{14}C(\alpha,\gamma)^{18}O$$. 
 
-[There is detailed network documentation in the MESA Docs which you may refer to](https://docs.mesastar.org/en/latest/net/nets.html)
+[There is detailed network documentation in the MESA Docs which you may refer to](https://docs.mesastar.org/en/release-r24.03.1/net/nets.html)
 
 Up until now we have been using the reaction network called <code>co_burn.net</code>. Navigate to <code>$MESA_DIR/data/net_data/nets</code> to view the source files for all of the available reaction networks. Start by opening <code>co_burn.net</code> and viewing its contents. You'll see that it contains very little information, and instead points to two other files. Open and examine those other files. You'll see that these other two files have much more information in them. Refer to the docs to see how the functions <code>add_isos()</code> and <code>add_reactions()</code> work.
 

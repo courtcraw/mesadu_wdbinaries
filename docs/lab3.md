@@ -20,7 +20,8 @@ For this lab, we will use `run_star_extras.f90` to interpolate the Mdot from Lab
 
 [link to the GitHub repo (general link)](https://github.com/courtcraw/mesadu_wdbinaries)
 
-[link to the MESA documentation](https://docs.mesastar.org/en/latest/)
+[link to the MESA documentation](https://docs.mesastar.org/en/release-r24.03.1/)
+<!-- (https://docs.mesastar.org/en/latest/) -->
 
 [Lab 3 solutions if needed](./lab3_solns.md)
 
@@ -63,7 +64,7 @@ Don't worry if this seems like a lot! We will be going through this step-by-step
 
 Open <code>run_star_extras.f90</code> and take a look through the file. The code is establishing a new module <code>run_star_extras</code>, using a set of other modules found in other files, then including a standard set of subroutines from <code>'standard_run_star_extras.inc'</code>. <code>'standard_run_star_extras.inc'</code> can be found at <code>$MESA_DIR/star/job/standard_run_star_extras.inc</code>. Replace the include statement with the contents of that file, then check that the code compiles. This compilation step ensures that the copy was clean. If you wish to have a more scaffolded approach to this lab, you can download a partially annotated version of <code>run_star_extras.f90</code> from the GitHub repo [here](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/Lab3_Annotated_run_star_extras). 
 
-Recall the control flow in [MESA](https://docs.mesastar.org/en/latest/using_mesa/extending_mesa.html#control-flow) (below), that is, which routines get called at which points during a MESA run. Identify which subroutine (or function) would need to be modified in order to interpolate the varying mdot produced in Lab 1 and find that routine in <code>run_star_extras</code>. Remember, this interpolation will need to be completed before MESA attempts to solve the star's state.  
+Recall the control flow in [MESA](https://docs.mesastar.org/en/release-r24.03.1/using_mesa/extending_mesa.html#control-flow) (below), that is, which routines get called at which points during a MESA run. Identify which subroutine (or function) would need to be modified in order to interpolate the varying mdot produced in Lab 1 and find that routine in <code>run_star_extras</code>. Remember, this interpolation will need to be completed before MESA attempts to solve the star's state.  
 
 <img src="./assets/ControlFlowDiagram.png" alt="Control Flow Diagram" width="600"/>
  
@@ -84,6 +85,7 @@ When opening the file, our interpolation function will read the contents row by 
 Navigate back to <code>run_star_extras</code> and initialize some variables. We will use a <code>log_Mdot_interp</code> as an intermediate variable in our calculation whose type is real, a counter integer <code>i</code>, and 2 element arrays for <code>star_age</code>, <code>log_dt</code>, and <code>log_Mdot</code>. These declarations should be done above the statement <code>ierr=0</code>, but order does not matter. Remember to format the declarations correctly as <code>type :: name</code> and don't forget to add in the necessary placeholder variables, <code>placeholder_i</code> and  <code>placeholder_r</code>. 
 
 An example of variable initialization is below. Feel free to read more about Fortran arrays [here](https://web.stanford.edu/class/me200c/tutorial_90/07_arrays.html). Another good resource for Fortran90 basics is [this](https://pages.mtu.edu/~shene/COURSES/cs201/NOTES/F90-Basics.pdf). Feel free to explore these resources at your own pace after the Summer School. 
+
 ```
 ! Add Variables
 integer :: i
@@ -305,7 +307,7 @@ Recall that we are attempting to trace through a history file based on the curre
 <br>
 
 ## Task 3. Run the model
-Run the model (don't forget to clean and make). During the model's evolution, you should see a bump that grows and ignites in the TRho plot that is larger than that seen in Lab 2. Compare this difference to [Bauer+2017](https://ui.adsabs.harvard.edu/abs/2017ApJ...845...97B/abstract), Figure 8 (below)?
+Run the model (don't forget to clean and make). During the model's evolution, you should see a bump that grows and ignites in the TRho plot that is larger than that seen in Lab 2. Compare this difference to [Bauer+2017](https://ui.adsabs.harvard.edu/abs/2017ApJ...845...97B/abstract), Figure 8 (below).
 
 <img src="./assets/Baueretal_2017_Fig8.png" alt="Figure 8 from Bauer et al., 2017" width="600"/>
 

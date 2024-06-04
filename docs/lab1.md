@@ -33,7 +33,8 @@ For this lab, we will be running a generic binary system with the accretor as a 
 
 [link to the GitHub repo (general link)](https://github.com/courtcraw/mesadu_wdbinaries)
 
-[link to the MESA documentation](https://docs.mesastar.org/en/latest/)
+[link to the MESA documentation](https://docs.mesastar.org/en/release-r24.03.1/)
+<!-- (https://docs.mesastar.org/en/latest/) -->
 
 [Lab 1 solutions if needed](./lab1_solns.md)
 
@@ -71,7 +72,7 @@ Begin by editing <code>inlist_project</code> in the <code>binary_controls</code>
 
 * Set the binary masses and period to the values chosen in Task 0 using <code>m1</code>, <code>m2</code>, and <code>initial_period_in_days</code>. 
 
-* Next, let's set some orbital angular momentum controls (search "orbital jdot controls" under <code>binary_controls</code> in the [MESA Documentation](https://docs.mesastar.org/en/latest/)). In our case, we want to include gravitational wave radiation only, while ignoring the effects of magnetic braking and mass loss (we assume fully conservative mass transfer). Take a look at the [MESA documentation](https://docs.mesastar.org/en/latest/modules.html) to find the corresponding orbital jdot flags and set them accordingly.
+* Next, let's set some orbital angular momentum controls (search "orbital jdot controls" under <code>binary_controls</code> in the [MESA Documentation](https://docs.mesastar.org/en/release-r24.03.1/)). In our case, we want to include gravitational wave radiation only, while ignoring the effects of magnetic braking and mass loss (we assume fully conservative mass transfer). Take a look at the [MESA documentation](https://docs.mesastar.org/en/release-r24.03.1/modules.html) to find the corresponding orbital jdot flags and set them accordingly.
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
@@ -79,11 +80,11 @@ The common format for the three flags is <code>'do_jdot_X'</code>.
 </p></details></hint>
 <br>
 
-* Finally, we will need to modify the timestep controls for the run. These `f_` parameters provide the ability to set an upper limit on each timestep based on a particular quantity (ie. envelope mass, binary separation, orbital angular momentum, etc). Let's set an upper limit to based on the orbital angular momentum and your number of threads. Look at the [MESA Documentation](https://docs.mesastar.org/en/latest/) and set the the timestep control for change in orbital angular momentum. If you are using two (2) threads OR if you are evolving a Helium Star donor, then set this value to <code>2d-3</code>. Otherwise, if using more than two (2) threads, then set this value to <code>7d-4</code>. Note that each option will have two parameters, e.g. <code>fj</code> and <code>fj_hard</code>. We will only alter the first ones, not <code>fj_hard</code>, etc.
+* Finally, we will need to modify the timestep controls for the run. These `f_` parameters provide the ability to set an upper limit on each timestep based on a particular quantity (ie. envelope mass, binary separation, orbital angular momentum, etc). Let's set an upper limit based on the orbital angular momentum and your number of threads. Look at the [MESA Documentation](https://docs.mesastar.org/en/release-r24.03.1/) and set the the timestep control for change in orbital angular momentum. If you are using two (2) threads OR if you are evolving a Helium Star donor, then set this value to <code>2d-3</code>. Otherwise, if using more than two (2) threads, then set this value to <code>7d-4</code>. Note that each option will have two parameters, e.g. <code>fj</code> and <code>fj_hard</code>. We will only alter the first ones, not <code>fj_hard</code>, etc.
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-The section on timestep controls based on relative changes is [here](https://docs.mesastar.org/en/latest/reference/binary_controls.html#fj).
+The section on timestep controls based on relative changes is <a href="https://docs.mesastar.org/en/latest/reference/binary_controls.html#fj" target="_blank">here</a>.
 </p></details></hint>
 <br>
 
@@ -100,7 +101,7 @@ Don't forget to save the inlist! [Solutions](./lab1_solns.md)
 ## Task 2. Setting up the donor
 We now need to set up our donor star. This work will all be done in the donor inlist, <code>inlist1</code>. 
 
-* Start by editing <code>&star_job</code> to load in the saved donor model file from earlier, change the initial reaction network to `co_burn`, and turn on pgstar. Visit the [MESA documentation](https://docs.mesastar.org/en/latest/reference.html) for these variables. 
+* Start by editing <code>&star_job</code> to load in the saved donor model file from earlier, change the initial reaction network to `co_burn`, and turn on pgstar. Visit the [MESA documentation](https://docs.mesastar.org/en/release-r24.03.1/reference.html) for these variables. 
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
@@ -266,7 +267,7 @@ Mass transfer timescale ~ M/Mdot
 
 In order to add these values to history columns, we cannot simply add the values to <code>history_columns.list</code>, instead we need to modify <code>run_star_extras</code>. 
 
-Open <code>run_star_extras</code> and replace the include statement with the contents of <code>$MESA_DIR/star/job/standard_run_star_extras.inc</code>. Then, find the subroutine and function that would allow us to add data to additional history columns. Take a look through the [MESA Documentation](https://docs.mesastar.org/en/latest/using_mesa/extending_mesa.html) if you are not sure.
+Open <code>run_star_extras</code> and replace the include statement with the contents of <code>$MESA_DIR/star/job/standard_run_star_extras.inc</code>. Then, find the subroutine and function that would allow us to add data to additional history columns. Take a look through the [MESA Documentation](https://docs.mesastar.org/en/release-r24.03.1/using_mesa/extending_mesa.html) if you are not sure.
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
