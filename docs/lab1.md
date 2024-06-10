@@ -3,13 +3,14 @@ layout: default
 title: Lab 1
 description: Using the Binary Module - Evolving a donor star
 ---
-
+<a href="[link_url]" target="_blank">[Link_text]</a>
+<a href="[https://ui.adsabs.harvard.edu/abs/2018A%26A...620A.141R/abstract]" target="_blank">[Ramsay+2018]</a>
 # Solving for Mass Transfer in a DWD binary system
 
-Double white dwarf binaries can display a rich variety of outcomes, depending on their mass ratio (e.g.,[Marsh+2004](https://ui.adsabs.harvard.edu/abs/2004MNRAS.350..113M/abstract)). Some will undergo unstable mass transfer and merge/explode, forming either a type Ia supernova or a merger product like an R Coronae Borealis star. 
+Double white dwarf binaries can display a rich variety of outcomes, depending on their mass ratio (e.g.,<a href="[https://ui.adsabs.harvard.edu/abs/2004MNRAS.350..113M/abstract]" target="_blank">[Marsh+2004]</a>). Some will undergo unstable mass transfer and merge/explode, forming either a type Ia supernova or a merger product like an R Coronae Borealis star. 
 However, for this lab we will look into the case of stable mass transfer. 
 
-AM CVn binaries are ultracompact binaries with orbital periods between 5 and 69 minutes, where a white dwarf stably accretes from a helium-rich companion (e.g., [Ramsay+2018](https://ui.adsabs.harvard.edu/abs/2018A%26A...620A.141R/abstract)). 
+AM CVn binaries are ultracompact binaries with orbital periods between 5 and 69 minutes, where a white dwarf stably accretes from a helium-rich companion (e.g., <a href="[https://ui.adsabs.harvard.edu/abs/2018A%26A...620A.141R/abstract]" target="_blank">[Ramsay+2018]</a>). 
 Their orbital evolution is driven by angular momentum loss due to the emission of gravitational waves, detectable by future space-based gravitational wave detectors like LISA (e.g.,[Kupfer+2024](https://ui.adsabs.harvard.edu/abs/2024ApJ...963..100K/abstract)). 
 There are three formation channels for AM CVn binaries. The donor can either be a helium white dwarf formed from a common envelope event, a non-degenerate helium-burning star, or an evolved Cataclysmic Variable formed from stable mass transfer. Common to all these scenarios is that the donor eventually becomes a fully to semi-degenerate object. The donor responds to mass loss by expanding, and since it is filling its Roche lobe, the orbit also expands. 
 The component masses and the donor's mass-radius relation set the rate of orbital angular momentum loss, and in turn the mass transfer rate. 
@@ -34,13 +35,12 @@ For this lab, we will be running a generic binary system with the accretor as a 
 [link to the GitHub repo (general link)](https://github.com/courtcraw/mesadu_wdbinaries)
 
 [link to the MESA documentation](https://docs.mesastar.org/en/release-r24.03.1/)
-<!-- (https://docs.mesastar.org/en/latest/) -->
 
 [Lab 1 solutions if needed](./lab1_solns.md)
 
 ## Task 0. Download Files
 
-* Download the Lab 1 working directory from the [GitHub repository (direct link)](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/Lab1_StartPoint) and claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). 
+* Download the Lab 1 working directory from the [GitHub repository (direct link)](https://github.com/courtcraw/mesadu_wdbinaries/blob/main/Lab1_StartPoint/Lab1_StartPoint.zip) and claim a binary in the [MESA Down Under Google Spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440). Note: Click "Download Raw File" in the top right corner of the github link here. The download is NOT automatic. 
 
 * Then, download the relevant donor model (HeStar or HeWD) for your binary from the <code>initial_donor_models</code> folder in the [GitHub repository (direct link)](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/initial_donor_models) and save it in your Lab 1 working directory. Note, the donor model files are formatted as `< type >_< mass >M[_Sc< entropy >].mod` and accretor models are formatted as `cowd_< mass >M_Tc2e7.mod`. As we are modelling the accretor as a point mass, we do not actually need to download an accretor model yet!
 
@@ -72,7 +72,7 @@ Begin by editing <code>inlist_project</code> in the <code>binary_controls</code>
 
 * Set the binary masses and period to the values chosen in Task 0 using <code>m1</code>, <code>m2</code>, and <code>initial_period_in_days</code>. 
 
-* Next, let's set some orbital angular momentum controls (search "orbital jdot controls" under <code>binary_controls</code> in the [MESA Documentation](https://docs.mesastar.org/en/release-r24.03.1/)). In our case, we want to include gravitational wave radiation only, while ignoring the effects of magnetic braking and mass loss (we assume fully conservative mass transfer). Take a look at the [MESA documentation](https://docs.mesastar.org/en/release-r24.03.1/modules.html) to find the corresponding orbital jdot flags and set them accordingly.
+* Next, let's set some orbital angular momentum controls (search "orbital jdot controls" under <code>binary_controls</code> in the <a href="[https://docs.mesastar.org/en/release-r24.03.1/]" target="_blank">[MESA Documentation]</a>). In our case, we want to include gravitational wave radiation only, while ignoring the effects of magnetic braking and mass loss (we assume fully conservative mass transfer). Take a look at the [MESA documentation](https://docs.mesastar.org/en/release-r24.03.1/modules.html) to find the corresponding orbital jdot flags and set them accordingly.
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
@@ -80,7 +80,7 @@ The common format for the three flags is <code>'do_jdot_X'</code>.
 </p></details></hint>
 <br>
 
-* Finally, we will need to modify the timestep controls for the run. These `f_` parameters provide the ability to set an upper limit on each timestep based on a particular quantity (ie. envelope mass, binary separation, orbital angular momentum, etc). Let's set an upper limit based on the orbital angular momentum and your number of threads. Look at the [MESA Documentation](https://docs.mesastar.org/en/release-r24.03.1/) and set the the timestep control for change in orbital angular momentum. If you are using two (2) threads OR if you are evolving a Helium Star donor, then set this value to <code>2d-3</code>. Otherwise, if using more than two (2) threads, then set this value to <code>7d-4</code>. Note that each option will have two parameters, e.g. <code>fj</code> and <code>fj_hard</code>. We will only alter the first ones, not <code>fj_hard</code>, etc.
+* Finally, we will need to modify the timestep controls for the run. These `f_` parameters provide the ability to set an upper limit on each timestep based on a particular quantity (ie. envelope mass, binary separation, orbital angular momentum, etc). Let's set an upper limit based on the orbital angular momentum and your number of threads. Look at the <a href="[https://docs.mesastar.org/en/release-r24.03.1/]" target="_blank">[MESA Documentation]</a> and set the the timestep control for change in orbital angular momentum. If you are using two (2) threads OR if you are evolving a Helium Star donor, then set this value to <code>2d-3</code>. Otherwise, if using more than two (2) threads, then set this value to <code>7d-4</code>. Note that each option will have two parameters, e.g. <code>fj</code> and <code>fj_hard</code>. We will only alter the first ones, not <code>fj_hard</code>, etc.
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
@@ -90,7 +90,7 @@ The section on timestep controls based on relative changes is <a href="https://d
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
-You are looking to set the parameters <code>fm</code>, <code>fa</code>, and <code>fj</code>. If you aren't sure how many threads you are using, run <code>echo $OMP_NUM_THREADS</code> in the terminal. 
+You are looking to set the parameter <code>fj</code>. If you aren't sure how many threads you are using, run <code>echo $OMP_NUM_THREADS</code> in the terminal. 
 </p></details></hint>
 <br>
 
@@ -126,15 +126,9 @@ set_initial_dt = .true.
 years_for_initial_dt = 1d3
 ```
 
-* Now, we can move to <code>&controls</code>. We want to stop the model once the donor loses a given mass. Using the information in the [Google sheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440), find the target final mass of the donor model and set the <code>star_mass_min_limit</code> variable to that value. Note that the google sheet will give you the amount of mass lost, not the target minimum mass!
+* Now, we can move to <code>&controls</code>. We want to stop the model once the donor loses a given mass. Using the information in the [Google sheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1356579440), set the <code>star_mass_min_limit</code>.
 
-<hint><details>
-<summary> Hint (click here) </summary><p>
-star_mass_min_limit = (initial mass of donor - max loss)
-</p></details></hint>
-<br>
-
-* Now let's add some solver settings to speed things up. 
+* Now let's add some solver settings to speed things up. <code>eps_mdot</code> variables modify how MESA treats the energetics of material lost or gained, while relaxing <code>max_resid_jump_limit</code> allows for greater residuals before solver chooses to quit. 
 ```
   ! solver
   
