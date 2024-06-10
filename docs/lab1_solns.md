@@ -292,11 +292,6 @@ In <code>Inlist1</code>
   ! eos options
   ! see eos/defaults/eos.defaults
 
-  logRho_min_for_any_Skye = 1.9 !2.3
-  logRho_min_for_all_Skye = 2.0 !2.4
-  logT_min_for_any_Skye = 6.5 !7.2
-  logT_min_for_all_Skye = 6.6 !7.4
-
 / ! end of eos namelist
 
 
