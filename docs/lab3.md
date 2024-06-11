@@ -300,7 +300,7 @@ Try to write each of the variables used in the interpolation to the terminal. Th
 </p></details></hint>
 <br>
 
-## Task 2. Project Setup
+<!-- ## Task 2. Project Setup
 Compile and Run the model. If the model continues to run for more than a minute or so, stop the run. Was the run successful? If not, note the reason for the error. 
 
 You should have received a Fortran runtime error pointing back to our run_star_extras modifications from Task 1 (below). Note, depending on your chosen parameters you may have not reached this point yet before needing to end the run. 
@@ -309,10 +309,10 @@ You should have received a Fortran runtime error pointing back to our run_star_e
 
 Recall that we are attempting to trace through a history file based on the current age of the star. At the same time, however, MESA is loading a saved model, treating it as the current star, and running through the entire history file before a step can occur. Let's make some modifications to <code>inlist_project</code> to remedy this. Set the initial age and model numbers to 0, then delete (or comment out) the accretion rate. 
 
-<br>
+<br> -->
 
-## Task 3. Run the model
-Run the model (don't forget to clean and make). During the model's evolution, you should see a bump that grows and ignites in the TRho plot that is larger than that seen in Lab 2. Compare this difference to [Bauer+2017](https://ui.adsabs.harvard.edu/abs/2017ApJ...845...97B/abstract), Figure 8 (below).
+## Task 2. Run the model
+Delete (or comment out) <code>mass_change</code> in <code>inlist_project</code>. Run the model (don't forget to clean and make). During the model's evolution, you should see a bump that grows and ignites in the TRho plot that is larger than that seen in Lab 2. Compare this difference to [Bauer+2017](https://ui.adsabs.harvard.edu/abs/2017ApJ...845...97B/abstract), Figure 8 (below).
 
 <img src="./assets/Baueretal_2017_Fig8.png" alt="Figure 8 from Bauer et al., 2017" width="600"/>
 
@@ -320,7 +320,7 @@ By providing a more accurate accretion history, we have improved the resolution 
 
 <br>
 
-## Task 4. Find Helium shell thickness and time to Helium flash
+## Task 2. Find Helium shell thickness and time to Helium flash
 Once the model has completed, copy the procedure from Lab 2 to record Helium shell thickness and time to Helium flash in the [Google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869). Compare these values with the results from Lab 2. 
 
 <br>
