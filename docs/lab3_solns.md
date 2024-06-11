@@ -90,40 +90,7 @@ integer function extras_start_step(id)
 ```
 <br>
 
-## Task 2. Project Setup
-In <code>inlist_project</code>
-```
-&star_job
-  ! see star/defaults/star_job.defaults
-
-  ! load 
-     create_pre_main_sequence_model = .false.
-     load_saved_model = .true.
-     load_model_filename = 'cowd_1.000M_Tc2e7.mod' ! edit with your filename
-
-  ! new net
-     change_initial_net = .true.
-     new_net_name = 'co_burn.net'
-
-  ! initial time step
-     set_initial_dt = .true.
-     years_for_initial_dt = 1d-1
-
-  ! inital age
-     set_initial_age = .true.
-     initial_age = 0
-
-  ! inital age
-     set_initial_model_number = .true.
-     initial_model_number = 0
-
-  ! display on-screen plots
-     pgstar_flag = .true.
-
-/ ! end of star_job namelist
-```
-<br>
-
+## Task 2. Run the model
 In <code>inlist_project</code>
 ```
 &controls
@@ -158,17 +125,12 @@ In <code>inlist_project</code>
 ```
 <br>
 
-## Task 3. Run the model
+## Task 3. Find Helium shell thickness and time to Helium flash
 None :)
 
 <br>
 
-## Task 4. Find Helium shell thickness and time to Helium flash
-None :)
-
-<br>
-
-## Task 5. Calculating rotation rate of the accretor at Helium flash
+## Bonus. Calculating rotation rate of the accretor at Helium flash
 None :)
 
 <br>
