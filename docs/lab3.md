@@ -24,12 +24,12 @@ For this lab, we will use `run_star_extras.f90` to interpolate the Mdot from Lab
 
 [Lab 3 solutions if needed](./lab3_solns.md)
 
-<br>
+<br> 
 
 ## Task 0. Copy Files
-This lab will combine the work we have done so far in labs 1 and 2. To ease the set up process, we will be continuing from the end point of Lab 2. Make a copy of your directory from Lab 2 (excluding the `./photos` and `./LOGS` folders) then copy over the `./LOGS1/history.data` file generated in Lab 1. If you didn't complete Labs 1 or 2 for any reason, you may instead download the Lab 2 solutions from the [GitHub repo](https://github.com/courtcraw/mesadu_wdbinaries). A selection of history files for Lab 1 are in the [GitHub repo (direct link)](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/Lab1_historyfiles), as well. They are formatted in folders labeled as < donor type >_< donor mass >_< donor entropy >_< accretor mass >_< binary period>.
+This lab will combine the work we have done so far in labs 1 and 2. To ease the set up process, we will be continuing from the end point of Lab 2. Make a copy of your directory from Lab 2 (excluding the `./photos` and `./LOGS` folders) then copy over the `./LOGS1/history.data` file generated in Lab 1. If you didn't complete Labs 1 or 2 for any reason, you may instead download the Lab 2 solutions from the <a href="https://github.com/courtcraw/mesadu_wdbinaries" target="_blank">GitHub repo</a>. A selection of history files for Lab 1 are in the <a href="https://github.com/courtcraw/mesadu_wdbinaries/tree/main/Lab1_historyfiles" target="_blank">GitHub repo (direct link)</a>, as well. They are formatted in folders labeled as < donor type >_< donor mass >_< donor entropy >_< accretor mass >_< binary period>.
 
-Additionally, we have provided a more scaffolded approach to this lab, with a partially annotated version of <code>./src/run_star_extras.f90</code> available from the GitHub repo [here](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/Lab3_Annotated_run_star_extras). Download this file and place it in the <code>./src/</code> folder of your working directory.
+Additionally, we have provided a more scaffolded approach to this lab, with a partially annotated version of <code>./src/run_star_extras.f90</code> available from the GitHub repo <a href="https://github.com/courtcraw/mesadu_wdbinaries/tree/main/Lab3_Annotated_run_star_extras" target="_blank">here</a>. Download this file and place it in the <code>./src/</code> folder of your working directory.
 
 <div class="filetext-title"> The Lab 3 starting directory should contain these files </div> 
 <div class="filetext"><p>
@@ -63,7 +63,7 @@ In this task, we will be writing an interpolation script in `run_star_extras.f90
 
 Don't worry if this seems like a lot! We will be going through this step-by-step and remember the solution can be found [here](./lab3_solns.md), if you get stuck. We recommend looking at the solution frequently throughout this lab!
 
-Recall the control flow in [MESA](https://docs.mesastar.org/en/release-r24.03.1/using_mesa/extending_mesa.html#control-flow) (below), that is, which routines get called at which points during a MESA run. Identify which subroutine (or function) would need to be modified in order to interpolate the varying mdot produced in Lab 1 and find that routine in <code>run_star_extras</code>. Remember, this interpolation will need to be completed before MESA attempts to solve the star's state.  
+Recall the control flow in <a href="https://docs.mesastar.org/en/release-r24.03.1/using_mesa/extending_mesa.html#control-flow" target="_blank">MESA</a> (below), that is, which routines get called at which points during a MESA run. Identify which subroutine (or function) would need to be modified in order to interpolate the varying mdot produced in Lab 1 and find that routine in <code>run_star_extras</code>. Remember, this interpolation will need to be completed before MESA attempts to solve the star's state.  
 
 <img src="./assets/ControlFlowDiagram.png" alt="Control Flow Diagram" width="600"/>
  
@@ -83,7 +83,7 @@ When opening the file, our interpolation function will read the contents row by 
 
 Navigate back to <code>run_star_extras</code> and initialize some variables. We will use a <code>log_Mdot_interp</code> as an intermediate variable in our calculation whose type is real, a counter integer <code>i</code>, and 2 element arrays for <code>star_age</code>, <code>log_dt</code>, and <code>log_Mdot</code>. These declarations should be done above the statement <code>ierr=0</code>, but order does not matter. Remember to format the declarations correctly as <code>type :: name</code> and don't forget to add in the necessary placeholder variables, <code>placeholder_i</code> and  <code>placeholder_r</code>. Note, we are using 2 element arrays for certain data as they allow space for us to store values for both the current and previous timesteps. 
 
-An example of variable initialization is below. Feel free to read more about Fortran arrays [here](https://web.stanford.edu/class/me200c/tutorial_90/07_arrays.html). Another good resource for Fortran90 basics is [this](https://pages.mtu.edu/~shene/COURSES/cs201/NOTES/F90-Basics.pdf). Feel free to explore these resources at your own pace after the Summer School. 
+An example of variable initialization is below. Feel free to read more about Fortran arrays <a href="https://web.stanford.edu/class/me200c/tutorial_90/07_arrays.html" target="_blank">here</a>. Another good resource for Fortran90 basics is <a href="https://pages.mtu.edu/~shene/COURSES/cs201/NOTES/F90-Basics.pdf" target="_blank">this</a>. Feel free to explore these resources at your own pace after the Summer School. 
 
 ```fortran
 ! Add Variables
@@ -100,7 +100,7 @@ The types used are <code>integer</code>, <code>real(dp)</code>, and <code>real(d
 
 Feel free to check out the [solutions](./lab3_solns.md) if you are stuck!
 
-Now that we have wrangled our variables, we need to tell Fortran to open the history.data file. Use your profound access to all of human knowledge to find the function that connects an external file to an input/ouput unit (ie. Google it or control-F [here](http://www.ndp77.net/dnld/Lahey_LaheyF90LR.pdf)). Set <code>unit=33</code>, <code>file = '< local path to history.data >'</code>, and <code>action='read'</code>. Remember to write this after the error check, beneath <code>extras_start_step = 0</code>. 
+Now that we have wrangled our variables, we need to tell Fortran to open the history.data file. Use your profound access to all of human knowledge to find the function that connects an external file to an input/ouput unit (ie. Google it or control-F <a href="http://www.ndp77.net/dnld/Lahey_LaheyF90LR.pdf" target="_blank">here</a>). Set <code>unit=33</code>, <code>file = '< local path to history.data >'</code>, and <code>action='read'</code>. Remember to write this after the error check, beneath <code>extras_start_step = 0</code>. 
 
 * Note: The unit refers to a Fortran logical unit, the interface for data transfer in Fortran. The unit number we chose (33) was largely arbitrary and chosen for consistency, not necessity. The only rule here is that the value needed to be a nonnegative integer.
 
@@ -312,7 +312,7 @@ Recall that we are attempting to trace through a history file based on the curre
 <br> -->
 
 ## Task 2. Run the model
-Delete (or comment out) <code>mass_change</code> in <code>inlist_project</code>. Run the model (don't forget to clean and make). During the model's evolution, you should see a bump that grows and ignites in the TRho plot that is larger than that seen in Lab 2. Compare this difference to [Bauer+2017](https://ui.adsabs.harvard.edu/abs/2017ApJ...845...97B/abstract), Figure 8 (below).
+Delete (or comment out) <code>mass_change</code> in <code>inlist_project</code>. Run the model (don't forget to clean and make). During the model's evolution, you should see a bump that grows and ignites in the TRho plot that is larger than that seen in Lab 2. Compare this difference to <a href="https://ui.adsabs.harvard.edu/abs/2017ApJ...845...97B/abstract" target="_blank">Bauer+2017</a>, Figure 8 (below).
 
 <img src="./assets/Baueretal_2017_Fig8.png" alt="Figure 8 from Bauer et al., 2017" width="600"/>
 
@@ -321,12 +321,12 @@ By providing a more accurate accretion history, we have improved the resolution 
 <br>
 
 ## Task 2. Find Helium shell thickness and time to Helium flash
-Once the model has completed, copy the procedure from Lab 2 to record Helium shell thickness and time to Helium flash in the [Google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869). Compare these values with the results from Lab 2. 
+Once the model has completed, copy the procedure from Lab 2 to record Helium shell thickness and time to Helium flash in the <a href="https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869" target="_blank">Google spreadsheet</a>. Compare these values with the results from Lab 2. 
 
 <br>
 
 ## BONUS. Calculating rotation rate of the accretor at Helium flash
-Open the <code>history.data</code> log. Use these data to find the rotation rate at the helium flash, assuming the accretor rotates as a solid body. Record this rotation rate in the [Google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869).
+Open the <code>history.data</code> log. Use these data to find the rotation rate at the helium flash, assuming the accretor rotates as a solid body. Record this rotation rate in the <a href="https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869" target="_blank">Google spreadsheet</a>.
 
 We can break this calculation down into three steps. First, find the instantaneous change in angular momentum, `J_dot`. Then, find the total change in angular momentum, `delta_J`, up to the Helium flash. Next, find the rotation rate at the Helium flash using the assumed moment of interia, `I`. 
 
