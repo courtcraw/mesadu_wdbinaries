@@ -18,9 +18,13 @@ in <code>star_job</code>:
      change_initial_net = .true.
      new_net_name = 'co_burn.net'
 
-  ! initial time step
-     set_initial_dt = .true.
-     years_for_initial_dt = 1d-1
+  ! initial time step/age/model number
+    set_initial_model_number = .true.
+    initial_model_number = 0
+    set_initial_age = .true.
+    initial_age = 0
+    set_initial_dt = .true.
+    years_for_initial_dt = 1d3
 
   ! initial age
      set_initial_age = .true.
@@ -43,7 +47,7 @@ in <code>controls</code>:
      use_ledoux_criterion = .true.
 
   ! timesteps
-     delta_lgL_He_limit = 0.02d0 !0.025d0
+     delta_lgL_He_limit = 0.02d0 
 
   ! mesh
      mesh_delta_coeff = 1.2d0

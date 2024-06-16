@@ -21,22 +21,28 @@ For this lab we will be running constant mass accretion onto the accretor in sin
 
 ### Some helpful links
 
-[link to the google spreadsheet of options](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869)
+<a href="https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869" target="_blank">link to the google spreadsheet of options</a>
+
+<a href="https://github.com/courtcraw/mesadu_wdbinaries/" target="_blank">link to the github repo (general link)</a>
+
+<a href="https://docs.mesastar.org/en/release-r24.03.1/" target="_blank">link to the MESA documentation</a>
+
+<!-- [link to the google spreadsheet of options](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869)
 
 [link to the github repo (general link)](https://github.com/courtcraw/mesadu_wdbinaries)
 
 [link to the MESA documentation](https://docs.mesastar.org/en/release-r24.03.1/)
 <!-- (https://docs.mesastar.org/en/latest/) -->
 
-[Lab 2 solutions if needed](./lab2_solns.md)
+[Lab 2 solutions if needed](./lab2_solns.md) -->
 
 ## Task 0: Download files
-Choose your mass and accretion rate from the [google spreadsheet of options](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869), then download the correct WD initial accretor model from <code>initial_accretor_models</code> folder in the [github repo (direct link to folder)](https://github.com/courtcraw/mesadu_wdbinaries/tree/main/initial_accretor_models). 
+Choose your mass and accretion rate from the <a href="https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869" target="_blank">google spreadsheet of options</a>, then download the correct WD initial accretor model from <code>initial_accretor_models</code> folder in the <a href="https://github.com/courtcraw/mesadu_wdbinaries/tree/main/initial_accretor_models" target="_blank">github repo (direct link to folder)</a>. 
 
 When you choose your model from the options, think about how the accretion rate you are choosing here compares to the accretion rates you solved for in Lab 1. Are they on the same order of magnitude? Would your binary have been well approximated by a constant accretion rate or was it very different?
 
 ## Task 1: Generate your inlist
-Start by copying the <code>$MESA_DIR/star/work</code> directory to your Lab 2 working directory. Make the following edits to your <code>inlist_project</code> by searching for the appropriate inlist item in [the MESA documentation](https://docs.mesastar.org/en/release-r24.03.1/reference.html) (notice that <code>inlist</code> is only a header file that points to <code>inlist_project</code> and <code>inlist_pgstar</code>).
+Start by copying the <code>$MESA_DIR/star/work</code> directory to your Lab 2 working directory. Make the following edits to your <code>inlist_project</code> by searching for the appropriate inlist item in <a href="https://docs.mesastar.org/en/release-r24.03.1/reference.html" target="_blank">the MESA documentation</a> (notice that <code>inlist</code> is only a header file that points to <code>inlist_project</code> and <code>inlist_pgstar</code>).
 
 In <code>star_job</code>:
 
@@ -91,7 +97,7 @@ Call the new history column <code>he_shell_mass</code>, and it can be calculated
 
 for your <code>inlist_pgstar</code>:
 
-We have provided a nice <code>inlist_pgstar</code> file in the [github repo (direct link to file)](https://github.com/courtcraw/mesadu_wdbinaries/blob/main/Lab2_StartPoint/inlist_pgstar) which you may download and use. It will contain a nicely formatted pgstar grid for all your viewing needs. <b>Note:</b> Github will interpret this file as a <code>.txt</code> file if you press the `download` button, which may cause issues. We recommend instead that you copy and paste the text from the block into the <code>inlist_pgstar</code> that comes with the default work directory. If you have any issues loading in this file, please let us know.
+We have provided a nice <code>inlist_pgstar</code> file in the <a href="https://github.com/courtcraw/mesadu_wdbinaries/blob/main/Lab2_StartPoint/inlist_pgstar" target="_blank">github repo (direct link to file)</a> which you may download and use. It will contain a nicely formatted pgstar grid for all your viewing needs. <b>Note:</b> Github will interpret this file as a <code>.txt</code> file if you press the `download` button, which may cause issues. We recommend instead that you copy and paste the text from the block into the <code>inlist_pgstar</code> that comes with the default work directory. If you have any issues loading in this file, please let us know.
 
 You'll need to adjust a few options within the file:
 
@@ -105,7 +111,7 @@ This <code>inlist_pgstar</code> will create a Kippenhahn diagram, which requires
 
 Now go ahead and compile and run your model. At first you should see very little change, but watch the T-Rho diagram. You'll notice the envelope start to increase in temperature as the accretion heats up the outer layers (this is called compressional heating). You'll then see a small bump in the T-Rho diagram that will move towards the center of the star. Eventually this bump will increase past the Helium ignition line in the T-Rho diagram and the Power and Kippenhahn plots will begin changing. At this point you should also see the abundance profile changing as Helium rich material is accreted. Your model will terminate soon after ignition. Below is an example of what you should see at the end of a run.
 
-Upon completion of the run, record your helium shell thickness at ignition and the time of helium ignition to [the google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869). Remember that the model will stop running at helium ignition, so this is simply the final values from your history files.
+Upon completion of the run, record your helium shell thickness at ignition and the time of helium ignition to <a href="https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869" target="_blank">the google spreadsheet</a>. Remember that the model will stop running at helium ignition, so this is simply the final values from your history files.
 
 <hint><details>
 <summary> Hint (click here) </summary><p>
@@ -151,7 +157,7 @@ In general, MESA doesn't use a standard notation for reactions, but in the netwo
 
 Now, we will run the same inlists but with a new reaction network of our creation. We will generate our own reaction network that includes the "NCO" reaction chain ($$^{14}N(e^-,\nu)^{14}C(\alpha,\gamma)^{18}O$$) and also adjust the reaction rate for $$^{14}C(\alpha,\gamma)^{18}O$$. 
 
-[There is detailed network documentation in the MESA Docs which you may refer to](https://docs.mesastar.org/en/release-r24.03.1/net/nets.html)
+<a href="https://docs.mesastar.org/en/release-r24.03.1/net/nets.html" target="_blank">There is detailed network documentation in the MESA Docs which you may refer to throughout this section for more details</a>
 
 Up until now we have been using the reaction network called <code>co_burn.net</code>. Navigate to <code>$MESA_DIR/data/net_data/nets</code> to view the source files for all of the available reaction networks. Start by opening <code>co_burn.net</code> and viewing its contents. You'll see that it contains very little information, and instead points to two other files. Open and examine those other files. You'll see that these other two files have much more information in them. Refer to the docs to see how the functions <code>add_isos()</code> and <code>add_reactions()</code> work.
 
@@ -172,7 +178,7 @@ The two isotopes you will need are <code>c14</code> and <code>o18</code>
 
 Make sure to change your <code>inlist_project</code> to take in <code>nco.net</code> as the reaction network, rather than <code>co_burn.net</code>! Note that mesa will search for reaction networks in your working directory as well as in <code>$MESA_DIR/data/net_data/nets</code> to find the network you call here.
 
-Now we'll update the reaction rate for $$^{14}C(\alpha,\gamma)^{18}O$$. Download the zip file called <code>tables_hashimoto.zip</code> from the [github repo (direct link to zip)](https://github.com/courtcraw/mesadu_wdbinaries/blob/main/tables_hashimoto.zip). Once you unzip this file, there will be a folder called <code>tables_hashimoto</code> which you should place inside your Lab 2 work directory. Now add the following section to the <code>star_job</code> section of your inlist:
+Now we'll update the reaction rate for $$^{14}C(\alpha,\gamma)^{18}O$$. Download the zip file called <code>tables_hashimoto.zip</code> from the <a href="https://github.com/courtcraw/mesadu_wdbinaries/blob/main/tables_hashimoto.zip" target="_blank">github repo (direct link to zip)</a>. Once you unzip this file, there will be a folder called <code>tables_hashimoto</code> which you should place inside your Lab 2 work directory. Now add the following section to the <code>star_job</code> section of your inlist:
 
 ```
   ! adjusting nuclear reaction rates
@@ -180,7 +186,7 @@ Now we'll update the reaction rate for $$^{14}C(\alpha,\gamma)^{18}O$$. Download
     rate_cache_suffix = 'hashimoto'
 ```
 
-These tables are called such as they come from [Hashimoto+ 1986](https://ui.adsabs.harvard.edu/abs/1986ApJ...307..687H/abstract). The weak rates were provided by Gabriel Martínez-Pinedo and used in [Bauer+ 2017](https://ui.adsabs.harvard.edu/abs/2017ApJ...845...97B/abstract).
+These tables are called such as they come from  <a href="https://ui.adsabs.harvard.edu/abs/1986ApJ...307..687H/abstract" target="_blank">Hashimoto+ 1986</a>. The weak rates were provided by Gabriel Martínez-Pinedo and used in <a href="https://ui.adsabs.harvard.edu/abs/2017ApJ...845...97B/abstract" target="_blank">Bauer+ 2017</a>.
 
 If you look inside the file <code>tables_hashimoto/rate_list.txt</code> you will see this:
 
@@ -203,7 +209,7 @@ The last line here indicates that the rate for the $$^{14}C(\alpha,\gamma)^{18}O
 
 Recompile and run your new model. When you run this model, if you've chosen to output your net data, it would be good to check that you are properly including your newly added elements. If you have not output net data, you can check the abundance panel in the pgstar output to see if there is a line for $$^{18}O$$ that appears.
 
-Upon the run's completion, record your helium shell thickness and the time of helium ignition to [the google spreadsheet](https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869).
+Upon the run's completion, record your helium shell thickness and the time of helium ignition to <a href="https://docs.google.com/spreadsheets/d/1__UPg_5JfiBkJpZTleyaSwW_faxHzmo_X7Us2RTfLOM/edit#gid=1651867869" target="_blank">the google spreadsheet</a>.
 
 As everyone finishes their models, we can ask: how does the Helium shell thickness at ignition vary with accretion rate and accretor mass, and how does changing the reaction networks change these values?
 
