@@ -26,7 +26,7 @@ Some recent literature on HdC modeling:
 * [Munson+ 2022](https://ui.adsabs.harvard.edu/abs/2022ApJ...939...45M/abstract)
 * [Crawford+ 2020](https://ui.adsabs.harvard.edu/abs/2020MNRAS.498.2912C/abstract)
 
-For the record, there are older models of RCB stars which use MESA's accretion, however they are on a quite old version. (cite) Maybe we will revisit this someday! (foreshadowing...)
+For the record, there are older models of RCB stars which use MESA's accretion, however they are on a quite old version ([Zhang+ 2014](https://ui.adsabs.harvard.edu/abs/2014MNRAS.445..660Z/abstract)). Maybe we will revisit this someday! (foreshadowing...)
 
 * * * 
 
