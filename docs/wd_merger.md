@@ -26,6 +26,10 @@ For the record, there are older models of RCB stars which use MESA's accretion, 
 
 * * * 
 
+# Please note!!!
+
+This lab is UNTESTED and PROBABLY BAD. But you will learn how the code works. Please see the papers above for much better models. They will evolve much slower. If you were to change the reaction network to a smaller one you could get a much faster run, but we did not have time to do this.
+
 # Part 0 - download from github
 
 [Link is here, download rcb_model_mesadu.zip](https://github.com/courtcraw/mesadu_wdbinaries/)
