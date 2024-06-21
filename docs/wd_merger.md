@@ -26,6 +26,10 @@ For the record, there are older models of RCB stars which use MESA's accretion, 
 
 * * * 
 
+# Part 0 - download from github
+
+[Link is here, download rcb_model_mesadu.zip](https://github.com/courtcraw/mesadu_wdbinaries/)
+
 # Part 1 - Entropy injection
 
 In order to model a WD merger, we actually choose to stellar engineer rather than using the binary module or modelling single star accretion. You did some stellar engineering in the tuesday lab this week, but in this case we mean that we are going to use non-physical processes in `run_star_extras.f90` to create a temperature-density profile that resembles the profile of a post-merger object created in 3D hydrodynamical simulations.
@@ -540,12 +544,23 @@ date "+DATE: %Y-%m-%d%nTIME: %H:%M:%S"
 echo 'finished'
 ```
 
-So when you `./clean`, `./mk`, and `./rn`, you will run all four of the above inlists in order automatically. Go ahead and do so and watch stellar engineering process unfold. This model might take a while (up to 40 minutes) so prepare to do some waiting!
+So when you `./clean`, `./mk`, and `./rn`, you will run all four of the above inlists in order automatically. Go ahead and do so and watch stellar engineering process unfold. This model will take a while (more than an hour) so prepare to do some waiting!
 
 
 * * *
 
-# A movie of the entire process
+# pics of the process
+
+Model Generation:
+
+<video width="640" height="480" controls>
+  <source src="img/model_generation.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+Evolution:
+
+
 
 
 
