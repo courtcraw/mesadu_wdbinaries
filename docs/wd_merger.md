@@ -207,7 +207,7 @@ So burning is still off, and now we stop when the model cools a little bit (afte
 
 Now for `inlist_engrcb3` where the meat of the stellar engineering process lives. This is the step where we are going to adjust the structural profile. Below is a plot from [Lauer+ 2019]() which shows the difference in the structural profile before and after this process.
 
-![Structure Adjustment](img/entropy_adjustment)
+![Structure Adjustment](img/entropy_adjustment.png)
 
 To do this, we will use the `other_energy` hook in `run_star_extras.f90`. If you open the `src/run_star_extras.f90` file in this directory, there will be a subroutine that looks like this:
 
@@ -559,6 +559,7 @@ Model Generation:
 </video>
 
 Evolution:
+
 
 
 
