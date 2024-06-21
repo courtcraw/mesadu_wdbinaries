@@ -9,8 +9,11 @@ Due to runtimes and time constraints, we were not able to include this case in o
 This lab, and this work in fact, has been the product of many previous MESA schools (one unofficial school even). 
 
 [Ken Shen Lab from 2016](https://zenodo.org/records/2603640)
+
 [Bill Wolf Maxilab 3 in 2021](https://billwolf.space/projects/massive_binaries_2021/#part3)
+
 [Also Brad Munson lab in 2022, published in his 2022 paper](https://zenodo.org/records/6971328)
+
 
 # Modelling a WD Merger in MESA - the R Coronae Borealis Stars
 
