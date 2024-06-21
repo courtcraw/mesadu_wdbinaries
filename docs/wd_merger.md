@@ -18,6 +18,7 @@ As we mentioned in the beginning of Friday's Lab 1, DWDs are very important syst
 
 Some recent literature on HdC modeling: 
 
+* Crawford+ 2024 (in review!)
 * [Wong+ 2024](https://ui.adsabs.harvard.edu/abs/2024ApJ...962...20W/abstract)
 * [Munson+ 2022](https://ui.adsabs.harvard.edu/abs/2022ApJ...939...45M/abstract)
 * [Crawford+ 2020](https://ui.adsabs.harvard.edu/abs/2020MNRAS.498.2912C/abstract)
@@ -28,7 +29,7 @@ For the record, there are older models of RCB stars which use MESA's accretion, 
 
 # Please note!!!
 
-This lab is UNTESTED and PROBABLY BAD. But you will learn how the code works. Please see the papers above for much better models. They will evolve much slower. If you were to change the reaction network to a smaller one you could get a much faster run, but we did not have time to do this.
+This lab is UNTESTED and PROBABLY BAD and the write up is definitely missing things! The zip file will run, but it might not reflect what's in this write up. This write up WILL explain in general how the code works. Please see the papers above for much better models and inlists. They will evolve much slower. If you were to change the reaction network to a smaller one you could get a much faster run, but we did not have time to do this.
 
 # Part 0 - download from github
 
@@ -438,8 +439,8 @@ This inlist contains nothing too special, but in `&controls` you will see a lot 
       pgstar_flag = .true.
       pause_before_terminate = .false.
 
-     change_net = .true.
-     new_net_name= 'rcb.net'
+     change_inital_net = .true.
+     new_net_name= 'o18_and_ne22.net'
 
 / ! end of star_job namelist
 
@@ -548,7 +549,7 @@ date "+DATE: %Y-%m-%d%nTIME: %H:%M:%S"
 echo 'finished'
 ```
 
-So when you `./clean`, `./mk`, and `./rn`, you will run all four of the above inlists in order automatically. Go ahead and do so and watch stellar engineering process unfold. This model will take a while (more than an hour) so prepare to do some waiting!
+So when you `./clean`, `./mk`, and `./rn`, you will run all four of the above inlists in order automatically. Go ahead and do so and watch stellar engineering process unfold. This model will take a while (about an hour total) so prepare to do some waiting!
 
 
 * * *
@@ -562,9 +563,12 @@ Model Generation:
   Your browser does not support the video tag.
 </video>
 
-Evolution:
+RCB Evolution:
 
-
+<video width="640" height="480" controls>
+  <source src="img/rcb_evolution.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 
 
